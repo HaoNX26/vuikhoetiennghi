@@ -1,0 +1,357 @@
+﻿@using JoinReward.Models.DTO
+@model JoinReward.Models.DTO.FileCustomerWinDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    JoinReward.Models.Pagination pagination = (JoinReward.Models.Pagination)@ViewData["pagination"];
+    int v_count = 1;
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+                <form asp-action="ViewFileCustomerWin" asp-controller="Business" method="post">
+                    <input type="hidden" asp-for="fid" />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Mã trúng thưởng</b></span>
+                                <input asp-for="LuckyCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Số điện thoại</b></span>
+                                <input asp-for="PhoneNumber" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Tên khách hàng</b></span>
+                                <input asp-for="CustmerName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Đợt quay thưởng</b></span>
+                                <select asp-for="ROUND_ID" asp-items="@ViewBag.lsRound" class="form-control select2"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Trạng thái khách hàng</b></span>
+                                <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control select2"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Trạng thái nội bộ</b></span>
+                                <select asp-for="PAN_STATUS" asp-items="@ViewBag.lsPAN_STATUS" class="form-control select2"></select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Trạng thái ASC</b></span>
+                                <select asp-for="ASC_STATUS" asp-items="@ViewBag.lsASC_STATUS" class="form-control select2"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Tỉnh, thành phố</b></span>
+                                <select asp-for="PROVINCE_ID" asp-items="@ViewBag.lsPronvice" class="form-control select2"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Giải thưởng</b></span>
+                                <select asp-for="PRIZE_WIN" asp-items="@ViewBag.lsPrizeWin" class="form-control select2"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Lần submit</b></span>
+                                <select asp-for="COUNT_SUBMIT" asp-items="@ViewBag.lsCountSubmit" class="form-control select2"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Ngày nộp từ</b></span>
+                                <input type="text" class="form-control date-picker" asp-for="FROM_DATE">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Ngày nộp đến</b></span>
+                                <input type="text" class="form-control date-picker" asp-for="TO_DATE">
+                            </div>
+                        </div>
+                    </div>
+
+                     
+                    @if (ViewBag.Roles != "2")
+                    {
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><b>ASC xử lý</b></span>
+                                    <select asp-for="AscId" asp-items="@ViewBag.ListASC" class="form-control select2"></select>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (ViewBag.Roles != "2" && ViewBag.Roles != "5")
+                    {
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><b>Agency xử lý</b></span>
+                                    <select asp-for="AGENCY_ID" asp-items="@ViewBag.ListAgency" class="form-control select2"></select>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row" style="margin-top: 5px;">
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-block btn-facebook" style="width:100px;">Tìm kiếm</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-microsoft" style="width:100px;margin-left: 5px;" formaction="ExportExcel" onclick="return confirm('Bạn có muốn xuất dữ liệu?');">Export</button>
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered table-striped dataTable">
+                            <thead>
+                                <tr role="row">
+                                    <th style="text-align:center;">
+                                        STT
+                                    </th>
+                                    <th>
+                                        Đợt quay thưởng
+                                    </th>
+                                    <th>
+                                        Ngày submit
+                                    </th>
+                                    <th style="text-align:center;">
+                                        Mã TT
+                                    </th>
+                                    <th>
+                                        Giải thưởng
+                                    </th>
+                                    <th>
+                                        Họ và tên
+                                    </th>
+                                    <th>
+                                        Số ĐT
+                                    </th>
+                                    <th>
+                                        Tỉnh thành
+                                    </th>
+                                    <th>
+                                        Agency
+                                    </th>
+                                    <th>
+                                        ASC xử lý
+                                    </th>
+                                    <th>
+                                        TT khách hàng
+                                    </th>
+                                    <th>
+                                        TT nội bộ
+                                    </th>
+                                     <th>
+                                        Lần submit
+                                    </th>
+                                    <th>
+                                        Ghi chú
+                                    </th>
+                                    <th style="width: 25px; text-align: center;">
+                                        #
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (AssignAscSearchDTO item in (List<AssignAscSearchDTO>)ViewData["grid_data"])
+                                {
+                                    <tr role="row" class="odd">
+                                        <td>
+                                            @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ROUND_NAME)
+                                        </td>
+                                        <th style="text-align:center;">
+                                            @Html.DisplayFor(modelItem => item.CREATE_DATE)
+                                        </th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LuckyCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PRIZE_WIN_TEXT)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProvinceName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AGENCY_NAME)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AscName)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PanStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.COUNT_SUBMIT)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Note)
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-default" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
+                                           asp-route-ID="@item.Id">Chỉnh sửa</a>
+
+                                            <a class="btn btn-default" href="@Url.Action("DownloadFileCustomerWin", new { id = item.Id, type = 1 })">Tải ảnh về</a>
+
+
+                                        </td>
+                                    </tr>
+                                    v_count = v_count + 1;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <partial name="/Views/Shared/_Pagination.cshtml" />
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+
+<div class="modal fade" id="asc-modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="title"></h4>
+            </div>
+            <div id="asc-body-content" class="modal-body">
+                <!-- .modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="Assign('asc-body-content')">Gán</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade" id="update-info-modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="title-update-info"></h4>
+            </div>
+            <div id="update-info-body-content" class="modal-body">
+                <!-- .modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="UpdateInfo('update-info-body-content')">Lưu lại</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade" id="update-status-modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="title-status"></h4>
+            </div>
+            <div id="update-status-body-content" class="modal-body">
+                <!-- .modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="UpdateStatus('update-status-body-content')">Lưu lại</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<script>
+
+        $('#AssignAscId').select2({
+            dropdownParent: $('#asc-modal-default')
+        });
+
+         $('.date-picker').datetimepicker({
+            locale: 'en', keepOpen: false, showClose: true,
+            format: 'DD-MM-YYYY'
+        });
+        $('.datepicker').datepicker();
+
+        function AddEditDialog(itemId) {
+            var url = "/Business/ShowASC?id=" + itemId;
+            $('#title').html("Gán tài liệu cho ASC");
+            showLoading();
+            $("#asc-body-content").load(url, function (e, responseText) {
+                if (responseText === "error") { location.reload() }
+                $("#asc-modal-default").modal({ backdrop: 'static', keyboard: false })
+                //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
+                hideLoading();
+            });
+        }
+
+    }
+
+
+</script>

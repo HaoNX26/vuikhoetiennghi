@@ -1,0 +1,165 @@
+﻿@using JoinReward.Models.DTO
+@model JoinReward.Models.DTO.AssginASCDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Danh sách khác hàng trúng thưởng";
+    JoinReward.Models.Pagination pagination = (JoinReward.Models.Pagination)@ViewData["pagination"];
+    int v_count = 1;
+}
+
+<form asp-action="AssignASC" asp-controller="Master" method="post">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Mã trúng thưởng</b></span>
+                                <input asp-for="LuckyCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Số điện thoại</b></span>
+                                 <input asp-for="PhoneNumber" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Tên khách hàng</b></span>
+                                <input asp-for="CustmerName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Tên ASC</b></span>
+                                <select asp-for="AscId" asp-items="@ViewBag.ListASC" class="form-control select2"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-block btn-facebook" style="width:100px;">Tìm kiếm</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-striped dataTable">
+                                <thead>
+                                    <tr role="row">
+                                        <th style="width: 10px; text-align:center;">
+                                            STT
+                                        </th>
+                                        <th style="width: 70px; text-align: center;">
+                                            Họ và tên khách hàng
+                                        </th>
+                                        <th style="width: 40px; text-align: center;">
+                                            Mã trúng thưởng
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Số điện thoại
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Tên ASC
+                                        </th>
+                                        <th style="width: 25px; text-align: center;">
+                                            #
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (GetInfoCustomerWinDTO item in (List<GetInfoCustomerWinDTO>)ViewData["grid_data"])
+                                    {
+                                        <tr role="row" class="odd" style=" text-align: center;">
+                                            <td>
+                                                @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
+                                            </td>
+                                            <td>
+                                                 @Html.DisplayFor(modelItem => item.CustomerName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.LuckyCode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AscName)
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-default" onclick="AddEditDialog(@item.Id)">Gán cho ASC</a>
+                                            </td>
+                                        </tr>
+                                        v_count = v_count + 1;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <partial name="/Views/Shared/_Pagination.cshtml" />
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</form>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="title"></h4>
+            </div>
+            <div id="edit-body-content" class="modal-body">
+                <!-- .modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="Assign('edit-body-content')">Gán</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<script>
+
+    $('#AssignAscId').select2({
+        dropdownParent: $('#modal-default')
+    });
+
+    function AddEditDialog(itemId) {
+        var url = "/Master/ShowASC?id=" + itemId;
+        //
+        showLoading();
+        $("#edit-body-content").load(url, function (e, responseText) {
+            if (responseText === "error") { location.reload() }
+            $("#modal-default").modal({ backdrop: 'static', keyboard: false })
+            //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
+            hideLoading();
+        });
+    }
+
+    function Assign(formId) {
+        var url = "/Master/Assign"
+        var obj = _getFormObject(formId)
+        _ajax(url, obj, function (response) {
+            if (response.success === 'Y') {
+                location.reload()
+            }
+            else {
+                alert(response.message)
+            }
+        });
+    }
+</script>

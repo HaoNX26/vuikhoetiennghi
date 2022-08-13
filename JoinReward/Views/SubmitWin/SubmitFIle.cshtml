@@ -1,0 +1,533 @@
+﻿@model JoinReward.Models.DTO.InfoCustomerWinDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .tab {
+        display: none;
+        margin-top: 20px;
+    }
+
+    .progress {
+        height: 25px;
+        margin-top: 25px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .card-otp {
+        width: 400px;
+        border: none;
+        height: 300px;
+        box-shadow: 0px 5px 20px 0px #d2dae3;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+        .card-otp h6 {
+            color: red;
+            font-size: 20px
+        }
+
+    .inputs input {
+        width: 40px;
+        height: 40px
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0
+    }
+
+    .card-otp-2 {
+        width: 350px;
+        left: 20px;
+        border-radius: 5px
+    }
+
+        .card-otp-2 .content {
+            margin-top: 50px
+        }
+
+            .card-otp-2 .content a {
+                color: red
+            }
+
+    .form-control:focus {
+        box-shadow: none;
+        border: 2px solid red
+    }
+
+    .validate {
+        border-radius: 20px;
+        height: 40px;
+        background-color: red;
+        border: 1px solid red;
+        width: 140px
+    }
+
+    .h1-success {
+        color: #88B04B;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .p-success {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .i-success {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left: -15px;
+    }
+
+    .card-success {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+    }
+
+     .tab-success {
+        text-align: center;
+        padding: 40px 0;
+        background: white;
+      }
+
+   .step-count::after{
+	content: '';
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 130px;
+    border-bottom: 4px solid #007bff;
+}
+
+   .step-count {
+    text-align: center;
+	position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    opacity: 1;
+   }
+
+</style>
+<div class="page-wrapper bg-white p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+
+            <div class="card-heading">
+                <div class="heading">
+                    <h2 class="title">HOÀN THIỆN THỦ TỤC NHẬN GIẢI</h2>
+                    <h3 class="title">Chương trình “Vui khỏe tiện nghi – Trúng quà như ý”</h3>
+                </div>
+@*                <div class="thele">
+                    <span><p class="text-description">o Đối tượng áp dụng: Dành cho khách hàng trúng thưởng chương trình "Vui Khỏe Tiện Nghi - Trúng Quà Như Ý"</p></span>
+                    <span><p class="text-description">o	Cách thức đăng nhập: Khách hàng đăng nhập bằng số điện thoại trúng thưởng, hệ thống gửi tin nhắn có chứa mã OTP về số điện thoại này trong vòng 5 phút.</p></span>
+                </div>*@
+            </div>
+            <form method="post">
+                <div class="card-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="myBar"></div>
+                    </div>
+                    <br>
+                    @*<h3 class="step-count" id="step-count">Bước 1 / 11</h3>*@
+                    <div class="tab">
+                        <p>Màn hình chào mừng..............</p>
+                    </div>
+
+                    <div class="tab">
+                        <div class="form-row" id="textEnterPhoneNumber">
+                            <h4>Hãy nhập số điện thoại trúng thưởng để nhận mã OTP truy cập vào hệ thống.</h4>
+                        </div>
+                        <div class="form-row" id="inputPhoneNumber">
+                            <div class="name text-otp"><label for="PhoneNumber">Số điện thoại</label><span class="text-danger">(*)</span></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" placeholder="0123456789" type="number">
+                                    <span class="text-danger"><p class="err-width" id="errPhoneNumber">@ViewBag.errPhoneNumber</p></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab">
+
+                        <div class="container height-100 d-flex justify-content-center align-items-center">
+                            <div class="position-relative">
+                                <div class="card card-otp p-2 text-center">
+                                    <h6>Mã OTP đã được gửi về điện thoại <br> Vui lòng nhập mã OTP</h6>
+                                    @*<div> <span>A code has been sent to</span> <small>*******9897</small> </div>*@
+                                    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                                        <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
+                                        <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
+                                        <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
+                                        <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
+                                    </div>
+                                    <div class="card-2 card-otp-2">
+                                        <div class="content d-flex justify-content-center align-items-center">
+                                            <span>Không nhận được mã OTP</span>
+                                            <a href="#" class="text-decoration-none ms-3" style="margin-left: 5px;">Gửi lại</a>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="mt-4"> <button class="btn btn-danger px-4 validate">Validate</button> </div> -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @* <center><h2>Xác thực mã OTP</h2></center>
+                            <div class="form-row" id="otpCode">
+                            <div class="name text-0 text-otp"><label for="Address">Nhập mã OTP<span class="text-danger">(*)</span></label></div>
+                            <div class="value">
+                            <div class="input-group">
+                            <input class="input--style-6" type="number" maxlength="4" />
+                            <span class="text-danger"><p class="err-width" id="errOTP">@ViewBag.errOTP</p></span>
+                            </div>
+                            </div>
+                            </div>
+                            <div id="btnResentOtp"><span style="margin-left: 20px;">Trong vòng 5 phút khách hàng chưa nhận được OTP, vui lòng</span> <a href="JavaScript:void(0);" onclick="ResentOtp()" class="text-decoration-none ms-3">click để nhận lại OTP</a> </div>
+                            <div id="btnWarrOtp"><span><p style="margin-left: 20px;">Do lượng truy cập hệ thống cao, nếu quý khách chưa nhận được mã OTP, vui lòng thử lại sau 15 phút.</p></span></div>*@
+                        @*<button class="btn btn--green btn-otp" type="button" onclick="ResentOtp()" id="btnResentOtp">Nhận lại OTP</button>*@
+                    </div>
+                    <div class="tab">
+                        <center><h2>Video hướng dẫn</h2></center>
+                        <center>
+                            <video width="300" controls id="vdTutorial">
+                                <source src="/images/video_tutorial.mp4" type="video/mp4">
+                                Your browser does not support HTML5 video.
+                            </video>
+                        </center>
+                    </div>
+
+                    <div class="tab">
+                        <div class="name lbl-name"><label><b>Họ và tên đẩy đủ (Viết tiếng việt có dấu)</b></label><span class="text-danger">(*)</span></div>
+
+                        <div class="form-row">
+                            <div class="name lbl-name"><label for="FullName"></label></div>
+                            <div class="value">
+                                <input asp-for="FullName" class="input--style-6" type="text" placeholder="Nguyễn Văn A" onchange="setBankAccountName()">
+                                <div class="label--desc lbl-desc">Họ và tên cần trùng khớp với tên trong CMTND/CCCD/Hộ chiếu</div>
+                                <span class="text-danger"><p class="err-width" id="errFullName">@ViewBag.errFullName</p></span>
+                            </div>
+                        </div>
+
+                        <div class="name lbl-name"><label><b>Số CMTND/CCCD/Hộ chiếu (còn hiệu lực)</b></label><span class="text-danger">(*)</span></div>
+                        <div class="form-row">
+                            <div class="name text-0"><label for="IdentificationNumber"></label></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input asp-for="IdentificationNumber" class="input--style-6" placeholder="123456789" />
+                                    <span class="text-danger"><p class="err-width" id="errIdentificationNumber">@ViewBag.errIdentificationNumber</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name"><label for="FileIDFront">Ảnh chụp mặt trước CMTND/CCCD/Hộ chiếu<span class="text-danger">(*)</span></label></div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input asp-for="FileIDFront" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                    <label class="label--file" for="FileIDFront">Chọn ảnh</label>
+                                    <span class="input-file__info">Chưa chọn ảnh</span>
+                                </div>
+                                <div class="label--desc lbl-desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 5MB</div>
+                                <div class="label--desc lbl-desc">Ảnh chụp trọn vẹn, rõ nét, không rung lắc, có thể nhìn rõ thông tin</div>
+                                <span class="text-danger"><p class="err-width" id="errFileIDFront">@ViewBag.errFileIDFront</p></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name"><label for="FileIDBackside">Ảnh chụp mặt sau CMTND/CCCD/Hộ chiếu<span class="text-danger">(*)</span></label></div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input asp-for="FileIDBackside" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                    <label class="label--file" for="FileIDBackside">Chọn ảnh</label>
+                                    <span class="input-file__info">Chưa chọn ảnh</span>
+                                </div>
+                                <div class="label--desc lbl-desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 5MB</div>
+                                <div class="label--desc lbl-desc">Ảnh chụp trọn vẹn, rõ nét, không rung lắc, có thể nhìn rõ thông tin</div>
+                                <span class="text-danger"><p class="err-width" id="errFileIDBackside">@ViewBag.errFileIDBackside</p></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab">
+                        <div class="name lbl-name"><label><b>Địa chỉ nơi chứa sản phẩm</b></label></div>
+                        <div class="form-row">
+                            <div class="name"><label for="ProvinceId">Tỉnh, Thành phố</label><span class="text-danger">(*)</span></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <select class="form-control input-sm select2" asp-for="ProvinceId" asp-items="@ViewBag.listProvince" onchange="LoadDistricts()"></select>
+                                    <span class="text-danger"><p class="err-width" id="errProvince">@ViewBag.errProvince</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name"><label for="DistrictsId">Quận, Huyện</label><span class="text-danger">(*)</span></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <select class="form-control input-sm select2" asp-for="DistrictsId" asp-items="@ViewBag.listDistrict" onchange="LoadWard()"></select>
+                                    <span class="text-danger"><p class="err-width" id="errDistricts">@ViewBag.errDistricts</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name"><label for="WardId">Phường, xã</label><span class="text-danger">(*)</span></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <select class="form-control input-sm select2" asp-for="WardId" asp-items="@ViewBag.listWard"></select>
+                                    <span class="text-danger"><p class="err-width" id="errWardId">@ViewBag.errWardId</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name text-0"><label for="Address">Địa chỉ chi tiết<span class="text-danger">(*)</span></label></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input asp-for="Address" class="input--style-6" placeholder="Số nhà..." />
+                                    <div class="label--desc lbl-desc">KH cần ghi rõ số nhà, ngõ/ngách, tên đường,... nơi chứa sản phẩm. Panasonic sẽ có thể cử đại diện tới địa chỉ khách hàng cung cấp để xác minh thực tế sản phẩm đã mua</div>
+                                    <div class="label--desc lbl-desc">Đối với khách hàng nhận iPhone, địa chỉ này cũng chính là địa chỉ mà Panasonic sẽ vận chuyển iPhone đến</div>
+                                    <span class="text-danger"><p class="err-width" id="errAddress">@ViewBag.errAddress</p></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab">
+                        <img src="~/images/anh_seri.png" style="width: -webkit-fill-available;" />
+                        <div class="name lbl-name"><label><b>Ảnh chụp số serial sản phẩm đã mua<span class="text-danger">(*)</span></b></label></div>
+                        <div class="form-row">
+
+                            <div class="name text-0"><label for="FileSerialNumber"></label></div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input asp-for="FileSerialNumber" class="input-file" type="file" accept=".jpg, .jpeg, .png" multiple>
+                                    <label class="label--file" for="FileSerialNumber">Chọn ảnh</label>
+                                    <span class="input-file__info">Chưa chọn ảnh</span>
+                                </div>
+                                <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 5MB</div>
+                                <div class="label--desc lbl-desc text-danger"><b>Lưu ý:</b> Khách hàng vui lòng chụp ảnh tem/số serial trên sản phẩm. Khách hàng vui lòng <a href="JavaScript:void(0);" onclick="ViewTutorial()" class="text-decoration-none ms-3"><b>xem hướng dẫn</b></a> để điền thông tin chính xác.</div>
+                                <div class="label--desc lbl-desc">Đối với các sản phẩm điều hòa, khách hàng cần cung cấp thông tin đúng với thông tin ở mục <a href="JavaScript:void(0);" onclick="scrollToTop()" class="text-decoration-none ms-3"><b>“THÔNG TIN KHÁCH HÀNG ĐÃ ĐĂNG KÝ BẢO HÀNH”</b></a> (ở đầu trang). Nếu thông tin số serial ở mục “THÔNG TIN KHÁCH HÀNG ĐÃ ĐĂNG KÝ BẢO HÀNH” có dạng “CU-xxxxxx”, KH vui lòng cung cấp ảnh chụp số serial cục nóng. Nếu thông tin số serial ở mục “THÔNG TIN KHÁCH HÀNG ĐÃ ĐĂNG KÝ BẢO HÀNH” có dạng “CS-xxxxxx”, KH vui lòng cung cấp ảnh chụp số serial cục lạnh. Trong trường hợp, KH không chụp được số serial của cục nóng điều hòa do treo cao, KH vui lòng cung cấp <b style="color: black;"> hình ảnh cục NÓNG VÀ ẢNH phiếu bảo hành hoặc hóa đơn có số serial của sản phẩm (không chấp nhận hoá đơn viết tay).</b></div>
+
+                                <span class="text-danger"><p class="err-width" id="errFileSerialNumber">@ViewBag.errFileSerialNumber</p></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab">
+
+                        <img src="~/images/Kh_dung_sp.png" style="width: -webkit-fill-available;" />
+                        <div class="name lbl-name"><label><b>Ảnh chụp khách hàng cùng sản phẩm đã mua</b></label><span class="text-danger">(*)</span></div>
+
+                        <div class="form-row">
+                            <div class="name text-0"><label for="FileProduct"></label></div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input asp-for="FileProduct" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                    <label class="label--file" for="FileProduct">Chọn ảnh</label>
+                                    <span class="input-file__info">Chưa chọn ảnh</span>
+                                </div>
+                                <div class="label--desc lbl-desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 5MB</div>
+                                <div class="label--desc lbl-desc">Ảnh chụp phải nhìn rõ toàn bộ sản phẩm và mặt khách hàng.</div>
+                                <div class="label--desc lbl-desc">Người chụp cùng sản phẩm phải là khách hàng nhận thưởng</div>
+                                <div class="label--desc lbl-desc">Với sản phẩm điều hòa, KH cần chụp với cục lạnh (cục trong nhà)</div>
+                                <span class="text-danger"><p class="err-width" id="errFileProduct">@ViewBag.errFileProduct</p></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab">
+                        <img src="~/images/anh_tin_nhan.png" style="width: -webkit-fill-available;" />
+                        <div class="name lbl-name"><label><b>Ảnh chụp 2 tin nhắn được gửi từ Panasonic</b></label></div>
+                        <div class="form-row">
+                            <div class="name text-0"><label for="FileSMSCode">Ảnh chụp thông báo mã dự thưởng<span class="text-danger">(*)</span></label></div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input asp-for="FileSMSCode" class="input-file" type="file" accept=".jpg, .jpeg, .png" multiple>
+                                    <label class="label--file" for="FileSMSCode">Chọn ảnh</label>
+                                    <span class="input-file__info">Chưa chọn ảnh</span>
+                                </div>
+                                <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 5MB</div>
+                                <div class="label--desc lbl-desc">Số lượng ảnh không quá 10 ảnh</div>
+                                <div class="label--desc lbl-desc">Ảnh chụp rõ nét, có thể đọc được rõ nét toàn bộ nội dung tin nhắn, brandname (tên người gửi: Panasonic), thời gian nhận. Đối với điện thoại đen trắng, quý khách hàng cần chụp ảnh nhiều ảnh, đảm bảo đầy đủ nội dung tin nhắn và sắp xếp theo thứ tự</div>
+                                <div class="label--desc lbl-desc">Mã số dự thưởng phải trùng khớp với mã số trúng thưởng được nêu trong mục 6A</div>
+                                <div class="label--desc lbl-desc">Nội dung tin nhắn mã số dự thưởng <b class="text-danger">“Quy khach da tham gia chuong trinh VUI KHOE TIEN NGHI, TRUNG QUA NHU Y. Ma so du thuong cua ban la xxxxxx. Chuong trinh quay so trung thuong se dien ra truc tiep vao ngay <b>23/06/2022</b> luc 20h00 tai Fanpage Panasonic Vietnam: https://www.facebook.com/PanasonicVietnam. Hotline: 1900633842”</b></div>
+                                <div class="label--desc lbl-desc"><b style="color: red;">Khách hàng chưa nhận được tin nhắn vui lòng ghi chú ở mục 9. Ghi chú của khách hàng cho Panasonic theo cú pháp: “Cần gửi lại tin nhắn _ mã dự thưởng”</b></div>
+                                <span class="text-danger"><p class="err-width" id="errFileSMSCode">@ViewBag.errFileSMSCode</p></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name text-0"><label for="FileSMSWin">Ảnh chụp thông báo trúng giải<span class="text-danger">(*)</span></label></div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input asp-for="FileSMSWin" class="input-file" type="file" accept=".jpg, .jpeg, .png" multiple>
+                                    <label class="label--file" for="FileSMSWin">Chọn ảnh</label>
+                                    <span class="input-file__info">Chưa chọn ảnh</span>
+                                </div>
+                                <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 5MB</div>
+                                <div class="label--desc lbl-desc">Số lượng ảnh không quá 10 ảnh</div>
+                                <div class="label--desc lbl-desc">Mã số dự thưởng phải trùng khớp với mã số trúng thưởng được nêu trong mục 6A</div>
+                                <div class="label--desc lbl-desc">Ảnh chụp rõ nét, có thể đọc được rõ nét toàn bộ nội dung tin nhắn, brandname (tên người gửi: Panasonic), thời gian nhận. Đối với điện thoại đen trắng, quý khách hàng cần chụp ảnh nhiều ảnh, đảm bảo đầy đủ nội dung tin nhắn và sắp xếp theo thứ tự</div>
+                                <div class="label--desc lbl-desc">Nội dung tin nhắn thông báo trúng thưởng: <b class="text-danger">“Chuc mung Quy khach co ma so xxxxxx da trung thuong 01 iPhone 13 - chuong trinh VUI KHOE TIEN NGHI TRUNG QUA NHU Y tai livestream ngay 23/06/2022. Vui long truy cap www.vuikhoetiennghi.vn de hoan tat thu tuc nhan giai truoc 24h00 ngay 04/07/2022.  Hotline: 1900633842”</b></div>
+                                <div class="label--desc lbl-desc"><b style="color: red;">Khách hàng chưa nhận được tin nhắn vui lòng ghi chú ở mục 9. Ghi chú của khách hàng cho Panasonic theo cú pháp: “Cần gửi lại tin nhắn _ thông báo trúng giải”</b></div>
+                                <span class="text-danger"><p class="err-width" id="errFileSMSWin">@ViewBag.errFileSMSWin</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="name lbl-name"><label><b>Ảnh chụp hóa đơn hoặc phiếu bảo hành</b></label></div>
+                        <div class="form-row">
+                            <div class="name text-0"><label for="FileInvoice"></label></div>
+                            <div class="value">
+                                <div class="input-group js-input-file">
+                                    <input asp-for="FileInvoice" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                    <label class="label--file" for="FileInvoice">Chọn ảnh</label>
+                                    <span class="input-file__info">Chưa chọn ảnh</span>
+                                </div>
+                                <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 5MB</div>
+                                <span class="text-danger"><p class="err-width" id="errFileInvoice">@ViewBag.errFileInvoice</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="name lbl-name"><label><b>Ghi chú của khách hàng cho Panasonic</b></label></div>
+                        <div class="form-row">
+                            <div class="name lbl-name"><label for="NoteOfCus"></label></div>
+                            <div class="value">
+
+                                <textarea asp-for="NoteOfCus" class="input--style-6" placeholder="Khách hàng để lại lời nhắn vào ô này nếu có lưu ý hoặc phản hồi nào danh cho Panasonic"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab">
+                        <div class="tab-success">
+                        <div class="card card-success">
+                            <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+                                <i class="checkmark i-success">✓</i>
+                            </div>
+                            <h1 class="h1-success">Thành công</h1>
+                            <p class="p-success">Panasonic đã nhận được thông tin đăng ký nhận thưởng của Quý khách hàng và sẽ thông báo kết quả xác minh trong vòng 05 ngày làm việc. Chi tiết vui lòng liên hệ hotline 1900633842</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="card-footer">
+                <center>
+                    <button class="btn btn--radius-2 btn-otp btn--red" id="prevBtn" type="button" onclick="nextPrev(-1)">Quay lại</button>
+                    <button class="btn btn--radius-2 btn-otp btn--green" id="nextBtn" onclick="nextPrev(1)">Quay lại</button>
+                </center>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.errMessage))
+{
+    <script type="text/javascript">
+        alert("Có lỗi xảy ra!");
+    </script>
+}
+
+<script>
+
+      var currentTab = 0; // Current tab is set to be the first tab (0)
+
+      showTab(currentTab); // Display the current tab
+
+      function showTab(n) {
+    // This function will display the specified tab of the form ...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            // ... and fix the Previous/Next buttons:
+            if (n == 0) {
+              document.getElementById("prevBtn").style.display = "none";
+            } else {
+              document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 2)) {
+              document.getElementById("nextBtn").innerHTML = "Nộp hồ sơ";
+            } else {
+              document.getElementById("nextBtn").innerHTML = "Tiếp theo";
+            }
+
+            if (n == (x.length - 1)) {
+                document.getElementById("prevBtn").style.display = "none";
+                document.getElementById("nextBtn").innerHTML = "Trang chủ";
+                //document.getElementById("step-count").style.display = "none";
+               
+            }
+            // ... and run a function that displays the correct step indicator:
+            //fixStepIndicator(n)
+      }
+
+      function nextPrev(n) {
+    // This function will figure out which tab to display
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+            //if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form... :
+            if (currentTab >= x.length) {
+              //...the form gets submitted:
+              document.getElementById("regForm").submit();
+              return false;
+            }
+
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+            var elem = document.getElementById("myBar");
+            var elemStep = document.getElementById("step-count");
+            if (currentTab != (x.length - 1)) {
+                elem.style.width = Math.round(((currentTab)/10) * 100 ) + '%';
+                elem.innerText = Math.round(((currentTab)/10) * 100 ) + '%';
+            }
+            //elemStep.innerText = "Bước " + (currentTab + 1) + " / 11";
+      }
+
+    //  function fixStepIndicator(n) {
+    //// This function removes the "active" class of all steps...
+    //        var i, x = document.getElementsByClassName("step");
+    //        for (i = 0; i < x.length; i++) {
+    //          x[i].className = x[i].className.replace(" active", "");
+    //        }
+    //        //... and adds the "active" class to the current step:
+    //        x[n].className += " active";
+    //  }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        function OTPInput() {
+            const inputs = document.querySelectorAll('#otp > *[id]');
+            for (let i = 0; i < inputs.length; i++) { inputs[i].addEventListener('keydown', function (event) { if (event.key === "Backspace") { inputs[i].value = ''; if (i !== 0) inputs[i - 1].focus(); } else { if (i === inputs.length - 1 && inputs[i].value !== '') { return true; } else if (event.keyCode > 47 && event.keyCode < 58) { inputs[i].value = event.key; if (i !== inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } else if (event.keyCode > 64 && event.keyCode < 91) { inputs[i].value = String.fromCharCode(event.keyCode); if (i !== inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } }); }
+        } OTPInput();
+    });
+
+</script>

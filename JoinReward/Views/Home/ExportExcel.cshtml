@@ -1,0 +1,31 @@
+﻿@model JoinReward.Models.JoinReward.ExportDto
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<center>
+    <form asp-action="ExportExcel" asp-controller="Home" method="post">
+
+             <div class="form-row" style="width: 600px;">
+                        <div class="name" style="margin-top: 16px;"><label for="FullName">Tài khoản</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <input asp-for="UserName" class="input--style-6" type="text">
+                        </div>
+                    </div>
+              <div class="form-row" style="width: 600px;">
+                        <div class="name" style="margin-top: 16px;"><label for="FullName">Mật khẩu</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <input asp-for="Password" class="input--style-6" type="password">
+                        </div>
+                    </div>
+                    <span class="text-danger"><p style="width:500px;">@ViewBag.errName</p></span>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn--radius-2 btn--blue-2">Tải về dữ liệu</button>
+            </div>
+        </div>
+    </form>
+
+</center>

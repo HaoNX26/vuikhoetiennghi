@@ -1,0 +1,191 @@
+﻿@using JoinReward.Models.DTO
+@model JoinReward.Models.DTO.SearchCustomerRegisterDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Xuất dữ liệu khách hàng đăng ký";
+    JoinReward.Models.Pagination pagination = (JoinReward.Models.Pagination)@ViewData["pagination"];
+    int v_count = 1;
+}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form asp-action="SearchCustomerRegiser" asp-controller="Export" method="post">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Từ ngày</b></span>
+                                <input asp-for="FromDate" class="form-control date-picker" type="text"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Đến ngày</b></span>
+                                <input asp-for="ToDate" class="form-control date-picker" type="text"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-block btn-facebook" style="width:100px;">Tìm kiếm</button>
+                        </div>
+                    </div>
+                    </form>
+                    <form asp-action="ExportExcel" asp-controller="Export" method="post">
+                    <div class="row" style=" margin-top: 30px;">
+                        <input asp-for="FromDate" type="text" hidden/>
+                        <input asp-for="ToDate" type="text" hidden/>
+                        <div class="col-sm-12">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="submit" class="btn btn-block btn-microsoft btn-add" style="width:100px;">Xuất dữ liệu</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-striped dataTable">
+                                <thead>
+                                    <tr role="row">
+                                        <th style="width: 10px; text-align:center;">
+                                            STT
+                                        </th>
+                                        <th style="width: 70px; text-align: center;">
+                                            Họ và tên
+                                        </th>
+                                        <th style="width: 40px; text-align: center;">
+                                            Số điện thoại
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Số CMNTND/CCCD/Hộ chiếu
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Địa chỉ
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Quận, Huyện
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Tỉnh, Thành phố
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Tên sản phẩm
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Kiểu máy
+                                        </th>
+                                        <th style="width: 35px; text-align: center;">
+                                            Ngày mua hàng
+                                        </th>
+                                        <th style="width: 25px; text-align: center;">
+                                            #
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (ExportCustomerRegisterDTO item in (List<ExportCustomerRegisterDTO>)ViewData["grid_data"])
+                                    {
+                                        <tr role="row" class="odd" style=" text-align: center;">
+                                            <td>
+                                                @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FullName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.IdentifycationNumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Addrress)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DistrictName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProviceName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ModelName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PurchaseDate)
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-default" href="@Url.Action("DownloadFile", new { id = item.Id, type = 1 })">Tải ảnh về</a>
+                                            </td>
+                                        </tr>
+                                        v_count = v_count + 1;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <partial name="/Views/Shared/_Pagination.cshtml" />
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="title"></h4>
+            </div>
+            <div id="edit-body-content" class="modal-body">
+                <!-- .modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="Assign('edit-body-content')">Gán</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<script>
+
+    $('#AssignAscId').select2({
+        dropdownParent: $('#modal-default')
+    });
+
+    function AddEditDialog(itemId) {
+        var url = "/Master/ShowASC?id=" + itemId;
+        //
+        showLoading();
+        $("#edit-body-content").load(url, function (e, responseText) {
+            if (responseText === "error") { location.reload() }
+            $("#modal-default").modal({ backdrop: 'static', keyboard: false })
+            //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
+            hideLoading();
+        });
+    }
+
+    function Assign(formId) {
+        var url = "/Master/Assign"
+        var obj = _getFormObject(formId)
+        _ajax(url, obj, function (response) {
+            if (response.success === 'Y') {
+                location.reload()
+            }
+            else {
+                alert(response.message)
+            }
+        });
+    }
+</script>

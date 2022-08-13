@@ -1,0 +1,107 @@
+﻿.bg-black {
+    background-color: #000
+}
+
+#logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px
+}
+
+.navbar-brand {
+    padding: 14px 20px;
+    font-size: 16px
+}
+
+.navbar-nav {
+    width: 100%
+}
+
+.nav-item {
+    padding: 6px 14px;
+    text-align: center
+}
+
+.nav-link {
+    padding-bottom: 10px
+}
+
+.v-line {
+    background-color: gray;
+    width: 1px;
+    height: 20px
+}
+
+.navbar-collapse.collapse.in {
+    display: block !important
+}
+
+.flex-init-setup {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.flex-ppal-setup {
+    -webkit-flex-flow: column wrap;
+    -moz-flex-flow: column wrap;
+    flex-flow: column wrap;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+}
+
+.select2-container .select2-selection--single {
+    height: 38px !important;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+/*.responsive.mobile {
+    display: none;
+}*/
+
+@media (max-width: 576px) {
+    .nav-item {
+        width: 100%;
+        text-align: left
+    }
+
+    .v-line {
+        display: none
+    }
+
+    video {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+/*    .responsive {
+        display: none;
+    }
+
+    .responsive.mobile {
+        display: block;
+    }*/
+
+
+    .btn-img-main-mb {
+        width: 20% !important;
+        margin-top: 0px !important;
+    }
+}
+
+video {
+    width: 50%;
+    height: auto;
+}
+
+.btn-img-main {
+    width: 20%;
+    margin-top: 15px;
+}

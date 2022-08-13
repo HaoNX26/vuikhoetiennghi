@@ -1,0 +1,123 @@
+﻿@{
+    JoinReward.Models.Pagination pagination = (JoinReward.Models.Pagination)@ViewData["pagination"];
+}
+<div class="row">
+    <div class="col-sm-5">
+        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị @((@pagination.CUR_PAGE - 1) * @pagination.PAGE_SIZE + ((pagination.TOTAL_RECORD > 0)?1:0)) đến @System.Math.Min(@pagination.CUR_PAGE * @pagination.PAGE_SIZE, @pagination.TOTAL_RECORD) trong tổng số @pagination.TOTAL_RECORD bản ghi</div>
+    </div>
+    <div class="col-sm-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+            <ul class="pagination">
+                @{
+                    long v_TotalPage = (long)Math.Ceiling((decimal)pagination.TOTAL_RECORD / pagination.PAGE_SIZE);
+                    long range1_from, range1_to, range2_from, range2_to, range3_from, range3_to;
+                    if (pagination.CUR_PAGE > v_TotalPage)
+                    {
+                        pagination.CUR_PAGE = v_TotalPage;
+                    }
+                    if (v_TotalPage - 10 >= 0)
+                    {
+                        if (pagination.CUR_PAGE >= v_TotalPage - 4)
+                        {
+                            range1_from = 1; range1_to = 2;
+                            range2_from = -1; range2_to = -2;
+                            range3_from = pagination.CUR_PAGE - 2; range3_to = v_TotalPage;
+
+                        }
+                        else if (pagination.CUR_PAGE <= 4)
+                        {
+                            range1_from = 1; range1_to = pagination.CUR_PAGE + 2;
+                            range2_from = -1; range2_to = -2;
+                            range3_from = v_TotalPage - 1;
+                            range3_to = v_TotalPage;
+
+                        }
+                        else
+                        {
+                            range1_from = 1; range1_to = 2;
+                            range2_from = pagination.CUR_PAGE - 2; range2_to = pagination.CUR_PAGE + 2;
+                            range3_from = v_TotalPage - 1; range3_to = v_TotalPage;
+                        }
+                    }
+                    else
+                    {//list all
+                        range1_from = 1; range1_to = v_TotalPage;
+                        range2_from = -1; range2_to = -2;
+                        range3_from = -1; range3_to = -2;
+                    }
+                }
+                @for (long i = range1_from; i <= range1_to; ++i)
+                {
+                    if (i != pagination.CUR_PAGE)
+                    {
+                        <li class='paginate_button '>
+                            <a href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class='paginate_button previous  active'>
+                            <a href='#'>@i</a>
+                        </li>
+                    }
+                }
+                @if (range2_from < range2_to)
+                {
+                    <li class='paginate_button previous  disabled'>
+                        <a href='#'>...</a>
+                    </li>
+
+                }
+                @for (long i = range2_from; i <= range2_to; ++i)
+                {
+                    if (i != pagination.CUR_PAGE)
+                    {
+                        <li class='paginate_button '>
+                            <a href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class='paginate_button previous  active'>
+                            <a href='#'>@i</a>
+                        </li>
+                    }
+                }
+                @for (long i = range3_from; i <= range3_to; ++i)
+                {
+                    if (i != pagination.CUR_PAGE)
+                    {
+                        <li class='paginate_button '>
+                            <a href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class='paginate_button previous  active'>
+                            <a href='#'>@i</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="dataTables_length">
+            <label>
+                Hiển thị
+                <select id="page-size" name="PAGE_SIZE" onchange="submit();">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select> bản ghi
+            </label>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.getElementById("page-size").value = '@pagination.PAGE_SIZE'
+</script>

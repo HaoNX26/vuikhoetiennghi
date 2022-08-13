@@ -1,0 +1,150 @@
+﻿@model JoinReward.Models.JoinReward.CustomerView
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="page-wrapper bg-dark p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                <h2 class="title" style="margin-bottom: 15px;">THÔNG TIN ĐĂNG KÝ KÍCH HOẠT BẢO HÀNH – Chương trình “Vui khỏe tiện nghi – Trúng quà như ý”</h2>
+               @* <span style="color: #ffffff;"><p style="margin-top: 5px;margin-left: 5px;">1. Đối tượng áp dụng: Dành cho Khách hàng mua sản phẩm thuộc nhóm 2 (Nhóm không có số serial)</p></span>
+                <span style="color: #ffffff;"><p style="margin-top: 5px;margin-left: 5px;">2. Danh sách sản phẩm áp dụng: Máy xịt diệt khuẩn cầm tay, Máy ép chậm, Máy tăm nước, Nồi cơm điện tử, Nồi nấu chậm, Máy lọc nước kiềm, Máy làm bánh tự động, Máy sấy tóc (chỉ áp dụng với các mã kiểu máy có trong chương trình khuyến mãi)</p></span>
+                <span style="color: #ffffff;"><p style="margin-top: 5px;margin-left: 5px;">3. Thời gian mua hàng: từ ngày 15/04/2022 đến hết ngày 14/06/2022</p></span>
+                <span style="color: #ffffff;"><p style="margin-top: 5px;margin-left: 5px;">4. Thông tin liên hệ: Hotline 1900 633842 – Thời gian làm việc: 08h00 – 17h30, thứ Hai đến Chủ Nhật.</p></span>
+                <span style="color: #ffffff;"><p style="margin-top: 5px;margin-left: 5px;">Quý Khách hàng có nhu cầu tham gia chương trình “Vui khỏe tiện nghi – Trúng quà như ý”, vui lòng đăng ký thông tin theo mẫu dưới đây. Panasonic Việt Nam sẽ hỗ trợ Kích hoạt bảo hành điện tử cho Quý khách đối với các sản phẩm không có số serial.</p></span>
+                <span style="color: #ffffff;"><p style="margin-top: 5px;margin-left: 5px;">Bằng việc đăng ký tham gia chương trình, Panasonic Việt Nam hiểu rằng, Quý Khách hàng đã chấp nhận và đồng ý cho chúng tôi sử dụng thông tin để kích hoạt bảo hành điện tử nhằm tham gia chương trình khuyến mãi và các chương trình truyền thông quảng cáo của Panasonic.</p></span>
+                <span style="color: #ffffff;"><p style="margin-bottom: 5px;margin-left: 5px;">Ngoài ra, Quý khách hàng cũng cam kết rằng, những thông tin dưới đây là chính xác, và sẽ*@ @*chịu trách nhiệm hoàn toàn trước Pháp luật nếu cung cấp thông tin không chính xác, hoặc không đầy đủ theo quy định của chương trinh.</p></span>*@
+            </div>
+            <form asp-action="SubmitFormRegister" asp-controller="Home" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="name" style="margin-top: 16px;"><label for="FullName">Họ và tên</label></div>
+                        <div class="value">
+                            <input asp-for="FullName" class="input--style-6" type="text" placeholder="Nguyễn Văn A" disabled="disabled">
+                            <span class="text-danger"><p style="width:500px;">@ViewBag.errFullName</p></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="PhoneNumber">Số điện thoại</label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="PhoneNumber" class="input--style-6" placeholder="0123456789" disabled="disabled">
+                                <span class="text-danger"><p style="width:500px;">@ViewBag.errPhoneNumber</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name" style="margin-top: 0px;"><label for="IdentificationNumber">Số CMTND/CCCD/Hộ chiếu (còn hiệu lực)</label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="IdentificationNumber" class="input--style-6" placeholder="123456789" disabled="disabled"/>
+                                <span class="text-danger"><p style="width:500px;">@ViewBag.errIdentificationNumber</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="FileIDFront">Ảnh chụp mặt trước</label></div>
+                        <div>
+                          @*  <div class="input-group js-input-file">
+                                <input asp-for="FileIDFront" class="input-file" type="file">
+                                <label class="label--file" for="FileIDFront">Choose file</label>
+                                <span class="input-file__info">No file chosen</span>
+                            </div>
+                            <div class="label--desc">Kích thước tệp tin nhỏ hơn 30 MB</div>
+                            <span class="text-danger"><p style="width:500px;" >@ViewBag.errFileIDFront</p></span>*@
+                            <img src="@ViewBag.pathFrontPath" class="img-fluid" style="width: 200px;"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="FileIDBackside">Ảnh chụp mặt sau</label></div>
+                        <div>
+ @*                           <div class="input-group js-input-file">
+                                <input asp-for="FileIDBackside" class="input-file" type="file">
+                                <label class="label--file" for="FileIDBackside">Choose file</label>
+                                <span class="input-file__info">No file chosen</span>
+                            </div>
+                            <div class="label--desc">Kích thước tệp tin nhỏ hơn 30 MB</div>
+                            <span class="text-danger"><p style="width:500px;">@ViewBag.errFileIDBackside</p></span>*@
+                            <img src="@ViewBag.pathBacksidePath" class="img-fluid" style="width: 200px;"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="ProductNameId">Tên sản phẩm</label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="ProductNameId" asp-items="@ViewBag.listProduct" onchange="LoadModel()" disabled="disabled"></select>
+                                @*<input asp-for="ProductName" class="input--style-6" placeholder="ABC"/>*@
+                                <span class="text-danger"><p style="width:500px;">@ViewBag.errProductName</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="ModelId">Kiểu máy</label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="ModelId" asp-items="@ViewBag.listModel" disabled="disabled"></select>
+                                @*<input asp-for="Model" class="input--style-6"  placeholder="XYZ"/>*@
+                                <span class="text-danger"><p style="width:500px;">@ViewBag.errModel</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="ProvinceId">Tỉnh, Thành phố</label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="ProvinceId" asp-items="@ViewBag.listProvince" onchange="LoadDistricts()" disabled="disabled"></select>
+                                <span class="text-danger"><p style="width:500px;">@ViewBag.errProvince</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="DistrictsId">Quận, Huyện</label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="DistrictsId" asp-items="@ViewBag.listDistrict" disabled="disabled"></select>
+                                <span class="text-danger"><p style="width:500px;">@ViewBag.errDistricts</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name" style="margin-top: 0px;"><label for="Address">Địa chỉ nơi chứa sản phẩm</label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="Address" class="input--style-6" placeholder="Số nhà..."  disabled="disabled"/>
+                                <span class="text-danger"><p style="width:500px;">@ViewBag.errAddress</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="PurchaseDate">Ngày mua hàng</label></div>
+                        <div class="value">
+                            <div class="input-group date">
+                                <input type="text" class="form-control date-picker" asp-for="PurchaseDate" disabled="disabled">
+                            </div>
+                                <span class="text-danger"><p style="width:500px;" >@ViewBag.errPurchaseDate</p></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name" style="margin-top: 0px;"><label for="FileWarranty">Ảnh chụp phiếu bảo hành (<span class="text-danger">đã điền đầy đủ thông tin</span>)</label></div>
+                        <div>
+                           @* <div class="input-group js-input-file">
+                                <input asp-for="FileWarranty" class="input-file" type="file">
+                                <label class="label--file" for="FileWarranty">Choose file</label>
+                                <span class="input-file__info">No file chosen</span>
+                            </div>
+                            <div class="label--desc" style="width: 500px;margin-top: 2px;">Kích thước tệp tin nhỏ hơn 30 MB</div>
+                            <span class="text-danger"><p style="width:500px;">@ViewBag.errFileWarranty</p></span>*@
+                            <img src="@ViewBag.pathFileWarranty" class="img-fluid" style="width: 200px;"/>
+                        </div>
+                    </div>
+                </div>
+               </form>
+                <div class="card-footer">
+                    <button class="btn btn--radius-2 btn--blue-2"><a style="color: #ffff !important;" asp-controller="Home" asp-action="FormRegister">Gửi phản hồi khác</a></button>
+                </div>
+            
+        </div>
+    </div>
+</div>

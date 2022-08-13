@@ -1,0 +1,171 @@
+﻿@model JoinReward.Models.DTO.LoginToSubmit
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="page-wrapper bg-dark p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                <div class="card-heading">
+                    <h2 class="title">HOÀN THIỆN THỦ TỤC NHẬN GIẢI – Chương trình “Vui khỏe tiện nghi – Trúng quà như ý”</h2>
+                    <span><p class="text-description">o Đối tượng áp dụng: Dành cho khách hàng trúng thưởng chương trình "Vui Khỏe Tiện Nghi - Trúng Quà Như Ý"</p></span>
+                    <span><p class="text-description">o	Cách thức đăng nhập: Khách hàng đăng nhập bằng số điện thoại trúng thưởng, hệ thống gửi tin nhắn có chứa mã OTP về số điện thoại này trong vòng 5 phút.</p></span>
+                    <span><p class="text-description">o	Khách hàng nhập mã OTP để đăng nhập hệ thống</p></span>
+                    <span><p class="text-description">o	Khách hàng không chia sẻ mã OTP cho người khác</p></span>
+                    <span><p class="text-description" id="text-bottom"> o Mỗi khách hàng không nhận quá 20 mã OTP</p></span>
+                </div>
+                <center>
+                     <video width="300" controls autoplay="autoplay" id="vdTutorial">
+                      <source src="/images/video_tutorial.mp4" type="video/mp4">
+                      Your browser does not support HTML5 video.
+                    </video>
+                </center>
+                <form action="/nhaphoso" method="post" id="formOtp">
+                    <div class="card-body">
+                        <div class="form-row" id="textEnterPhoneNumber">
+                            Hãy nhập số điện thoại trúng thưởng để nhận mã OTP truy cập vào hệ thống.
+                        </div>
+                        <div class="form-row" id="inputPhoneNumber">
+                            <div class="name text-otp"><label for="PhoneNumber">Số điện thoại</label><span class="text-danger">(*)</span></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input asp-for="PhoneNumber" class="input--style-6" placeholder="0123456789" type="number">
+                                    <span class="text-danger"><p class="err-width" id="errPhoneNumber">@ViewBag.errPhoneNumber</p></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <button class="btn btn--green btn-otp" type="button" onclick="recieveOtp()" id="btnReceiveOtp">Nhận OTP</button>
+                            @*<button class="btn btn--green btn-otp" type="button" onclick="ResentOtp()" id="btnResentOtp">Nhận lại OTP</button>*@
+                        </div>
+                        <div class="form-row" id="lblOTPMessage">
+                            Mã OTP đã được gửi tới số điện thoại của bạn. Mã OTP có hiệu lực 1 phút.
+                        </div>
+
+                        <div class="form-row" id="otpCode">
+                            <div class="name text-0 text-otp"><label for="Address">Nhập mã OTP<span class="text-danger">(*)</span></label></div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input asp-for="OTP" class="input--style-6" type="number" maxlength="4"/>
+                                    <span class="text-danger"><p class="err-width" id="errOTP">@ViewBag.errOTP</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="btnResentOtp"><span style="margin-left: 20px;">Trong vòng 5 phút khách hàng chưa nhận được OTP, vui lòng</span> <a href="JavaScript:void(0);" onclick="ResentOtp()" class="text-decoration-none ms-3">click để nhận lại OTP</a> </div>
+                        <div id="btnWarrOtp"><span><p style="margin-left: 20px;">Do lượng truy cập hệ thống cao, nếu quý khách chưa nhận được mã OTP, vui lòng thử lại sau 15 phút.</p></span></div>
+                        @*<button class="btn btn--green btn-otp" type="button" onclick="ResentOtp()" id="btnResentOtp">Nhận lại OTP</button>*@
+                    </div>
+                </form>
+                <div class="card-footer">
+                    <button class="btn btn--radius-2 btn--blue-2" type="button" onclick="submitForm()" id="btnSubmit">Xác nhận OTP</button>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.errMessage))
+{
+    <script type="text/javascript">
+        alert("Có lỗi xảy ra!");
+    </script>
+}
+
+<script>
+    
+    $(document).ready(function () {
+        $('#otpCode').hide();
+        $('#btnResentOtp').hide();
+        $('#btnWarrOtp').hide();
+        $('#btnSubmit').hide();
+        $('#lblOTPMessage').hide();
+       //$('#vdTutorial').play();
+
+    });
+    function recieveOtp() {
+        
+        $('#btnReceiveOtp').prop('disabled', true);
+
+;
+        var PhoneNumber = $('#PhoneNumber').val();
+         if  (PhoneNumber == null || PhoneNumber == '') {
+             $('#errPhoneNumber').text('Số điện thoại không được để trống');
+             $('#btnReceiveOtp').prop('disabled', false);
+
+         } else {
+              $('#errPhoneNumber').text('');
+            
+            var url = "/SubmitWin/ReceiveOtp?PhoneNumber=" + PhoneNumber;
+            _ajax(url, '', function (response) {
+                if (response.success === 'Y') {
+                    setTimeout(function() {
+                        $('#btnReceiveOtp').hide();
+                        $('#lblOTPMessage').show();
+                        $('#otpCode').show();
+                        $('#btnSubmit').show();
+
+                        $('#lblOTPMessage').hide();
+                        $('#textEnterPhoneNumber').hide();
+                        $('#inputPhoneNumber').hide();
+                        $('#btnResentOtp').show();
+                        $('#btnWarrOtp').show();
+                    },500)
+                }
+                else {
+                    $('#errPhoneNumber').text(response.message);
+                     $('#btnReceiveOtp').prop('disabled', false);
+                }
+            });
+         }
+
+    }
+    function ResentOtp() {
+
+        //$('#btnResentOtp').prop('disabled', true);
+        var PhoneNumber = $('#PhoneNumber').val();
+        //if (PhoneNumber == null || PhoneNumber == '') {
+        //    $('#errPhoneNumber').text('Số điện thoại không được để trống');
+        //    $('#btnResentOtp').prop('disabled', false);
+
+        //} else {
+        //    $('#errPhoneNumber').text('');
+
+            var url = "/SubmitWin/ReceiveOtp?PhoneNumber=" + PhoneNumber;
+            _ajax(url, '', function (response) {
+                if (response.success === 'Y') {
+                    setTimeout(function () {
+                        alert('Mã OTP đã được gửi tới số điện thoại của bạn!');
+                    }, 5000)
+                }
+                else {
+                    alert(response.message);
+                }
+            });
+        }
+
+    function submitForm() {
+        var PhoneNumber = $('#PhoneNumber').val();
+        var Otp = $('#OTP').val();
+
+         if  (Otp == null || Otp == '') {
+             $('#errOTP').text('OTP không được để trống');
+         } else {
+              $('#errOTP').text('');
+        var url = "/SubmitWin/VerifyOtp?PhoneNumber=" + PhoneNumber + "&otp=" + Otp;
+            _ajax(url, '', function (response) {
+                if (response.success === 'Y') {
+                    window.location.href = "/nhaphoso?PhoneNumber=" + PhoneNumber + "&otp=" + Otp;
+                }
+                else {
+                    alert(response.message);
+                     
+                }
+            });
+         }
+    }
+
+ </script>

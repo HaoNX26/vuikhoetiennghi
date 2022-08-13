@@ -1,0 +1,22 @@
+﻿@model JoinReward.Models.Master.M_OTP ;
+@Html.AntiForgeryToken()
+<input type="hidden" asp-for="ID" />
+<div class="form-group">
+    <label asp-for="OTP">
+        Mã OTP
+    </label>
+    <input asp-for="OTP" class="form-control required-field" required autofocus />
+
+</div>
+<div class="form-group">
+    <label asp-for="CUSTOMER_TEL">
+        Số điện thoại
+    </label>
+    <input asp-for="CUSTOMER_TEL" class="form-control required-field" required />
+
+</div>
+
+
+<script type="text/javascript">
+    if ('@ViewBag.Message') alert('@ViewBag.Message')
+</script>

@@ -1,0 +1,395 @@
+﻿@model JoinReward.Models.AppRegisterDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="page-wrapper bg-dark p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                                <div class="heading">
+                    <h1 class="title">ĐĂNG KÝ THAM GIA</h1>
+                    <h2 class="title">Chương trình “Vui khỏe tiện nghi – Trúng quà như ý”</h2>
+                </div>
+                <div class="thele">
+                    <span><p class="text-description">1. Áp dụng cho: Khách hàng mua sản phẩm thuộc nhóm 2 (Nhóm không có số serial)</p></span>
+                <span><p class="text-description">2. Danh sách sản phẩm áp dụng: Máy xịt diệt khuẩn cầm tay, Máy ép chậm, Máy tăm nước, Nồi cơm điện tử, Nồi nấu chậm, Máy lọc nước kiềm, Máy làm bánh tự động, Máy sấy tóc (chỉ áp dụng với các mã kiểu máy có trong chương trình khuyến mãi)</p></span>
+                <span><p class="text-description">3. Thời gian mua hàng: từ ngày 15/04/2022 đến hết ngày 14/06/2022</p></span>
+                <span><p class="text-description">4. Thông tin liên hệ: Hotline 1900 633842 – Thời gian làm việc: 08h00 – 17h30, thứ Hai đến Chủ Nhật.</p></span>
+                <span><p class="text-description">Quý Khách hàng có nhu cầu tham gia chương trình “Vui khỏe tiện nghi – Trúng quà như ý”, vui lòng đăng ký thông tin theo mẫu dưới đây. Panasonic Việt Nam sẽ hỗ trợ Kích hoạt bảo hành điện tử cho Quý khách đối với các sản phẩm không có số serial.</p></span>
+                <span><p class="text-description">Bằng việc đăng ký tham gia chương trình, Panasonic Việt Nam hiểu rằng, Quý Khách hàng đã chấp nhận và đồng ý cho chúng tôi sử dụng thông tin để kích hoạt bảo hành điện tử nhằm tham gia chương trình khuyến mãi và các chương trình truyền thông quảng cáo của Panasonic.</p></span>
+                <span><p class="text-description" id="text-bottom">Ngoài ra, Quý khách hàng cũng cam kết rằng, những thông tin dưới đây là chính xác, và sẽ chịu trách nhiệm hoàn toàn trước Pháp luật nếu cung cấp thông tin không chính xác hoặc mạo danh.</p></span>
+                </div>
+                @*<h2 class="title">ĐĂNG KÝ THAM GIA – Chương trình “Vui khỏe tiện nghi – Trúng quà như ý”</h2>*@
+                @*<span><p class="text-description">1. Áp dụng cho: Khách hàng mua sản phẩm thuộc nhóm 2 (Nhóm không có số serial)</p></span>
+                <span><p class="text-description">2. Danh sách sản phẩm áp dụng: Máy xịt diệt khuẩn cầm tay, Máy ép chậm, Máy tăm nước, Nồi cơm điện tử, Nồi nấu chậm, Máy lọc nước kiềm, Máy làm bánh tự động, Máy sấy tóc (chỉ áp dụng với các mã kiểu máy có trong chương trình khuyến mãi)</p></span>
+                <span><p class="text-description">3. Thời gian mua hàng: từ ngày 15/04/2022 đến hết ngày 14/06/2022</p></span>
+                <span><p class="text-description">4. Thông tin liên hệ: Hotline 1900 633842 – Thời gian làm việc: 08h00 – 17h30, thứ Hai đến Chủ Nhật.</p></span>
+                <span><p class="text-description">Quý Khách hàng có nhu cầu tham gia chương trình “Vui khỏe tiện nghi – Trúng quà như ý”, vui lòng đăng ký thông tin theo mẫu dưới đây. Panasonic Việt Nam sẽ hỗ trợ Kích hoạt bảo hành điện tử cho Quý khách đối với các sản phẩm không có số serial.</p></span>
+                <span><p class="text-description">Bằng việc đăng ký tham gia chương trình, Panasonic Việt Nam hiểu rằng, Quý Khách hàng đã chấp nhận và đồng ý cho chúng tôi sử dụng thông tin để kích hoạt bảo hành điện tử nhằm tham gia chương trình khuyến mãi và các chương trình truyền thông quảng cáo của Panasonic.</p></span>
+                <span><p class="text-description" id="text-bottom">Ngoài ra, Quý khách hàng cũng cam kết rằng, những thông tin dưới đây là chính xác, và sẽ chịu trách nhiệm hoàn toàn trước Pháp luật nếu cung cấp thông tin không chính xác hoặc mạo danh.</p></span>*@
+            </div>
+            <form action="/guithongtin" method="post" enctype="multipart/form-data" id="formRegister">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="name" style="margin-top: 16px;"><label for="FullName">Họ và tên</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <input asp-for="FullName" class="input--style-6" type="text" placeholder="Nguyễn Văn A">
+                            <span class="text-danger"><p class="err-width" id="errFullName">@ViewBag.errFullName</p></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="PhoneNumber">Số điện thoại</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="PhoneNumber" class="input--style-6" placeholder="0123456789">
+                                <span class="text-danger"><p class="err-width" id="errPhoneNumber">@ViewBag.errPhoneNumber</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name text-0"><label for="IdentificationNumber">Số CMTND/CCCD/Hộ chiếu (còn hiệu lực)<span class="text-danger">(*)</span></label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="IdentificationNumber" class="input--style-6" placeholder="123456789" />
+                                <span class="text-danger"><p class="err-width" id="errIdentificationNumber">@ViewBag.errIdentificationNumber</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="FileIDFront">Ảnh chụp mặt trước</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group js-input-file">
+                                <input asp-for="FileIDFront" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                <label class="label--file" for="FileIDFront">Chọn ảnh</label>
+                                <span class="input-file__info">Chưa chọn ảnh</span>
+                            </div>
+                            <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 30MB</div>
+                            <span class="text-danger"><p class="err-width" id="errFileIDFront">@ViewBag.errFileIDFront</p></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="FileIDBackside">Ảnh chụp mặt sau</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group js-input-file">
+                                <input asp-for="FileIDBackside" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                <label class="label--file" for="FileIDBackside">Chọn ảnh</label>
+                                <span class="input-file__info">Chưa chọn ảnh</span>
+                            </div>
+                            <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 30MB</div>
+                            <span class="text-danger"><p class="err-width" id="errFileIDBackside">@ViewBag.errFileIDBackside</p></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="ProductNameId">Tên sản phẩm</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="ProductNameId" asp-items="@ViewBag.listProduct" onchange="LoadModel()"></select>
+                                @*<input asp-for="ProductName" class="input--style-6" placeholder="ABC"/>*@
+                                <span class="text-danger"><p class="err-width" id="errProductName">@ViewBag.errProductName</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="ModelId">Kiểu máy</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="ModelId" asp-items="@ViewBag.listModel"></select>
+                                @*<input asp-for="Model" class="input--style-6"  placeholder="XYZ"/>*@
+                                <span class="text-danger"><p class="err-width" id="errModel">@ViewBag.errModel</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="FileProduct">Ảnh chụp sản phẩm</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group js-input-file">
+                                <input asp-for="FileProduct" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                <label class="label--file" for="FileProduct">Chọn ảnh</label>
+                                <span class="input-file__info">Chưa chọn ảnh</span>
+                            </div>
+                            <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 30MB</div>
+                            <span class="text-danger"><p class="err-width" id="errFileProduct">@ViewBag.errFileProduct</p></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="ProvinceId">Tỉnh, Thành phố</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="ProvinceId" asp-items="@ViewBag.listProvince" onchange="LoadDistricts()"></select>
+                                <span class="text-danger"><p class="err-width" id="errProvince">@ViewBag.errProvince</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="DistrictsId">Quận, Huyện</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <select class="form-control input-sm select2" asp-for="DistrictsId" asp-items="@ViewBag.listDistrict"></select>
+                                <span class="text-danger"><p class="err-width" id="errDistricts">@ViewBag.errDistricts</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name text-0"><label for="Address">Địa chỉ nơi chứa sản phẩm<span class="text-danger">(*)</span></label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="Address" class="input--style-6" placeholder="Số nhà..." />
+                                <span class="text-danger"><p class="err-width" id="errAddress">@ViewBag.errAddress</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name"><label for="PurchaseDate">Ngày mua hàng</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group date">
+                                <input type="text" class="form-control date-picker" asp-for="PurchaseDate" asp-format="{0:MM/DD/yyyy}" data-inputmask="'alias': 'MM/dd/yyyy'" data-mask placeholder="mm/dd/yyyy">
+                            </div>
+                                <span class="text-danger"><p class="err-width" id="errPurchaseDate">@ViewBag.errPurchaseDate</p></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name text-0"><label for="FileWarranty">Ảnh chụp phiếu bảo hành <span class="text-danger"><i>(đã điền đầy đủ thông tin)</i></span><span class="text-danger">(*)</span></label></div>
+                        <div class="value">
+                            <div class="input-group js-input-file">
+                                <input asp-for="FileWarranty" class="input-file" type="file" accept=".jpg, .jpeg, .png">
+                                <label class="label--file" for="FileWarranty">Chọn ảnh</label>
+                                <span class="input-file__info">Chưa chọn ảnh</span>
+                            </div>
+                            <div class="label--desc">Định dạng ảnh là PNG, JPG, JPEG và kích thước ảnh nhỏ hơn 30MB</div>
+                            <span class="text-danger"><p class="err-width" id="errFileWarranty">@ViewBag.errFileWarranty</p></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+@*                        <label>Mã xác thực</label>
+                        <img id="img-captcha" src="~/get-captcha-image" />
+                        <input type="button" style="width: 100px;margin-left: 10px;" id="btGetNewCapchar" value="Lấy mã mới" onclick="resetCaptchaImage()"></input>*@
+                        <div style="width: 500px;" class="g-recaptcha" data-sitekey="6LdxRsYfAAAAAN50WReNz0ypzaVpPeiCcLXI6kxK"></div>
+                        @*<div style="width: 500px;" class="g-recaptcha" data-sitekey="6LfNnW4fAAAAAHSBdemwWW0mifYxDF1jk_D6_eT_"></div>*@
+                         <div class="label--desc" id="text-accept">Chọn vào ô vuông để xác minh</div>
+                        <span class="text-danger"><p class="err-width" id="errCapchar"><b>@ViewBag.errCapchar</b></p></span>
+                    </div>
+                </div>
+               </form>
+                <div class="card-footer">
+                    <div class="form-check">
+                        <input type="checkbox" id="acceptSubmit" name="acceptSubmit" onchange="accecptSubmit()" />
+                        <label for="acceptSubmit" id="label-accetp-1">
+                            Tôi đã đọc và hiểu các nội dung cũng như quy định liên quan đến chương trình “Vui khỏe tiện nghi – Trúng quà như ý”.
+                        </label>
+                        <label for="acceptSubmit" id="label-accetp-2">
+                             Ngoài ra, tôi đồng ý cung cấp các thông tin trên nhằm mục đích kích hoạt bảo hành cũng như tham gia chương trình, và cho phép Panasonic sử dụng dữ liệu trên với mục đích truyền thông, quảng cáo.
+                        </label>
+                    </div>
+                    <span class="text-danger"><p id="text-warr"><i>*Vui lòng kiểm tra kỹ các thông tin đã đăng ký. Panasonic có quyền từ chối kích hoạt với các đăng ký sai hoặc thiếu thông tin mà không cần thông báo trước.</i></p></span>
+                    <button class="btn btn--radius-2 btn--blue-2" type="button" onclick="submitForm()" id="btnSubmit">Gửi thông tin</button>
+                </div>
+           
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <script type="text/javascript">
+        alert("Có lỗi xảy ra!");
+    </script>
+}
+
+<script>
+       $(document).ready(function () {
+        $('.date-picker').datetimepicker({
+            locale: 'en', keepOpen: false, showClose: true,
+            format: 'DD-MM-YYYY'
+        });
+        $('.datepicker').datepicker();
+    });
+
+    function LoadDistricts() {
+        $("#DistrictsId").html("")
+        var url = "/Home/DistrictsByProvince";
+        var obj = { province: ($("#ProvinceId").val() ? $("#ProvinceId").val().toString() : "") }
+        _ajaxSync(url, obj, function (response) {
+            if (response.success === 'Y') {
+                $("#DistrictsId").append(response.data_string)
+            }
+            else {
+                alert(response.message)
+            }
+        });
+    }
+
+       function LoadModel() {
+        $("#ModelId").html("")
+        var url = "/Home/ModelByProduct";
+        var obj = {product : ($("#ProductNameId").val() ? $("#ProductNameId").val().toString() : "") }
+        _ajaxSync(url, obj, function (response) {
+            if (response.success === 'Y') {
+                $("#ModelId").append(response.data_string)
+            }
+            else {
+                alert(response.message)
+            }
+        });
+    }
+
+      function resetCaptchaImage() {
+
+        d = new Date();
+
+        $("#img-captcha").attr("src", "/get-captcha-image?id=" + d.getTime());
+    }
+
+    function submitForm() {
+        var extension = ["image/jpeg", "image/png", "image/gif"];
+        var regex = new RegExp("(84|0)+([0-9]{9})", "i");
+
+        var checkValid = true;
+
+        var FullName = $('#FullName').val();
+        var PhoneNumber = $('#PhoneNumber').val();
+        var IdentificationNumber = $('#IdentificationNumber').val();
+        var FileIDFront = $('#FileIDFront').val();
+        var FileIDBackside = $('#FileIDBackside').val();
+        var ProductNameId = $('#ProductNameId').val();
+        var ModelId = $('#ModelId').val();
+        var ProvinceId = $('#ProvinceId').val();
+        var DistrictsId = $('#DistrictsId').val();
+        var Address = $('#Address').val();
+        var PurchaseDate = $('#PurchaseDate').val();
+        var FileWarranty = $('#FileWarranty').val();
+        var FileProduct = $('#FileProduct').val();
+
+        if  (FullName == null || FullName == '') {
+            $('#errFullName').text('Họ và tên không được để trống');
+            checkValid = false;
+        } else { $('#errFullName').text('');}
+
+        if  (PhoneNumber == null || PhoneNumber == '') {
+            $('#errPhoneNumber').text('Số điện thoại không được để trống');
+            checkValid = false;
+        } else if (regex.test(PhoneNumber) === false) {
+            $('#errPhoneNumber').text('Số điện thoại không đúng định dạng');
+            checkValid = false;
+        } else { $('#errPhoneNumber').text('');}
+
+        if  (IdentificationNumber == null || IdentificationNumber == '') {
+            $('#errIdentificationNumber').text('Sô CMTND hoặc CCCD không được để trống');
+            checkValid = false;
+        } else { $('#errIdentificationNumber').text('');}
+
+        if  (FileIDFront == null || FileIDFront == '') {
+            $('#errFileIDFront').text('Ảnh chụp mặt trước không được để trống');
+            checkValid = false;
+        } else if(document.getElementById("FileIDFront").files[0].size > (1024 * 1024 * 30)) {
+            $('#errFileIDFront').text('Kích thước ảnh chụp mặt trước phải nhỏ hơn 30MB');
+            checkValid = false;
+        } else if(extension.indexOf(document.getElementById("FileIDFront").files[0].type) === -1) {
+            $('#errFileIDFront').text('Ảnh chụp mặt trước không đúng định dạng');
+            checkValid = false;
+         } else { $('#errFileIDFront').text('');}
+
+        if  (FileIDBackside == null || FileIDBackside == '') {
+            $('#errFileIDBackside').text('Ảnh chụp mặt sau không được để trống');
+            checkValid = false;
+        } else if(document.getElementById("FileIDBackside").files[0].size > (1024 * 1024 * 30)) {
+            $('#errFileIDBackside').text('Kích thước ảnh chụp mặt sau phải nhỏ hơn 30MB');
+            checkValid = false;
+        } else if(extension.indexOf(document.getElementById("FileIDBackside").files[0].type) === -1) {
+            $('#errFileIDBackside').text('Ảnh chụp mặt sau không đúng định dạng'); 
+            checkValid = false;
+        } else { $('#errFileIDBackside').text('');}
+
+        if  (ProductNameId == null || ProductNameId == '') {
+            $('#errProductName').text('Tên sản phẩm không được để trống');
+            checkValid = false;
+        } else { $('#errProductName').text('');}
+
+        if  (ModelId == null || ModelId == '') {
+            $('#errModel').text('Kiểu máy không được để trống');
+            checkValid = false;
+        } else { $('#errModel').text('');}
+
+        if  (ProvinceId == null || ProvinceId == '') {
+            $('#errProvince').text('Tỉnh, thành phố không được để trống');
+            checkValid = false;
+        } else { $('#errProvince').text('');}
+
+        if  (DistrictsId == null || DistrictsId == '') {
+            $('#errDistricts').text('Quận, huyện không được để trống');
+            checkValid = false;
+        } else { $('#errDistricts').text('');}
+
+        if  (Address == null || Address == '') {
+            $('#errAddress').text('Địa chỉ nơi chứa sản phẩm không được để trống');
+            checkValid = false;
+        } else { $('#errAddress').text('');}
+
+        if  (PurchaseDate == null || PurchaseDate == '') {
+            $('#errPurchaseDate').text('Ngày mua hàng không được để trống');
+            checkValid = false;
+        } else {
+            var urlValidateDate = "/Home/ValidateDateFuture";
+            var data = {purchaseDate: PurchaseDate};
+            _ajaxSync(urlValidateDate, data, function (response) {
+                if (response.success === 'Y') {
+                    if (response.data === 'invalid') {
+                         $('#errPurchaseDate').text('Ngày mua hàng không được sau ngày hiện tại');
+                         checkValid = false;
+                    } else { $('#errPurchaseDate').text(''); }
+                } else {
+                    alert(response.message)
+                }
+            });
+            //$('#errPurchaseDate').text('');
+        }
+
+        if  (FileProduct == null || FileProduct == '') {
+            $('#errFileProduct').text('Ảnh chụp sản phẩm không được để trống');
+            checkValid = false;
+        } else if(document.getElementById("FileProduct").files[0].size > (1024 * 1024 * 30)) {
+            $('#errFileProduct').text('Kích thước ảnh chụp sản phẩm phải nhỏ hơn 30MB');
+            checkValid = false;
+        } else if(extension.indexOf(document.getElementById("FileProduct").files[0].type) === -1) {
+            $('#errFileProduct').text('Ảnh chụp sản phẩm không đúng định dạng'); 
+            checkValid = false;
+        } else { $('#errFileProduct').text('');}
+
+        if  (FileWarranty == null || FileWarranty == '') {
+            $('#errFileWarranty').text('Ảnh chụp phiếu bảo hành không được để trống');
+            checkValid = false;
+        } else if(document.getElementById("FileWarranty").files[0].size > (1024 * 1024 * 30)) {
+            $('#errFileWarranty').text('Kích thước ảnh chụp phiếu bảo hành phải nhỏ hơn 30MB');
+            checkValid = false;
+        } else if(extension.indexOf(document.getElementById("FileWarranty").files[0].type) === -1) {
+            $('#errFileWarranty').text('Ảnh chụp phiếu bảo hành không đúng định dạng'); 
+            checkValid = false;
+        } else { $('#errFileWarranty').text('');}
+
+        var captcharesponse = grecaptcha.getResponse();
+        var data = {captchaResponse: captcharesponse};
+        var url = "/Home/ValidateCapcha";
+        _ajaxSync(url, data, function (response) {
+            if (response.success === 'Y') {
+                if (response.data === 'invalid') {
+                     $('#errCapchar').text('Phải chọn ô vuông để xác minh');
+                     checkValid = false;
+                } else { $('#errCapchar').text(''); }
+            } else {
+                alert(response.message)
+            }
+        });
+
+        if (checkValid === true) {
+            $('#formRegister').submit();
+        } else {
+            grecaptcha.reset();
+        }
+    }
+</script>
+
+
+<!-- Main JS-->
+<script src="/js/global.js"></script>

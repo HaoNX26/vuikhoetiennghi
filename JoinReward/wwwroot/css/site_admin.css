@@ -1,0 +1,169 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.error-message {
+    color: red;
+}
+
+.item-action {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #3c8dbc;
+}
+
+    .item-action:hover {
+        text-decoration: none;
+    }
+
+table .btn {
+    padding: 0px 8px;
+}
+
+.required-field {
+    background-color: #FDF198;
+}
+
+.header td {
+    background-color: #e5e5e5;
+}
+
+.bg-white {
+    background-color: #FFFFFF !important;
+}
+
+.example1_filter {
+    margin-bottom: 5px;
+}
+
+.chat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .chat li {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px dotted #B3A9A9;
+    }
+
+.clearfix:before {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.chat li.left .chat-body {
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body {
+    margin-right: 60px;
+}
+
+.modal-table .row {
+    margin: 0;
+}
+
+.modal-table .col-sm-12 {
+    padding: 0;
+}
+
+.fixed-wrapper {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100000
+}
+
+.opacity5 {
+    opacity: 0.5
+}
+
+.loading-icon {
+    background: url(/images/spin.gif) center center no-repeat
+}
+
+.close-file {
+    background: #FF0000;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    padding: 0px 10px;
+    transform: translate(0%, -50%);
+    opacity: .5 !important;
+}
+
+    .close-file:hover {
+        background: #FF0000;
+    }
+
+.name-info{
+    margin-left: 20px;
+}
+
+.name-info b {
+    margin-right: 10px;
+}

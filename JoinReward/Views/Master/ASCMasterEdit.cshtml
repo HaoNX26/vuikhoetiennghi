@@ -1,0 +1,28 @@
+﻿@model JoinReward.Models.DTO.ASCMasterDTO
+@Html.AntiForgeryToken()
+<input type="hidden" asp-for="ID" />
+<div class="form-group">
+    <label asp-for="ASC_CODE">
+        Mã ASC
+    </label>
+    <input asp-for="ASC_CODE" class="form-control required-field" required  autofocus   />
+    <span class="text-danger"><p class="err-width" id="errASCCode"></p></span>
+</div>
+<div class="form-group">
+    <label asp-for="ASC_NAME">
+        Tên ASC
+    </label>
+    <input asp-for="ASC_NAME" class="form-control required-field"  required />
+    <span class="text-danger"><p class="err-width" id="errASCName"></p></span>
+</div>
+ 
+<div class="form-group">
+    <label asp-for="ASC_EMAIL">
+        Email
+    </label>
+    <input asp-for="ASC_EMAIL" class="form-control required-field" required/>
+    <span class="text-danger"><p class="err-width" id="errEmail"></p></span>
+</div>
+<script type="text/javascript">
+    if ('@ViewBag.Message') alert('@ViewBag.Message')
+</script>

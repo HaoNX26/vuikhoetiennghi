@@ -1,0 +1,93 @@
+﻿@model JoinReward.Models.DTO.LoginToSubmit
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="page-wrapper bg-dark p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                <h2 class="title"></h2>
+            <form action="/nhapthongtin" method="post"id="formOtp">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="name text-otp"><label for="PhoneNumber">Số điện thoại</label><span class="text-danger">(*)</span></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="PhoneNumber" class="input--style-6" placeholder="0123456789">
+                                <span class="text-danger"><p class="err-width" id="errPhoneNumber">@ViewBag.errPhoneNumber</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name text-0 text-otp"><label for="LuckyCode">Mã trúng thưởng<span class="text-danger">(*)</span></label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="LuckyCode" class="input--style-6" placeholder="Mã trúng thưởng có 6 số" />
+                                <span class="text-danger"><p class="err-width" id="errLuckyCode">@ViewBag.errLuckyCode</p></span>
+                                <button class="btn btn--green btn-otp" type="button" onclick="submitForm()" id="btnSubmit">Nhận OTP</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name text-0 text-otp"><label for="Address">OTP<span class="text-danger">(*)</span></label></div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input asp-for="OTP" class="input--style-6"/>
+                                <span class="text-danger"><p class="err-width" id="errAddress">@ViewBag.errAddress</p></span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+               </form>
+                <div class="card-footer">
+                    <button class="btn btn--radius-2 btn--blue-2" type="button" onclick="submitForm()" id="btnSubmit">Nhập Hồ Sơ</button>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.errMessage))
+{
+    <script type="text/javascript">
+        alert("Có lỗi xảy ra!");
+    </script>
+}
+
+<script>
+    function submitForm() {
+
+        var regex = new RegExp("(84|0)+([0-9]{9})", "i");
+        var checkValid = true;
+
+        //var LuckyCode = $('#LuckyCode').val();
+        var PhoneNumber = $('#PhoneNumber').val();
+        var IdentificationNumber = $('#IdentificationNumber').val();
+
+        if  (PhoneNumber == null || PhoneNumber == '') {
+            $('#errPhoneNumber').text('Số điện thoại không được để trống');
+            checkValid = false;
+        } else if (regex.test(PhoneNumber) === false) {
+            $('#errPhoneNumber').text('Số điện thoại không đúng định dạng');
+            checkValid = false;
+        } else { $('#errPhoneNumber').text('');}
+
+        //if  (LuckyCode == null || LuckyCode == '') {
+        //    $('#errLuckyCode').text('Lucky code không được để trống');
+        //    checkValid = false;
+        //} else { $('#errLuckyCode').text('');}
+
+        if  (OTP == null || OTP == '') {
+            $('#errOTP').text('OTP không được để trống');
+            checkValid = false;
+        } else { $('#errOTP').text('');}
+
+        if (checkValid === true) {
+        $('#formOtp').submit();
+            }
+    }
+
+ </script>

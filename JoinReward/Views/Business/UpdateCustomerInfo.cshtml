@@ -1,0 +1,21 @@
+﻿@model JoinReward.Models.DTO.UpdateFileCustomerDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<input asp-for="Id" hidden/>
+<div class="form-group">
+    <label>
+        Ghi chú
+    </label>
+    <textarea asp-for="Note" class="form-control"/>
+</div>
+
+<div class="form-group">
+    <label>Ảnh đính kèm</label>
+    <input type="file" class="form-control" asp-for="FileASCUpdate" accept=".jpg, .jpeg, .png" multiple />
+    <div id="fileList">
+        <ul class="list-group" id="listFiles"></ul>
+    </div>
+</div>

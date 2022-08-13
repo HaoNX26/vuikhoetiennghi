@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    string CurrentName = ViewContext.RouteData.Values["Controller"].ToString();  
+    if ("Home".Equals(CurrentName) || "SubmitWin".Equals(CurrentName) || "SubmitDone".Equals(CurrentName)) {
+        Layout = "_Layout";
+    } else {
+        Layout = "_LayoutAdmin";
+    }
+}
