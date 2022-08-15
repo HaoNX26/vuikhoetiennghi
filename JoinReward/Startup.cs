@@ -30,7 +30,7 @@ namespace JoinReward
             services.AddDbContext<Models.DB.AppRegisterContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db_con_string")));
             services.AddDbContext<Models.DB.MasterContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db_con_string")));
             services.AddDbContext<Models.DB.UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db_con_string")));
-            services.AddDbContext<Models.DB.SubmitCustomerWinContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db_con_string")));
+            services.AddDbContext<Models.DB.BusinessContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db_con_string")));
 
             services.AddSession(opts =>
             {

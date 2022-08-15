@@ -26,10 +26,10 @@ namespace JoinReward.Controllers
         private readonly ILogger<SubmitWinController> _logger;
         private readonly IHostingEnvironment _hostEnvironment;
         private readonly AppRegisterContext _appRegisterContext;
-        private readonly SubmitCustomerWinContext _submitCustomerWinContext;
+        private readonly BusinessContext _submitCustomerWinContext;
         private readonly MasterContext _masterContext;
 
-        public SubmitWinController(ILogger<SubmitWinController> logger, IHostingEnvironment hostingEnvironment, AppRegisterContext appRegisterContext, SubmitCustomerWinContext submitCustomerWinContext, MasterContext masterContext)
+        public SubmitWinController(ILogger<SubmitWinController> logger, IHostingEnvironment hostingEnvironment, AppRegisterContext appRegisterContext, BusinessContext submitCustomerWinContext, MasterContext masterContext)
         {
             _logger = logger;
             _hostEnvironment = hostingEnvironment;

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JoinReward.Models.DTO
 {
-    public class AssignAscSearchDTO
+    public class FileCustomerWinSearchDTO
     {
         [Column("ID")]
         public long Id { get; set; }

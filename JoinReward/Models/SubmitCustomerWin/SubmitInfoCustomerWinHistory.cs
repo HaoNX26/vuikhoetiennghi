@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JoinReward.Models.SubmitCustomerWin
 {
-    [Table("B_SUBMIT_CUSTOMER_WIN")]
-    public class SubmitInfoCustomerWin
+    [Table("B_SUBMIT_CUSTOMER_WIN_HISTORY")]
+    public class SubmitInfoCustomerWinHistory
     {
         [Key]
         [Column("ID")]
@@ -93,7 +93,7 @@ namespace JoinReward.Models.SubmitCustomerWin
         public string FILE_ID_FRONT_AUTHORIZATION { get; set; }
         public string FILE_ID_BACKSIDE_AUTHORIZATION { get; set; }
 
-        public long ? ASC_STATUS { get; set; }
+        public long? ASC_STATUS { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ASC_PROCESS_DEADLINE { get; set; }
         public DateTime? REJECT_DATE { get; set; }

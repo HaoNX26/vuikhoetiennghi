@@ -22,13 +22,13 @@ namespace JoinReward.Controllers
     {
         private readonly IHostingEnvironment _hostEnvironment;
         private readonly AppRegisterContext _appRegisterContext;
-        private readonly SubmitCustomerWinContext _submitCustomerWinContext;
+        private readonly BusinessContext _businessContext;
 
-        public ExportController(IHostingEnvironment hostingEnvironment, AppRegisterContext appRegisterContext, SubmitCustomerWinContext submitCustomerWinContext)
+        public ExportController(IHostingEnvironment hostingEnvironment, AppRegisterContext appRegisterContext, BusinessContext businessContext)
         {
             _hostEnvironment = hostingEnvironment;
             _appRegisterContext = appRegisterContext;
-            _submitCustomerWinContext = submitCustomerWinContext;
+            _businessContext = businessContext;
         }
 
         public IActionResult SearchCustomerRegiser(SearchCustomerRegisterDTO searchCustomerRegisterDTO)

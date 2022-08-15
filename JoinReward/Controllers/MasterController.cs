@@ -22,10 +22,10 @@ namespace JoinReward.Controllers
     {
 
         private readonly Models.DB.MasterContext _masterContext;
-        private readonly Models.DB.SubmitCustomerWinContext _submitCustomerWinContext;
+        private readonly Models.DB.BusinessContext _submitCustomerWinContext;
         private readonly Models.DB.UserContext _userContext;
 
-        public MasterController(Models.DB.MasterContext masterContext, Models.DB.SubmitCustomerWinContext submitCustomerWinContext, Models.DB.UserContext userContext)
+        public MasterController(Models.DB.MasterContext masterContext, Models.DB.BusinessContext submitCustomerWinContext, Models.DB.UserContext userContext)
         {
             _masterContext = masterContext;
             _submitCustomerWinContext = submitCustomerWinContext;

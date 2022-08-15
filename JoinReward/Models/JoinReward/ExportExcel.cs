@@ -86,7 +86,7 @@ namespace JoinReward.Models.JoinReward
             return fileBytes;
         }
 
-        public byte[] ExportExcelCustomerWin(List<AssignAscSearchDTO> assignAscSearchDTOs)
+        public byte[] ExportExcelCustomerWin(List<FileCustomerWinSearchDTO> assignAscSearchDTOs)
         {
             SpreadsheetInfo.SetLicense("EF21-1FW1-HWZF-CLQH");
             string p_template = "wwwroot/ReportTemplate";
