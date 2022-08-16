@@ -167,3 +167,8 @@ table .btn {
 .name-info b {
     margin-right: 10px;
 }
+
+.box {
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
