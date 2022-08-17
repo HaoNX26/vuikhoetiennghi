@@ -30,6 +30,7 @@ namespace JoinReward.Models.DB
         public DbSet<ListWinnerSearchDTO> listWinnerSearchDTOs { get; set; }
 
         public DbSet<SubmitInfoCustomerWin> submitInfoCustomerWins { get; set; }
+        public DbSet<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs { get; set; }
         public DbSet<BCustomerWin> bCustomerWins { get; set; }
         public DbSet<NoteCustomer> noteCustomers { get; set; }
 

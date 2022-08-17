@@ -2,6 +2,7 @@
 using JoinReward.Models.Master;
 using JoinReward.Models.SubmitCustomerWin;
 using JoinReward.Models.User;
+using JoinReward.Views.Master;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,7 @@ namespace JoinReward.Models.DB
         public DbSet<MStatus> mStatuses { get; set; }
         public DbSet<MWard> mWards { get; set; }
         public DbSet<M_OTP_DTO> M_OTP_DTO { get; set; }
+        public DbSet<M_STEP> m_STEPs { get; set; }
         public DbSet<M_OTP> M_OTP { get; set; }
         public DbSet<SubmitInfoCustomerWin> SubmitInfoCustomerWin { get; set; }
 

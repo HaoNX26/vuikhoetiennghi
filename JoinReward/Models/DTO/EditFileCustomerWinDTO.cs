@@ -63,6 +63,21 @@ namespace JoinReward.Models.DTO
         public string FILE_OF_AGENCY_VIEW { get; set; }
         public long? NOTE_CUS_REJECT_ID { get; set; }
         public string NOTE_CUS_REJECT { get; set; }
+
+        public string NOTE_ERROR1 { get; set; }
+        public string NOTE_ERROR2 { get; set; }
+        public string NOTE_ERROR3 { get; set; }
+        public string NOTE_ERROR4 { get; set; }
+        public string NOTE_ERROR5 { get; set; }
+        public string NOTE_ERROR6 { get; set; }
+
+        public bool IS_ERROR1 { get; set; }
+        public bool IS_ERROR2 { get; set; }
+        public bool IS_ERROR3 { get; set; }
+        public bool IS_ERROR4 { get; set; }
+        public bool IS_ERROR5 { get; set; }
+        public bool IS_ERROR6 { get; set; }
+
         public long ? ASC_STATUS { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public String ASC_PROCESS_DEADLINE { get; set; }

@@ -73,18 +73,18 @@ namespace JoinReward.Controllers
                 ASCMaster aSCMaster = _masterContext.aSCMasters.Where(p => p.ID == s_USER.ASC_ID).FirstOrDefault<ASCMaster>();
 
                 //chức năng duyệt, từ chối, trả thưởng
-                //if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_APPROVE))
-                //{
-                //    fileCustomerWinDTO.PAN_STATUS = SysFrameworks.Constant.C_STATUS_HO_SO_DU;
-                //}
-                //else if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_REJECT))
-                //{
-                //    fileCustomerWinDTO.PAN_STATUS = SysFrameworks.Constant.C_STATUS_HO_SO_THIEU;
-                //}
-                //else if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_REWARD))
-                //{
-                //    fileCustomerWinDTO.CUSTOMER_STATUS = SysFrameworks.Constant.C_STATUS_CUS_DUYET;
-                //}
+                if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_APPROVE))
+                {
+                    fileCustomerWinDTO.PAN_STATUS = SysFrameworks.Constant.C_STATUS_HO_SO_DU;
+                }
+                else if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_REJECT))
+                {
+                    fileCustomerWinDTO.PAN_STATUS = SysFrameworks.Constant.C_STATUS_HO_SO_THIEU;
+                }
+                else if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_REWARD))
+                {
+                    fileCustomerWinDTO.CUSTOMER_STATUS = SysFrameworks.Constant.C_STATUS_CUS_DUYET;
+                }
 
 
                 if (aSCMaster.ASC_TYPE.Equals(SysFrameworks.Constant.C_ROLE_ASC)) // acc login là ASC
@@ -467,6 +467,39 @@ namespace JoinReward.Controllers
 
             ViewBag.lsCUS_REJECT = lsCUS_REJECT;
 
+            List<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs = _businessContext.b_STEP_CUSTOMER_SUBMITs.Where(p => p.CUSTOMER_SUBMIT_ID == editFileCustomerWinDTO.ID).OrderBy(s => s.STEP_ID).ToList<B_STEP_CUSTOMER_SUBMIT>();
+
+            foreach(B_STEP_CUSTOMER_SUBMIT item in b_STEP_CUSTOMER_SUBMITs)
+            {
+                switch (item.STEP_ID)
+                {
+                    case 1:
+                        editFileCustomerWinDTO.NOTE_ERROR1 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR1 = true;
+                        break;
+                    case 2:
+                        editFileCustomerWinDTO.NOTE_ERROR2 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR2 = true;
+                        break;
+                    case 3:
+                        editFileCustomerWinDTO.NOTE_ERROR3 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR3 = true;
+                        break;
+                    case 4:
+                        editFileCustomerWinDTO.NOTE_ERROR4 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR4 = true;
+                        break;
+                    case 5:
+                        editFileCustomerWinDTO.NOTE_ERROR5 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR5 = true;
+                        break;
+                    case 6:
+                        editFileCustomerWinDTO.NOTE_ERROR6 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR6 = true;
+                        break;
+                }
+            }
+            //editFileCustomerWinDTO.NOTE_ERROR1 = 
 
             editFileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
             ViewBag.funcId = HttpContext.Session.GetString("fid");
@@ -523,6 +556,63 @@ namespace JoinReward.Controllers
 
                 if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_AGENCY || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
                 {
+                    List<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs = _businessContext.b_STEP_CUSTOMER_SUBMITs.Where(p => p.CUSTOMER_SUBMIT_ID == editFileCustomerWinDTO.ID).ToList<B_STEP_CUSTOMER_SUBMIT>();
+                    if (b_STEP_CUSTOMER_SUBMITs != null && b_STEP_CUSTOMER_SUBMITs.Count > 0)
+                    _businessContext.b_STEP_CUSTOMER_SUBMITs.RemoveRange(b_STEP_CUSTOMER_SUBMITs);
+                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR1))
+                    {
+                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
+                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
+                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 1;
+                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR1;
+                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
+                    }
+
+                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR2))
+                    {
+                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
+                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
+                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 2;
+                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR2;
+                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
+                    }
+
+                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR3))
+                    {
+                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
+                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
+                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 3;
+                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR3;
+                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
+                    }
+
+                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR4))
+                    {
+                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
+                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
+                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 4;
+                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR4;
+                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
+                    }
+
+                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR5))
+                    {
+                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
+                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
+                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 5;
+                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR5;
+                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
+                    }
+
+                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR6))
+                    {
+                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
+                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
+                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 6;
+                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR6;
+                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
+                    }
+                    
                     //Agency
                     submitInfoCustomerWin.NOTE_OF_AGENCY = editFileCustomerWinDTO.NOTE_OF_AGENCY;
                     submitInfoCustomerWin.PanStatus = editFileCustomerWinDTO.PAN_STATUS;
@@ -607,9 +697,10 @@ namespace JoinReward.Controllers
 
 
                 _masterContext.SaveChanges();
+                _businessContext.SaveChanges();
                 FileCustomerWinDTO fileCustomerWinDTO = new FileCustomerWinDTO();
                 fileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
-                return RedirectToAction("ViewFileCustomerWin", "Business", fileCustomerWinDTO);
+                return RedirectToAction("ViewListWinner", "Business", fileCustomerWinDTO);
             }
             catch (Exception ex)
             {
