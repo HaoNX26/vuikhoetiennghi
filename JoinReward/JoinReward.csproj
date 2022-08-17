@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Dashboard\" />
     <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 

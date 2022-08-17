@@ -9,6 +9,7 @@ namespace JoinReward.Controllers
         [Route("admin")]
         public IActionResult Index()
         {
+            ViewData["Title"] = "Dashboard";
             return View("Admin");
         }
     }
