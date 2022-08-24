@@ -499,12 +499,60 @@ namespace JoinReward.Controllers
                         break;
                 }
             }
-            //editFileCustomerWinDTO.NOTE_ERROR1 = 
-
+            List<SubmitInfoCustomerWinHistory> submitInfoCustomerWinHistorys = _businessContext.submitInfoCustomerWinHistories.Where(p => p.PhoneNumber.Equals(editFileCustomerWinDTO.PHONE_NUMBER)).ToList<SubmitInfoCustomerWinHistory>();
+            ViewData["list-history"] = submitInfoCustomerWinHistorys;
             editFileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
             ViewBag.funcId = HttpContext.Session.GetString("fid");
             return View("EditFileCustomerWin", editFileCustomerWinDTO);
         }
+
+        public IActionResult ViewFileCustomerHistory(long id)
+        {
+            EditFileCustomerWinDTO editFileCustomerWinDTO = new EditFileCustomerWinDTO();
+            V_B_SUBMIT_CUSTOMER_WIN_HISTORY v_B_SUBMIT_CUSTOMER_WIN = _businessContext.v_B_SUBMIT_CUSTOMER_WIN_HISTORies.Find(id);
+            v_B_SUBMIT_CUSTOMER_WIN.CopyProperties(editFileCustomerWinDTO);
+            ViewData["Title"] = GetFunctionName(int.Parse(HttpContext.Session.GetString("fid")));
+            ViewData["infoCustomerWin"] = editFileCustomerWinDTO;
+
+            List<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs = _businessContext.b_STEP_CUSTOMER_SUBMITs.Where(p => p.CUSTOMER_SUBMIT_ID == editFileCustomerWinDTO.ID).OrderBy(s => s.STEP_ID).ToList<B_STEP_CUSTOMER_SUBMIT>();
+
+            foreach (B_STEP_CUSTOMER_SUBMIT item in b_STEP_CUSTOMER_SUBMITs)
+            {
+                switch (item.STEP_ID)
+                {
+                    case 1:
+                        editFileCustomerWinDTO.NOTE_ERROR1 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR1 = true;
+                        break;
+                    case 2:
+                        editFileCustomerWinDTO.NOTE_ERROR2 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR2 = true;
+                        break;
+                    case 3:
+                        editFileCustomerWinDTO.NOTE_ERROR3 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR3 = true;
+                        break;
+                    case 4:
+                        editFileCustomerWinDTO.NOTE_ERROR4 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR4 = true;
+                        break;
+                    case 5:
+                        editFileCustomerWinDTO.NOTE_ERROR5 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR5 = true;
+                        break;
+                    case 6:
+                        editFileCustomerWinDTO.NOTE_ERROR6 = item.NOTE_ERROR;
+                        editFileCustomerWinDTO.IS_ERROR6 = true;
+                        break;
+                }
+            }
+            //editFileCustomerWinDTO.NOTE_ERROR1 = 
+
+            editFileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
+            ViewBag.funcId = HttpContext.Session.GetString("fid");
+            return PartialView("ViewFileCustomerHistory", editFileCustomerWinDTO);
+        }
+
         public IActionResult SaveFileCustomerWin(EditFileCustomerWinDTO editFileCustomerWinDTO)
         {
             try

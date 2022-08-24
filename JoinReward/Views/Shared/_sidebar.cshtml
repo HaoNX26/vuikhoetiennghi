@@ -1,0 +1,78 @@
+﻿<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+
+    <div data-simplebar class="h-100">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title" key="t-menu">Menu</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect">
+                        <i class="bx bx-home-circle"></i><span class="badge rounded-pill bg-info float-end">04</span>
+                        <span key="t-dashboards">Dashboards</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href=@Url.Action("Index", "index") key="t-default">Default</a></li>
+                        <li><a href=@Url.Action("Index", "DashboardSaas") key="t-saas">Saas</a></li>
+                        <li><a href=@Url.Action("Index", "DashboardCrypto") key="t-crypto">Crypto</a></li>
+                        <li><a href=@Url.Action("Index", "DashboardBlog") key="t-blog">Blog</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-share-alt"></i>
+                        <span key="t-multi-level">Chức năng</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                             
+                            @if (ViewBag.Role == "1")
+                            {
+                                <li><a asp-controller="Export" asp-action="SearchCustomerRegiser"><i class="fa fa-circle-o"></i> Xuất dữ liệu KH đăng ký</a></li>
+                            }
+                            else if (ViewBag.Role == "2")
+                            {
+                                <li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="2"><i class="fa fa-circle-o"></i> Xử lý hồ sơ</a></li>
+                            }
+                            else if (ViewBag.Role == "4")
+                            {
+                                //4 CS
+                                <li><a asp-controller="Master" asp-action="ASCMaster"><i class="fa fa-circle-o"></i> Khai Báo ASC</a></li>
+                                <li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="4"><i class="fa fa-circle-o"></i> Giao việc cho ASC</a></li>
+                            }
+                            else if (ViewBag.Role == "3")
+                            {
+                                //4 Admin
+                                <li><a asp-controller="Master" asp-action="ASCMaster"><i class="fa fa-circle-o"></i> Khai Báo ASC</a></li>
+                                @*<li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="4"><i class="fa fa-circle-o"></i> Giao việc cho ASC</a></li>*@
+                                <li><a asp-controller="Business" asp-action="ViewListWinner" asp-route-fid="3"><i class="fa fa-circle-o"></i> Danh sách hồ sơ</a></li>
+                                <li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="7"><i class="fa fa-circle-o"></i> Duyệt hồ sơ</a></li>
+                                <li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="8"><i class="fa fa-circle-o"></i> Từ chối hồ sơ</a></li>
+                                <li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="9"><i class="fa fa-circle-o"></i> Trả thưởng</a></li>
+                                <li><a asp-controller="Master" asp-action="MakeOTP"><i class="fa fa-circle-o"></i> Cấp mã OTP</a></li>
+                                <li><a asp-controller="Business" asp-action="ViewInputFileCustomer"><i class="fa fa-circle-o"></i> Nhập HS cho khách hàng</a></li>
+                            }
+                            else if (ViewBag.Role == "5")
+                            {
+                                //4 Agency
+
+                                <li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="5"><i class="fa fa-circle-o"></i> Cập nhật hồ sơ</a></li>
+                            }
+                            else if (ViewBag.Role == "6")
+                            {
+                                //6 Call center
+
+                                <li><a asp-controller="Business" asp-action="ViewFileCustomerWin" asp-route-fid="6"><i class="fa fa-circle-o"></i> Cập nhật hồ sơ</a></li>
+                            }
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->

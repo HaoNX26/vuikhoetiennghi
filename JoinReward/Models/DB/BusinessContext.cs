@@ -30,11 +30,13 @@ namespace JoinReward.Models.DB
         public DbSet<ListWinnerSearchDTO> listWinnerSearchDTOs { get; set; }
 
         public DbSet<SubmitInfoCustomerWin> submitInfoCustomerWins { get; set; }
+        public DbSet<SubmitInfoCustomerWinHistory> submitInfoCustomerWinHistories { get; set; }
         public DbSet<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs { get; set; }
         public DbSet<BCustomerWin> bCustomerWins { get; set; }
         public DbSet<NoteCustomer> noteCustomers { get; set; }
 
         public DbSet<V_B_SUBMIT_CUSTOMER_WIN> V_B_SUBMIT_CUSTOMER_WIN { get; set; }
+        public DbSet<V_B_SUBMIT_CUSTOMER_WIN_HISTORY> v_B_SUBMIT_CUSTOMER_WIN_HISTORies { get; set; }
         public DbSet<B_INPUT_PHONE_LOG> B_INPUT_PHONE_LOG { get; set; }
 
         public List<FileCustomerWinSearchDTO> SearchFileCustomerWin(FileCustomerWinDTO fileCustomerWinDTO, long p_Cur_Page, long p_Page_Size)

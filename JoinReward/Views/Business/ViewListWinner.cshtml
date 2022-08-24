@@ -134,10 +134,19 @@
                                             @Html.DisplayFor(modelItem => item.CUSTOMER_STATUS)
                                         </td>
                                         <td class="text-center">
-                                            <a class="btn btn-default" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
+                                            @if (item.CUS_SUBMIT_ID != 0)
+                                            {
+                                                <a class="btn btn-default" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
                                            asp-route-ID="@item.CUS_SUBMIT_ID">Chỉnh sửa</a>
 
-                                            <a class="btn btn-default" href="@Url.Action("DownloadFileCustomerWin", new { id = item.ID, type = 1 })">Tải ảnh về</a>
+                                                <a class="btn btn-default" href="@Url.Action("DownloadFileCustomerWin", new { id = item.CUS_SUBMIT_ID, type = 1 })">Tải ảnh về</a>
+                                            }
+                                            else
+                                            {
+                                                 <a class="btn btn-default" disabled>Chỉnh sửa</a>
+
+                                                <a class="btn btn-default" disabled>Tải ảnh về</a>
+                                            }
                                         </td>
                                     </tr>
                                     v_count = v_count + 1;

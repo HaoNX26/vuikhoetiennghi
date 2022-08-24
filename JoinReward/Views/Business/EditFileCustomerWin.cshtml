@@ -1,4 +1,5 @@
-﻿@model JoinReward.Models.DTO.EditFileCustomerWinDTO
+﻿@using JoinReward.Models.SubmitCustomerWin
+@model JoinReward.Models.DTO.EditFileCustomerWinDTO
 @Html.AntiForgeryToken()
 @{
     ViewData["Title"] = @ViewData["Title"];
@@ -56,6 +57,15 @@
                     </div>
                 </div>
                 <center><h3><b>Thông tin khách hàng đăng ký nhận thưởng</b></h3></center>
+                <div class="name-info">
+                    <label><b>Lịch sử nộp hồ sơ:  </b></label>
+                    @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                    {
+                      <button type="button" class="btn btn-primary" onclick="AddEditDialog(@Html.DisplayFor(i => item.Id))">Lần @Html.DisplayFor(i => item.CountSubmit)</button>
+                        
+                    }
+                </div>
+
                 <div class="box">
 
                     <div class="box-header">
@@ -76,14 +86,20 @@
                         <div class="form-row-info">
                             <div class="row row-info">
                                 <div class="col-12 col-sm-6">
-                                    <div class="name-info"><label><b>Ảnh CMTND/CCCD mặt trước:  </b></label><br /><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" width="300" height="200" /></div>
+                                    <div class="name-info"><label><b>Ảnh CMTND/CCCD mặt trước:  </b></label><br />
+                                        <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" width="300" height="200" /></a>
+                                        
+                                        </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <div class="name-info"><label><b>Ảnh CMTND/CCCD mặt sau:  </b></label><br /><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" width="300" height="200" /></div>
+                                    <div class="name-info"><label><b>Ảnh CMTND/CCCD mặt sau:  </b></label><br />
+                                        <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" width="300" height="200" /></a>
+                                        
+                                        </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row-info">
+                        <div class="form-row-info" style="margin-top: 20px;">
                             <div class="row row-info">
                                 <div class="col-12 col-sm-12">
                                     <input type="checkbox" id="1" asp-for="IS_ERROR1">
@@ -118,7 +134,7 @@
 
                             </div>
                         </div>
-                        <div class="form-row-info">
+                        <div class="form-row-info" style="margin-top: 20px;">
                             <div class="row row-info">
                                 <div class="col-12 col-sm-12">
                                     <input type="checkbox" id="2" asp-for="IS_ERROR2">
@@ -154,14 +170,13 @@
                                         string[] arrImgSerial = infoCustomerWinDTO.FILE_SERIAL_NUMBER.Split(';');
                                         for (int i = 0; i < arrImgSerial.Length; i++)
                                         {
-                                            <img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])" width="300" height="200" />
-                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])" target="_blank">Ảnh@(i + 1)</a>
+                                            <a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])" target="_blank"><img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])" width="300" height="200" /></a>
                                         }
                                     }
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row-info">
+                        <div class="form-row-info" style="margin-top: 20px;">
                             <div class="row row-info">
                                 <div class="col-12 col-sm-12">
                                     <input type="checkbox" id="3" asp-for="IS_ERROR3">
@@ -185,14 +200,17 @@
                         <div class="box-header">
                             <h3>Khách hàng đứng cạnh sản phẩm</h3>
                         </div>
-                        
+
                         <div class="box-body">
                             <div class="row row-info">
                                 <div class="col-12 col-sm-6">
-                                    <div class="name-info"><label><b>Ảnh KH đứng cạnh sản phẩm:  </b></label><br /><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_PRODUCT_PATH" width="300" height="200" /></div>
+                                    <div class="name-info"><label><b>Ảnh KH đứng cạnh sản phẩm:  </b></label><br />
+                                        <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_PRODUCT_PATH" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_PRODUCT_PATH" width="300" height="200" /></a>
+                                        
+                                        </div>
                                 </div>
                             </div>
-                            <div class="form-row-info">
+                            <div class="form-row-info" style="margin-top: 20px;">
                                 <div class="row row-info">
                                     <div class="col-12 col-sm-12">
                                         <input type="checkbox" id="4" asp-for="IS_ERROR4">
@@ -227,8 +245,8 @@
                                             string[] arrImgSmsCode = infoCustomerWinDTO.FILE_SMS_CODE.Split(';');
                                             for (int i = 0; i < arrImgSmsCode.Length; i++)
                                             {
-                                                <img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])" width="300" height="200" />
-                                                //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])" target="_blank">Ảnh@(i + 1)</a>
+                                                
+                                                <a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])" target="_blank"><img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])" width="300" height="200" /></a>
                                             }
                                         }
                                     </div>
@@ -240,14 +258,14 @@
                                             string[] arrImgSmsWin = infoCustomerWinDTO.FILE_SMS_WIN.Split(';');
                                             for (int i = 0; i < arrImgSmsWin.Length; i++)
                                             {
-                                                <img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])" width="300" height="200" />
-                                                //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])" target="_blank">Ảnh@(i + 1)</a>
+                                                
+                                                <a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])" target="_blank"><img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])" width="300" height="200" /></a>
                                             }
                                         }
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row-info">
+                            <div class="form-row-info" style="margin-top: 20px;">
                                 <div class="row row-info">
                                     <div class="col-12 col-sm-12">
                                         <input type="checkbox" id="5" asp-for="IS_ERROR5">
@@ -304,7 +322,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-row-info">
+                                <div class="form-row-info" style="margin-top: 20px;">
                                     <div class="row row-info">
                                         <div class="col-12 col-sm-12">
                                             <input type="checkbox" id="6" asp-for="IS_ERROR6">
@@ -366,8 +384,8 @@
                                                     string[] arrImgAuthor = infoCustomerWinDTO.FILE_AUTHORIZATION_LETTER.Split(';');
                                                     for (int i = 0; i < arrImgAuthor.Length; i++)
                                                     {
-                                                        <img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAuthor[i])" width="200" height="100" />
-                                                        //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAuthor[i])" target="_blank">Ảnh@(i + 1)</a>
+                                                        
+                                                        <a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAuthor[i])" target="_blank"><img style="margin-right: 10px;" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAuthor[i])" width="200" height="100" /></a>
                                                     }
                                                 }
                                             </div>
@@ -386,11 +404,14 @@
                                         <div class="col-12 col-sm-6">
                                             <div class="name-info">
                                                 <label><b>Ảnh CMTND/CCCD mặt trước người được ủy quyền:  </b></label><br />
-                                                <img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_AUTHORIZATION" width="200" height="100" />
+                                                <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_AUTHORIZATION" target="_blank">
+                                                    <img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_AUTHORIZATION" width="300" height="200" />
+                                                    </a>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6">
-                                            <div class="name-info"><label><b>Ảnh CMTND/CCCD mặt sau người được ủy quyền:  </b></label><br /><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_AUTHORIZATION" width="200" height="100" /></div>
+                                            <div class="name-info"><label><b>Ảnh CMTND/CCCD mặt sau người được ủy quyền:  </b></label><br /><a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_AUTHORIZATION" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_AUTHORIZATION" width="200" height="100" /></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -428,8 +449,8 @@
                                         <label><b>Ảnh hóa đơn:  </b></label> <br />
                                         @if (!string.IsNullOrEmpty(infoCustomerWinDTO.FILE_INVOICE_PATH))
                                         {
-                                           <img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_PRODUCT_PATH" width="200" height="100" />
-                                             
+                                            <img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_PRODUCT_PATH" width="200" height="100" />
+
                                             @*<a href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_INVOICE_PATH" target="_blank">Ảnh</a>*@
                                         }
                                     </div>
@@ -853,6 +874,26 @@
 
 </div>
 
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="title"></h4>
+            </div>
+            <div id="edit-body-content" class="modal-body">
+                <!-- .modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
 <script type="text/javascript">
     if ('@ViewBag.Message') alert('@ViewBag.Message')
     //
@@ -877,6 +918,19 @@
             $("#NOTE_CUS_REJECT").prop('disabled', true);
         }
     });
+
+      function AddEditDialog(itemId) {
+        var url = "/Business/ViewFileCustomerHistory?id=" + itemId;
+            $('#title').html("Lịch sử nộp hồ sơ");
+        //
+        showLoading();
+        $("#edit-body-content").load(url, function (e, responseText) {
+            if (responseText === "error") { location.reload() }
+            $("#modal-default").modal({ backdrop: 'static', keyboard: false })
+            //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
+            hideLoading();
+        });
+    }
 
     function checkNoteReject() {
         var CustomerStatus = $('#CUSTOMER_STATUS').val();

@@ -44,27 +44,22 @@
                             </div>
                         </div>
                     </div>
+                    @*<div class="row" style="margin-top: 10px;">*@
+
+
+                    @*                        <div class="col-sm-6">
+                        <div class="input-group">
+                        <span class="input-group-addon"><b>Trạng thái nội bộ</b></span>
+                        <select asp-for="PAN_STATUS" asp-items="@ViewBag.lsPAN_STATUS" class="form-control select2"></select>
+                        </div>
+                        </div>*@
+
+                    @*</div>*@
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><b>Trạng thái khách hàng</b></span>
                                 <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control select2"></select>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><b>Trạng thái nội bộ</b></span>
-                                <select asp-for="PAN_STATUS" asp-items="@ViewBag.lsPAN_STATUS" class="form-control select2"></select>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><b>Trạng thái ASC</b></span>
-                                <select asp-for="ASC_STATUS" asp-items="@ViewBag.lsASC_STATUS" class="form-control select2"></select>
                             </div>
                         </div>
 
@@ -83,195 +78,204 @@
                                 <select asp-for="PRIZE_WIN" asp-items="@ViewBag.lsPrizeWin" class="form-control select2"></select>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        @*                        <div class="col-sm-6">
                             <div class="input-group">
-                                <span class="input-group-addon"><b>Lần submit</b></span>
-                                <select asp-for="COUNT_SUBMIT" asp-items="@ViewBag.lsCountSubmit" class="form-control select2"></select>
+                            <span class="input-group-addon"><b>Lần submit</b></span>
+                            <select asp-for="COUNT_SUBMIT" asp-items="@ViewBag.lsCountSubmit" class="form-control select2"></select>
                             </div>
-                        </div>
+                            </div>*@
                     </div>
-
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><b>Ngày nộp từ</b></span>
-                                <input type="text" class="form-control date-picker" asp-for="FROM_DATE">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><b>Ngày nộp đến</b></span>
-                                <input type="text" class="form-control date-picker" asp-for="TO_DATE">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    @if (ViewBag.Roles != "2")
-                    {
+                    @*
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><b>ASC xử lý</b></span>
-                                    <select asp-for="AscId" asp-items="@ViewBag.ListASC" class="form-control select2"></select>
-                                </div>
-                            </div>
+                        <div class="col-sm-6">
+                        <div class="input-group">
+                        <span class="input-group-addon"><b>Ngày nộp từ</b></span>
+                        <input type="text" class="form-control date-picker" asp-for="FROM_DATE">
                         </div>
-                    }
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="input-group">
+                        <span class="input-group-addon"><b>Ngày nộp đến</b></span>
+                        <input type="text" class="form-control date-picker" asp-for="TO_DATE">
+                        </div>
+                        </div>
+                        </div>
+                    *@
 
-                    @if (ViewBag.Roles != "2" && ViewBag.Roles != "5")
-                    {
+                    @*                    @if (ViewBag.Roles != "2")
+                        {
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><b>Agency xử lý</b></span>
-                                    <select asp-for="AGENCY_ID" asp-items="@ViewBag.ListAgency" class="form-control select2"></select>
-                                </div>
-                            </div>
+                        <div class="col-sm-6">
+                        <div class="input-group">
+                        <span class="input-group-addon"><b>ASC xử lý</b></span>
+                        <select asp-for="AscId" asp-items="@ViewBag.ListASC" class="form-control select2"></select>
                         </div>
-                    }
+                        </div>
+                        </div>
+                        }
+
+                        @if (ViewBag.Roles != "2" && ViewBag.Roles != "5")
+                        {
+                        <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6">
+                        <div class="input-group">
+                        <span class="input-group-addon"><b>Agency xử lý</b></span>
+                        <select asp-for="AGENCY_ID" asp-items="@ViewBag.ListAgency" class="form-control select2"></select>
+                        </div>
+                        </div>
+                        </div>
+                        }*@
                     <div class="row" style="margin-top: 5px;">
-                        <div class="col-sm-2">
+                        <div class="col-sm-1">
                             <button type="submit" class="btn btn-block btn-facebook" style="width:100px;">Tìm kiếm</button>
                         </div>
 
                         @if (ViewBag.Fid.Equals(SysFrameworks.Constant.C_F_APPROVE))
                         {
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-block btn-facebook" style="width:100px;" onclick="updateStatus()">Duyệt hồ sơ</button>
-                            </div>
-                        } else if(ViewBag.Fid.Equals(SysFrameworks.Constant.C_F_REJECT)) {
-                        <div class="col-sm-2">
-                                <button type="button" class="btn btn-block btn-facebook" style="width:100px;" onclick="updateStatus()">Từ chối hồ sơ</button>
-                            </div>
-                        } else if(ViewBag.Fid.Equals(SysFrameworks.Constant.C_F_REWARD)) {
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-block btn-facebook" style="width:100px;" onclick="updateStatus()">Trả thưởng</button>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-block btn-facebook" style="width:100px; margin-left: 20px;" onclick="updateStatus()">Duyệt hồ sơ</button>
                             </div>
                         }
-                        <div class="col-sm-2">
-                            <button type="submit" class="btn btn-microsoft" style="width:100px;margin-left: 5px;" formaction="ExportExcel" onclick="return confirm('Bạn có muốn xuất dữ liệu?');">Export</button>
+                        else if (ViewBag.Fid.Equals(SysFrameworks.Constant.C_F_REJECT))
+                        {
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-block btn-facebook" style="width:100px; margin-left: 20px;" onclick="updateStatus()">Từ chối hồ sơ</button>
+                            </div>
+                        }
+                        else if (ViewBag.Fid.Equals(SysFrameworks.Constant.C_F_REWARD))
+                        {
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-block btn-facebook" style="width:100px; margin-left: 20px;" onclick="updateStatus()">Trả thưởng</button>
+                            </div>
+                        }
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-microsoft" style="width:100px;margin-left: 20px;" formaction="ExportExcel" onclick="return confirm('Bạn có muốn xuất dữ liệu?');">Export</button>
 
                         </div>
                     </div>
                 </form>
 
                 <div class="row">
-                    <div class="col-sm-12">
-                        <table class="table table-bordered table-striped dataTable" id="table-list">
-                            <thead>
-                                <tr role="row">
-                                    <th style="width: 10px; text-align:center;">
-                                        <input type="checkbox" id="checkAll" />
-                                    </th>
-                                    <th style="text-align:center;">
-                                        STT
-                                    </th>
-                                    <th>
-                                        Đợt quay thưởng
-                                    </th>
-                                    <th>
-                                        Ngày submit
-                                    </th>
-                                    <th style="text-align:center;">
-                                        Mã TT
-                                    </th>
-                                    <th>
-                                        Giải thưởng
-                                    </th>
-                                    <th>
-                                        Họ và tên
-                                    </th>
-                                    <th>
-                                        Số ĐT
-                                    </th>
-                                    <th>
-                                        Tỉnh thành
-                                    </th>
-                                    <th>
-                                        Agency
-                                    </th>
-                                    <th>
-                                        ASC xử lý
-                                    </th>
-                                    <th>
-                                        TT khách hàng
-                                    </th>
-                                    <th>
-                                        TT nội bộ
-                                    </th>
-                                    <th>
-                                        Lần submit
-                                    </th>
-                                    <th>
-                                        Ghi chú
-                                    </th>
-                                    <th style="width: 25px; text-align: center;">
-                                        #
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="list-data">
-                                @foreach (FileCustomerWinSearchDTO item in (List<FileCustomerWinSearchDTO>)ViewData["grid_data"])
-                                {
-                                    <tr role="row" class="odd">
-                                        <td>
-                                            <input type="checkbox" id="@Html.DisplayFor(modelItem => item.Id)" />
-                                        </td>
-                                        <td>
-                                            @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ROUND_NAME)
-                                        </td>
-                                        <th style="text-align:center;">
-                                            @Html.DisplayFor(modelItem => item.CREATE_DATE)
-                                        </th>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.LuckyCode)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PRIZE_WIN_TEXT)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CustomerName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PhoneNumber)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ProvinceName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.AGENCY_NAME)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.AscName)
-                                        </td>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Danh sách hồ sơ</h4>
+                                <table id="datatable" class="table table-bordered nowrap w-100">
+                                    <thead>
+                                        <tr role="row">
+                                            <th style="width: 10px; text-align:center;">
+                                                <input type="checkbox" id="checkAll" />
+                                            </th>
+                                            <th style="text-align:center;">
+                                                STT
+                                            </th>
+                                            <th>
+                                                Đợt quay thưởng
+                                            </th>
+                                            <th>
+                                                Ngày submit
+                                            </th>
+                                            <th style="text-align:center;">
+                                                Mã TT
+                                            </th>
+                                            <th>
+                                                Giải thưởng
+                                            </th>
+                                            <th>
+                                                Họ và tên
+                                            </th>
+                                            <th>
+                                                Số ĐT
+                                            </th>
+                                            <th>
+                                                Tỉnh thành
+                                            </th>
+                                            <th>
+                                                Agency
+                                            </th>
+                                            <th>
+                                                ASC xử lý
+                                            </th>
+                                            <th>
+                                                TT khách hàng
+                                            </th>
+                                            <th>
+                                                TT nội bộ
+                                            </th>
+                                            <th>
+                                                Lần submit
+                                            </th>
+                                            <th>
+                                                Ghi chú
+                                            </th>
+                                            <th style="width: 25px; text-align: center;">
+                                                #
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list-data">
+                                        @foreach (FileCustomerWinSearchDTO item in (List<FileCustomerWinSearchDTO>)ViewData["grid_data"])
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <input type="checkbox" id="@Html.DisplayFor(modelItem => item.Id)" />
+                                                </td>
+                                                <td>
+                                                    @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ROUND_NAME)
+                                                </td>
+                                                <th style="text-align:center;">
+                                                    @Html.DisplayFor(modelItem => item.CREATE_DATE)
+                                                </th>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.LuckyCode)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PRIZE_WIN_TEXT)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CustomerName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ProvinceName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.AGENCY_NAME)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.AscName)
+                                                </td>
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CustomerStatus)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PanStatus)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.COUNT_SUBMIT)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Note)
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="btn btn-default" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
-                                           asp-route-ID="@item.Id">Chỉnh sửa</a>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CustomerStatus)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PanStatus)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.COUNT_SUBMIT)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Note)
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="btn btn-default" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
+                                                   asp-route-ID="@item.Id">Chỉnh sửa</a>
 
-                                            <a class="btn btn-default" href="@Url.Action("DownloadFileCustomerWin", new { id = item.Id, type = 1 })">Tải ảnh về</a>
-                                        </td>
-                                    </tr>
-                                    v_count = v_count + 1;
-                                }
-                            </tbody>
-                        </table>
+                                                    <a class="btn btn-default" href="@Url.Action("DownloadFileCustomerWin", new { id = item.Id, type = 1 })">Tải ảnh về</a>
+                                                </td>
+                                            </tr>
+                                            v_count = v_count + 1;
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <partial name="/Views/Shared/_Pagination.cshtml" />
@@ -397,3 +401,25 @@
 
 
 </script>
+
+<!-- Required datatable js -->
+<script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="~/assets/libs/jszip/jszip.min.js"></script>
+<script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Responsive examples -->
+<script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<!-- Datatable init js -->
+<script src="~/assets/js/pages/datatables.init.js"></script>
+
+<script src="~/assets/js/app.js"></script>
