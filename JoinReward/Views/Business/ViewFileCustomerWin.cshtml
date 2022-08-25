@@ -11,17 +11,21 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box">
+        <div class="card">
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="card-body">
                 <form asp-action="ViewFileCustomerWin" asp-controller="Business" method="post">
                     <input type="hidden" asp-for="fid" />
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="input-group">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Mã trúng thưởng</span>
+                                <input asp-for="LuckyCode" type="text" class="form-control">
+                            </div>
+                            @* <div class="input-group">
                                 <span class="input-group-addon"><b>Mã trúng thưởng</b></span>
                                 <input asp-for="LuckyCode" class="form-control" />
-                            </div>
+                                </div>*@
                         </div>
                         <div class="col-sm-6">
                             <div class="input-group">
@@ -154,131 +158,6 @@
                         </div>
                     </div>
                 </form>
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Danh sách hồ sơ</h4>
-                                <table id="datatable" class="table table-bordered nowrap w-100">
-                                    <thead>
-                                        <tr role="row">
-                                            <th style="width: 10px; text-align:center;">
-                                                <input type="checkbox" id="checkAll" />
-                                            </th>
-                                            <th style="text-align:center;">
-                                                STT
-                                            </th>
-                                            <th>
-                                                Đợt quay thưởng
-                                            </th>
-                                            <th>
-                                                Ngày submit
-                                            </th>
-                                            <th style="text-align:center;">
-                                                Mã TT
-                                            </th>
-                                            <th>
-                                                Giải thưởng
-                                            </th>
-                                            <th>
-                                                Họ và tên
-                                            </th>
-                                            <th>
-                                                Số ĐT
-                                            </th>
-                                            <th>
-                                                Tỉnh thành
-                                            </th>
-                                            <th>
-                                                Agency
-                                            </th>
-                                            <th>
-                                                ASC xử lý
-                                            </th>
-                                            <th>
-                                                TT khách hàng
-                                            </th>
-                                            <th>
-                                                TT nội bộ
-                                            </th>
-                                            <th>
-                                                Lần submit
-                                            </th>
-                                            <th>
-                                                Ghi chú
-                                            </th>
-                                            <th style="width: 25px; text-align: center;">
-                                                #
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="list-data">
-                                        @foreach (FileCustomerWinSearchDTO item in (List<FileCustomerWinSearchDTO>)ViewData["grid_data"])
-                                        {
-                                            <tr role="row" class="odd">
-                                                <td>
-                                                    <input type="checkbox" id="@Html.DisplayFor(modelItem => item.Id)" />
-                                                </td>
-                                                <td>
-                                                    @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.ROUND_NAME)
-                                                </td>
-                                                <th style="text-align:center;">
-                                                    @Html.DisplayFor(modelItem => item.CREATE_DATE)
-                                                </th>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.LuckyCode)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.PRIZE_WIN_TEXT)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CustomerName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.ProvinceName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.AGENCY_NAME)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.AscName)
-                                                </td>
-
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CustomerStatus)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.PanStatus)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.COUNT_SUBMIT)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Note)
-                                                </td>
-                                                <td class="text-center">
-                                                    <a class="btn btn-default" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
-                                                   asp-route-ID="@item.Id">Chỉnh sửa</a>
-
-                                                    <a class="btn btn-default" href="@Url.Action("DownloadFileCustomerWin", new { id = item.Id, type = 1 })">Tải ảnh về</a>
-                                                </td>
-                                            </tr>
-                                            v_count = v_count + 1;
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <partial name="/Views/Shared/_Pagination.cshtml" />
             </div>
             <!-- /.box-body -->
         </div>
@@ -286,6 +165,133 @@
     </div>
     <!-- /.col -->
 </div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Danh sách hồ sơ</h4>
+
+                <table id="datatable" class="table table-bordered">
+                    <thead>
+                        <tr role="row">
+                            <th style="width: 10px; text-align:center;">
+                                <input type="checkbox" id="checkAll" />
+                            </th>
+                            <th style="text-align:center;">
+                                STT
+                            </th>
+                            <th>
+                                Đợt quay thưởng
+                            </th>
+                            <th>
+                                Ngày submit
+                            </th>
+                            <th style="text-align:center;">
+                                Mã TT
+                            </th>
+                            <th>
+                                Giải thưởng
+                            </th>
+                            <th>
+                                Họ và tên
+                            </th>
+                            <th>
+                                Số ĐT
+                            </th>
+                            <th>
+                                Tỉnh thành
+                            </th>
+                            <th>
+                                Agency
+                            </th>
+                            <th>
+                                ASC xử lý
+                            </th>
+                            <th>
+                                TT khách hàng
+                            </th>
+                            <th>
+                                TT nội bộ
+                            </th>
+                            <th>
+                                Lần submit
+                            </th>
+                            <th>
+                                Ghi chú
+                            </th>
+                            <th style="width: 25px; text-align: center;">
+                                #
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="list-data">
+                        @foreach (FileCustomerWinSearchDTO item in (List<FileCustomerWinSearchDTO>)ViewData["grid_data"])
+                        {
+                            <tr role="row" class="odd">
+                                <td>
+                                    <input type="checkbox" id="@Html.DisplayFor(modelItem => item.Id)" />
+                                </td>
+                                <td>
+                                    @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ROUND_NAME)
+                                </td>
+                                <th style="text-align:center;">
+                                    @Html.DisplayFor(modelItem => item.CREATE_DATE)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LuckyCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PRIZE_WIN_TEXT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProvinceName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AGENCY_NAME)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AscName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CustomerStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PanStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.COUNT_SUBMIT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Note)
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-default" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
+                                   asp-route-ID="@item.Id">Chỉnh sửa</a>
+
+                                    <a class="btn btn-default" href="@Url.Action("DownloadFileCustomerWin", new { id = item.Id, type = 1 })">Tải ảnh về</a>
+                                </td>
+                            </tr>
+                            v_count = v_count + 1;
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="/Views/Shared/_Pagination.cshtml" />
+
 
 <div class="modal fade" id="asc-modal-default">
     <div class="modal-dialog">

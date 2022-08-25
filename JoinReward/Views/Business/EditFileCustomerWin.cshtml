@@ -5,13 +5,14 @@
     ViewData["Title"] = @ViewData["Title"];
     JoinReward.Models.DTO.EditFileCustomerWinDTO infoCustomerWinDTO = (JoinReward.Models.DTO.EditFileCustomerWinDTO)@ViewData["infoCustomerWin"];
 }
-<div class="page-wrapper bg-dark p-t-100 p-b-50">
+<div class="page-wrapper p-t-100 p-b-50">
     <div class="wrapper wrapper--w900">
 
         <form action="" method="post" enctype="multipart/form-data">
 
             <input type="hidden" asp-for="ID" />
             <input type="hidden" asp-for="fid" />
+            <div class="card">
             <div class="card-body">
 
                 <center><h3><b>Thông tin khách hàng đã đăng ký bảo hành</b></h3></center>
@@ -56,6 +57,8 @@
                         </div>
                     </div>
                 </div>
+                </div>
+                </div>
                 <center><h3><b>Thông tin khách hàng đăng ký nhận thưởng</b></h3></center>
                 <div class="name-info">
                     <label><b>Lịch sử nộp hồ sơ:  </b></label>
@@ -64,6 +67,27 @@
                       <button type="button" class="btn btn-primary" onclick="AddEditDialog(@Html.DisplayFor(i => item.Id))">Lần @Html.DisplayFor(i => item.CountSubmit)</button>
                         
                     }
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Họ và tên</h4>
+                        <div class="col-12 col-sm-6">
+                                    <div class="name-info"><label><b>Họ Và Tên:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)</label></div>
+                         </div>
+                                                         <div class="col-12 col-sm-12">
+                                    <input type="checkbox" id="1" asp-for="IS_ERROR1">
+                                    <label for="IS_ERROR1"> Thiếu thông tin</label>
+                                </div>
+                                                            <div class="row row-info">
+                                <div class="col-12 col-sm-12">
+                                    <label asp-for="NOTE_ERROR1">
+                                        Ghi chú
+                                    </label>
+                                    <textarea asp-for="NOTE_ERROR1" rows="3" class="form-control"></textarea>
+                                </div>
+                            </div>
+                    </div>
                 </div>
 
                 <div class="box">
