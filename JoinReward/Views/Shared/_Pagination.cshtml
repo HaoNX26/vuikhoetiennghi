@@ -6,8 +6,7 @@
         <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị @((@pagination.CUR_PAGE - 1) * @pagination.PAGE_SIZE + ((pagination.TOTAL_RECORD > 0)?1:0)) đến @System.Math.Min(@pagination.CUR_PAGE * @pagination.PAGE_SIZE, @pagination.TOTAL_RECORD) trong tổng số @pagination.TOTAL_RECORD bản ghi</div>
     </div>
     <div class="col-sm-7">
-        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-            <ul class="pagination">
+            <ul class="pagination pagination-rounded justify-content-center">
                 @{
                     long v_TotalPage = (long)Math.Ceiling((decimal)pagination.TOTAL_RECORD / pagination.PAGE_SIZE);
                     long range1_from, range1_to, range2_from, range2_to, range3_from, range3_to;
@@ -50,22 +49,22 @@
                 {
                     if (i != pagination.CUR_PAGE)
                     {
-                        <li class='paginate_button '>
-                            <a href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
+                        <li class="page-item">
+                            <a class="page-link" href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
                         </li>
 
                     }
                     else
                     {
-                        <li class='paginate_button previous  active'>
-                            <a href='#'>@i</a>
+                        <li class="page-item">
+                            <a class="page-link" href='#'>@i</a>
                         </li>
                     }
                 }
                 @if (range2_from < range2_to)
                 {
-                    <li class='paginate_button previous  disabled'>
-                        <a href='#'>...</a>
+                    <li class="page-item">
+                        <a class="page-link" href='#'>...</a>
                     </li>
 
                 }
@@ -73,14 +72,14 @@
                 {
                     if (i != pagination.CUR_PAGE)
                     {
-                        <li class='paginate_button '>
-                            <a href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
+                        <li class="page-item">
+                            <a class="page-link" href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
                         </li>
                     }
                     else
                     {
-                        <li class='paginate_button previous  active'>
-                            <a href='#'>@i</a>
+                        <li class="page-item">
+                            <a class="page-link" href='#'>@i</a>
                         </li>
                     }
                 }
@@ -88,21 +87,20 @@
                 {
                     if (i != pagination.CUR_PAGE)
                     {
-                        <li class='paginate_button '>
-                            <a href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
+                        <li class="page-item">
+                            <a class="page-link" href='/@pagination.CONTROLLER/@pagination.ACTION?page=@i&@pagination.GET_QUERY_STRING'>@i</a>
                         </li>
                     }
                     else
                     {
-                        <li class='paginate_button previous  active'>
-                            <a href='#'>@i</a>
+                        <li class="page-item">
+                            <a class="page-link" href='#'>@i</a>
                         </li>
                     }
                 }
             </ul>
         </div>
     </div>
-</div>
 <div class="row">
     <div class="col-sm-12">
         <div class="dataTables_length">
