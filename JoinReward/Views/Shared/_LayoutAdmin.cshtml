@@ -4,6 +4,12 @@
         @await Html.PartialAsync("~/Views/Shared/_title_meta.cshtml")
         @RenderSection("styles", false)
         @await Html.PartialAsync("~/Views/Shared/_head_css.cshtml")
+                <!-- JAVASCRIPT -->
+        <script src="~/assets/libs/jquery/jquery.min.js"></script>
+        <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="~/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="~/assets/libs/node-waves/waves.min.js"></script>
 </head>
 
 <body data-sidebar="dark">
@@ -41,15 +47,7 @@
     @*@await Html.PartialAsync("~/Views/Shared/_vendor_scripts.cshtml")*@
 
     @RenderSection("scripts", required: false)
-
-        <!-- JAVASCRIPT -->
-    <script src="~/assets/libs/jquery/jquery.min.js"></script>
-    <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="~/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="~/assets/libs/node-waves/waves.min.js"></script>
     
-
     <!-- owl.carousel js -->
     <script src="~/assets/libs/owl.carousel/owl.carousel.min.js"></script>
     <!-- auth-2-carousel init -->
@@ -70,9 +68,20 @@
     <script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 
+    <!-- Magnific Popup-->
+    <script src="~/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- lightbox init js-->
+    <script src="~/assets/js/pages/lightbox.init.js"></script>
     <!-- Responsive examples -->
     <script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+    <!-- Responsive Table js -->
+<script src="~/assets/libs/admin-resources/rwd-table/rwd-table.min.js"></script>
+
+<!-- Init js -->
+<script src="~/assets/js/pages/table-responsive.init.js"></script>
 
     <!-- Datatable init js -->
     <script src="~/assets/js/pages/datatables.init.js"></script>
