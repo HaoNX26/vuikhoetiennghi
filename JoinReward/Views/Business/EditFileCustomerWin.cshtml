@@ -139,12 +139,42 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase table-light">Họ và tên</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Họ và tên</center></h4>
                         <div class="card-body">
 
                             <div class="col-sm-12">
                                 <h4 class="card-title mb-4">@Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)</h4>
+                            </div>
 
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
@@ -195,7 +225,7 @@
 
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Số CMTND/CCCD</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Số CMTND/CCCD</center></h4>
                         <div class="card-body">
 
                             <div class="col-sm-12">
@@ -224,7 +254,7 @@
                                 </div>
                             </div>
 
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                            <h4 class="card-header bg-header border-bottom border-top mb-2">Agency xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
@@ -252,7 +282,96 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh CMTND/CCCD mặt trước</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Ảnh CMTND/CCCD mặt trước</center></h4>
+                        <div class="card-body">
+
+                            <div class="col-12 col-sm-6">
+                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                </a>
+                            </div>
+
+                             <div class="accordion mb-1 h-25" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Đạt</option>
+                                        <option>Không đạt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Lý do</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Ảnh mờ</option>
+                                        <option>Không đúng</option>
+                                        <option>Sai</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Đạt</option>
+                                        <option>Không đạt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">Lý do</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Ảnh mờ</option>
+                                        <option>Không đúng</option>
+                                        <option>Sai</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <h4 class="card-header bg-header border-bottom"><center>Ảnh CMTND/CCCD mặt sau</center></h4>
                         <div class="card-body">
 
                             <div class="col-12 col-sm-6">
@@ -304,67 +423,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh CMTND/CCCD mặt sau</h4>
-                        <div class="card-body">
-
-                            <div class="col-12 col-sm-6">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
-                            </div>
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Địa chỉ nơi chứa sản phẩm</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Địa chỉ nơi chứa sản phẩm</center></h4>
                         <div class="card-body">
 
                             <div class="col-sm-12">
@@ -418,7 +482,7 @@
 
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ghi chú của khách hàng</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Ghi chú của khách hàng</center></h4>
                         <div class="card-body">
 
                             <div class="col-sm-12">
@@ -475,7 +539,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh serial/tem sản phẩm</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Ảnh serial/tem sản phẩm</center></h4>
                         <div class="card-body">
 
                             <div class="col-12 col-sm-6">
@@ -531,128 +595,9 @@
 
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh khách hàng đứng cùng sản phẩm</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Ảnh khách hàng đứng cùng sản phẩm</center></h4>
                         <div class="card-body">
                             <div class="col-12 col-sm-6">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
-                            </div>
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh tin nhắn mã dự thưởng</h4>
-                        <div class="card-body">
-
-                            <div class="col-12 col-sm-6">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh thông báo trúng thưởng</h4>
-                        <div class="card-body">
-                            <div class="col-12 col-sm-6">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
-
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
@@ -706,7 +651,126 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
-                        <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh hóa đơn / phiếu bảo hành</h4>
+                        <h4 class="card-header bg-header border-bottom"><center>Ảnh tin nhắn mã dự thưởng</center></h4>
+                        <div class="card-body">
+
+                            <div class="col-12 col-sm-6">
+                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                </a>
+                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                </a>
+                            </div>
+
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Đạt</option>
+                                        <option>Không đạt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Lý do</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Ảnh mờ</option>
+                                        <option>Không đúng</option>
+                                        <option>Sai</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Đạt</option>
+                                        <option>Không đạt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">Lý do</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Ảnh mờ</option>
+                                        <option>Không đúng</option>
+                                        <option>Sai</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <h4 class="card-header bg-header border-bottom"><center>Ảnh thông báo trúng thưởng</center></h4>
+                        <div class="card-body">
+                            <div class="col-12 col-sm-6">
+                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                </a>
+
+                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                </a>
+                            </div>
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Đạt</option>
+                                        <option>Không đạt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Lý do</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Ảnh mờ</option>
+                                        <option>Không đúng</option>
+                                        <option>Sai</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Đạt</option>
+                                        <option>Không đạt</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3 col-form-label">Lý do</label>
+                                <div class="col-md-9">
+                                    <select class="form-select">
+                                        <option>Ảnh mờ</option>
+                                        <option>Không đúng</option>
+                                        <option>Sai</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <h4 class="card-header bg-header border-bottom"><center>Ảnh hóa đơn / phiếu bảo hành</center></h4>
                         <div class="card-body">
 
                             <div class="col-12 col-sm-6">
