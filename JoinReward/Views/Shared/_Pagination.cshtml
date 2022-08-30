@@ -3,10 +3,10 @@
 }
 <div class="row">
     <div class="col-sm-5">
-        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị @((@pagination.CUR_PAGE - 1) * @pagination.PAGE_SIZE + ((pagination.TOTAL_RECORD > 0)?1:0)) đến @System.Math.Min(@pagination.CUR_PAGE * @pagination.PAGE_SIZE, @pagination.TOTAL_RECORD) trong tổng số @pagination.TOTAL_RECORD bản ghi</div>
+        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Hiển thị @((@pagination.CUR_PAGE - 1) * @pagination.PAGE_SIZE + ((pagination.TOTAL_RECORD > 0)?1:0)) đến @System.Math.Min(@pagination.CUR_PAGE * @pagination.PAGE_SIZE, @pagination.TOTAL_RECORD) trong tổng số @pagination.TOTAL_RECORD bản ghi</div>
     </div>
     <div class="col-sm-7">
-            <ul class="pagination pagination-rounded justify-content-center">
+            <ul class="pagination pagination-rounded justify-content-left">
                 @{
                     long v_TotalPage = (long)Math.Ceiling((decimal)pagination.TOTAL_RECORD / pagination.PAGE_SIZE);
                     long range1_from, range1_to, range2_from, range2_to, range3_from, range3_to;
@@ -56,7 +56,7 @@
                     }
                     else
                     {
-                        <li class="page-item">
+                        <li class="page-item active">
                             <a class="page-link" href='#'>@i</a>
                         </li>
                     }
@@ -103,10 +103,10 @@
     </div>
 <div class="row">
     <div class="col-sm-12">
-        <div class="dataTables_length">
+        <div class="dataTables_length" id="datatable_length">
             <label>
-                Hiển thị
-                <select id="page-size" name="PAGE_SIZE" onchange="submit();">
+                
+               Hiển thị <select id="page-size" name="PAGE_SIZE" class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm" onchange="submit();">
                     <option value="10">10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
