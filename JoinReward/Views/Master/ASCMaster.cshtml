@@ -9,9 +9,8 @@
 <form asp-action="ASCMaster" asp-controller="Master" method="post">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box">
-                <!-- /.box-header -->
-                <div class="box-body">
+            <div class="card">
+                <div class="card-body">
                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
 
@@ -21,149 +20,174 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button type="button" class="btn btn-block btn-microsoft" style="width:120px; margin-left:10px; margin-top: 0" onclick="AddEditDialog(0)">
-                                    Tạo ASC
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-bordered table-striped dataTable">
-                                    <thead>
-                                        <tr role="row">
-                                            <th style="width: 20px;">
-                                                STT
-                                            </th>
-
-                                            <th>
-                                                Tên ASC
-                                            </th>
-                                             <th>
-                                                Mã ASC
-                                            </th>
-                                            <th>
-                                                Tài khoản
-                                            </th>
-                                            <th>
-                                                Email
-                                            </th>
-                                            <th style="width: 100px;">
-                                                #
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (JoinReward.Models.DTO.ASCMasterDTO item in (List<JoinReward.Models.DTO.ASCMasterDTO>)ViewData["grid_data"])
-                                        {
-                                        <tr role="row" class="odd">
-                                            <td>
-                                                @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
-                                            </td>
-
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ASC_NAME)
-                                            </td>
-
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ASC_CODE)
-                                            </td>
-
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.USERNAME)
-                                            </td>
-
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ASC_EMAIL)
-                                            </td>
-                                           
-                                            <td class="text-center">
-                                                @*<a class="btn btn-default" onclick="AddEditDialog(@item.ID)">Sửa</a>*@
-                                                <a class="btn btn-danger" onclick="DeleteItem(@item.ID)">Xóa</a>
-                                             </td>
-                                        </tr>
-                                            v_count = v_count + 1;
-                                                }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <partial name="/Views/Shared/_Pagination.cshtml" />
                     </div>
                 </div>
-                <!-- /.box-body -->
             </div>
-            <!-- /.box -->
         </div>
-        <!-- /.col -->
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary waves-effect waves-light" onclick="AddEditDialog(0)">
+                Tạo ASC
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách hồ sơ</h4>
+                    <div class="table-responsive">
+                        <table class="table align-middle table-nowrap table-hover table-bordered">
+                            <thead class="table-light">
+                                <tr role="row">
+                                    <th style="width: 20px;">
+                                        STT
+                                    </th>
+
+                                    <th>
+                                        Tên ASC
+                                    </th>
+                                    <th>
+                                        Mã ASC
+                                    </th>
+                                    <th>
+                                        Tài khoản
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th style="width: 100px;">
+                                        #
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (JoinReward.Models.DTO.ASCMasterDTO item in (List<JoinReward.Models.DTO.ASCMasterDTO>)ViewData["grid_data"])
+                                {
+                                    <tr role="row" class="odd">
+                                        <td>
+                                            @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ASC_NAME)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ASC_CODE)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.USERNAME)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ASC_EMAIL)
+                                        </td>
+
+                                        <td class="text-center">
+                                            @*<a class="btn btn-default" onclick="AddEditDialog(@item.ID)">Sửa</a>*@
+                                            <a class="btn btn-danger btn-sm waves-effect waves-light" onclick="DeleteItem(@item.ID)">Xóa</a>
+                                        </td>
+                                    </tr>
+                                    v_count = v_count + 1;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <partial name="/Views/Shared/_Pagination.cshtml" />
+    </div>
+
 </form>
-<div class="modal fade" id="modal-default">
+
+<div class="modal fade" id="modal-asc" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="title"></h4>
+                <h5 class="modal-title" id="title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="edit-body-content" class="modal-body">
                 <!-- .modal-body -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="SaveData('edit-body-content')">Ghi lại</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Đóng</button>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
 </div>
 <script type="text/javascript">
-    //add edit
-    function AddEditDialog(itemId) {
-        var url = "/Master/ShowASCMasterEdit?id=" + itemId;
-        if (itemId > 0)
-            $('#title').html("Chỉnh sửa");
-        else
-            $('#title').html("Thêm mới");
-        //
-        showLoading();
-        $("#edit-body-content").load(url, function (e, responseText) {
-            if (responseText === "error") { location.reload() }
-            $("#modal-default").modal({ backdrop: 'static', keyboard: false })
-            //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
-            hideLoading();
-        });
-    }
-    //delete
-    function DeleteItem(itemId) {
-        if (confirm("Xác nhận xóa bản ghi?")) {
-            var url = "/Master/DeleteASC?id=" + itemId;
-            _ajax(url, '', function (response) {
+        //add edit
+        function AddEditDialog(itemId) {
+            var url = "/Master/ShowASCMasterEdit?id=" + itemId;
+            if (itemId > 0)
+                $('#title').html("Chỉnh sửa");
+            else
+                $('#title').html("Thêm mới");
+            //
+
+            $("#edit-body-content").load(url, function (e, responseText) {
+                if (responseText === "error") { location.reload() }
+                $('#modal-asc').modal('show')
+                //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
+
+            });
+        }
+        //delete
+        function DeleteItem(itemId) {
+
+            Swal.fire({
+              title: 'Bạn muốn xóa?',
+              text: "",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#34c38f',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Có',
+              cancelButtonText: 'Không'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var url = "/Master/DeleteASC?id=" + itemId;
+                _ajax(url, '', function (response) {
+                    if (response.success === 'Y') {
+                        location.reload()
+                    }
+                    else {
+                        alert(response.message)
+                    }
+                })
+              }
+            });
+            //if (confirm("Xác nhận xóa bản ghi?")) {
+            //    var url = "/Master/DeleteASC?id=" + itemId;
+            //    _ajax(url, '', function (response) {
+            //        if (response.success === 'Y') {
+            //            location.reload()
+            //        }
+            //        else {
+            //            alert(response.message)
+            //        }
+            //    })
+            //}
+        }
+        //save
+        function SaveData(formId) {
+            var url = "/Master/SaveASC";
+
+            var obj = _getFormObject(formId)
+            _ajax(url, obj, function (response) {
                 if (response.success === 'Y') {
                     location.reload()
                 }
                 else {
                     alert(response.message)
                 }
-            })
+            });
         }
-    }
-    //save
-    function SaveData(formId) {
-        var url = "/Master/SaveASC";
-
-        var obj = _getFormObject(formId)
-        _ajax(url, obj, function (response) {
-            if (response.success === 'Y') {
-                location.reload()
-            }
-            else {
-                alert(response.message)
-            }
-        });
-    }
 </script>
-

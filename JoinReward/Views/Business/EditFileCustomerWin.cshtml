@@ -14,127 +14,127 @@
             <input type="hidden" asp-for="fid" />
 
             <div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <img src="~/assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle img-thumbnail">
-                            </div>
-                            <div class="flex-grow-1 align-self-center">
-                                <div class="text-muted">
-                                    <h5 class="mb-1">@Html.DisplayFor(item => infoCustomerWinDTO.CUSTOMER_NAME)</h5>
-                                    <p class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 align-self-center">
-                        <div class="text-lg-center mt-4 mt-lg-0">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-4">
-                                    <div>
-                                        <p class="text-muted text-truncate mb-2">Số điện thoại</p>
-                                        <h5 class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.PHONE_NUMBER)</h5>
+                                <div class="col-lg-6">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img src="~/assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle img-thumbnail">
+                                        </div>
+                                        <div class="flex-grow-1 align-self-center">
+                                            <div class="text-muted">
+                                                <h5 class="mb-1">@Html.DisplayFor(item => infoCustomerWinDTO.CUSTOMER_NAME)</h5>
+                                                <p class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS)</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div>
-                                        <p class="text-muted text-truncate mb-2">Mã trúng thưởng</p>
-                                        <h5 class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.LUCKY_CODE)</h5>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div>
-                                        <p class="text-muted text-truncate mb-2">Giải thưởng</p>
-                                        <h5 class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.PRIZE_WIN_TEXT)</h5>
 
+                                <div class="col-lg-6 align-self-center">
+                                    <div class="text-lg-center mt-4 mt-lg-0">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div>
+                                                    <p class="text-muted text-truncate mb-2">Số điện thoại</p>
+                                                    <h5 class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.PHONE_NUMBER)</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div>
+                                                    <p class="text-muted text-truncate mb-2">Mã trúng thưởng</p>
+                                                    <h5 class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.LUCKY_CODE)</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div>
+                                                    <p class="text-muted text-truncate mb-2">Giải thưởng</p>
+                                                    <h5 class="mb-0">@Html.DisplayFor(item => infoCustomerWinDTO.PRIZE_WIN_TEXT)</h5>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-@*                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="clearfix mt-4 mt-lg-0">
-                            <div class="dropdown float-end">
-                                <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @*                    <div class="col-lg-4 d-none d-lg-block">
+                                    <div class="clearfix mt-4 mt-lg-0">
+                                    <div class="dropdown float-end">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="bx bxs-cog align-middle me-1"></i> Setting
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end">
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end">
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <a class="dropdown-item" href="#">Something else</a>
-                                </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>*@
                             </div>
+                            <!-- end row -->
                         </div>
-                    </div>*@
+                    </div>
                 </div>
-                <!-- end row -->
             </div>
-        </div>
-    </div>
-</div>
 
-@*            <div class="card">
+            @*            <div class="card">
                 <div class="card-body">
 
-                    <center><h3><b>Thông tin khách hàng đã đăng ký bảo hành</b></h3></center>
-                    <div class="form-row-info">
-                        <div class="row row-info">
-                            <div class="col-12 col-sm-6">
-                                <div class="name-info"><label><b>Họ Và Tên:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.CUSTOMER_NAME)</label></div>
-                            </div>
-
-                            <div class="col-12 col-sm-6">
-                                <div class="name-info"><label><b>Số điện thoại:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PHONE_NUMBER)</label></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row-info">
-                        <div class="row row-info">
-                            <div class="col-12 col-sm-6">
-                                <div class="name-info"><label><b>Địa chỉ:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS)</label></div>
-                            </div>
-
-                            <div class="col-12 col-sm-6">
-                                <div class="name-info"><label><b>Mã số trúng thưởng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.LUCKY_CODE)</label></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row-info">
-                        <div class="row row-info">
-                            <div class="col-12 col-sm-6">
-                                <div class="name-info"><label><b>Tên model sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.MODEL_NAME)</label></div>
-                            </div>
-                            <div class="row row-info">
-                                <div class="col-12 col-sm-6">
-                                    <div class="name-info"><label><b>Giải thưởng đã trúng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PRIZE_WIN_TEXT)</label></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row-info">
-                        <div class="row row-info">
-                            <div class="col-12 col-sm-6">
-                                <div class="name-info"><label><b>Số serial sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ENGINE_NO)</label></div>
-                            </div>
-                        </div>
-                    </div>
+                <center><h3><b>Thông tin khách hàng đã đăng ký bảo hành</b></h3></center>
+                <div class="form-row-info">
+                <div class="row row-info">
+                <div class="col-6 col-sm-12">
+                <div class="name-info"><label><b>Họ Và Tên:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.CUSTOMER_NAME)</label></div>
                 </div>
-            </div>*@
-@*            <center><h3><b>Thông tin khách hàng đăng ký nhận thưởng</b></h3></center>*@
-            <div class="name-info">
+
+                <div class="col-6 col-sm-12">
+                <div class="name-info"><label><b>Số điện thoại:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PHONE_NUMBER)</label></div>
+                </div>
+                </div>
+                </div>
+                <div class="form-row-info">
+                <div class="row row-info">
+                <div class="col-6 col-sm-12">
+                <div class="name-info"><label><b>Địa chỉ:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS)</label></div>
+                </div>
+
+                <div class="col-6 col-sm-12">
+                <div class="name-info"><label><b>Mã số trúng thưởng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.LUCKY_CODE)</label></div>
+                </div>
+                </div>
+                </div>
+                <div class="form-row-info">
+                <div class="row row-info">
+                <div class="col-6 col-sm-12">
+                <div class="name-info"><label><b>Tên model sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.MODEL_NAME)</label></div>
+                </div>
+                <div class="row row-info">
+                <div class="col-6 col-sm-12">
+                <div class="name-info"><label><b>Giải thưởng đã trúng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PRIZE_WIN_TEXT)</label></div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="form-row-info">
+                <div class="row row-info">
+                <div class="col-6 col-sm-12">
+                <div class="name-info"><label><b>Số serial sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ENGINE_NO)</label></div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>*@
+            @*            <center><h3><b>Thông tin khách hàng đăng ký nhận thưởng</b></h3></center>*@
+            @*            <div class="name-info">
                 <label><b>Lịch sử nộp hồ sơ:  </b></label>
                 @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
                 {
-                    <button type="button" class="btn btn-primary" onclick="AddEditDialog(@Html.DisplayFor(i => item.Id))">Lần @Html.DisplayFor(i => item.CountSubmit)</button>
+                <button type="button" class="btn btn-primary" onclick="AddEditDialog(@Html.DisplayFor(i => item.Id))">Lần @Html.DisplayFor(i => item.CountSubmit)</button>
 
                 }
-            </div>
+                </div>*@
 
             <div class="row">
                 <div class="col-lg-6">
@@ -161,7 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="accordion-item">
+                                <div class="accordion-item">
                                     <h2 class="accordion-header" id="heading2">
                                         <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
                                             Lần 2
@@ -230,7 +230,37 @@
 
                             <div class="col-sm-12">
                                 <h4 class="card-title mb-4">@Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_NUMBER)</h4>
+                            </div>
 
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_NUMBER)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_NUMBER)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
@@ -254,7 +284,7 @@
                                 </div>
                             </div>
 
-                            <h4 class="card-header bg-header border-bottom border-top mb-2">Agency xử lý</h4>
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
@@ -285,13 +315,13 @@
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh CMTND/CCCD mặt trước</center></h4>
                         <div class="card-body">
 
-                            <div class="col-12 col-sm-6">
+                            <div class="col-6 col-sm-12">
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
                             </div>
 
-                             <div class="accordion mb-1 h-25" id="accordionExample">
+                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="heading1">
                                         <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
@@ -308,7 +338,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="accordion-item">
+                                <div class="accordion-item">
                                     <h2 class="accordion-header" id="heading2">
                                         <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
                                             Lần 2
@@ -317,7 +347,9 @@
                                     <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
                                         <div class="accordion-body pb-2 pt-2">
                                             <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -374,11 +406,48 @@
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh CMTND/CCCD mặt sau</center></h4>
                         <div class="card-body">
 
-                            <div class="col-12 col-sm-6">
+                            <div class="col-6 col-sm-12">
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
                             </div>
+
+
+                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
@@ -435,6 +504,39 @@
                                 <h4 class="card-title mb-4">@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS_STORAGE)</h4>
 
                             </div>
+
+
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS_STORAGE)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS_STORAGE)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
@@ -490,6 +592,37 @@
 
                             </div>
 
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.NOTE_OF_CUSTOMER)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                @Html.DisplayFor(item => infoCustomerWinDTO.NOTE_OF_CUSTOMER)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
@@ -542,10 +675,45 @@
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh serial/tem sản phẩm</center></h4>
                         <div class="card-body">
 
-                            <div class="col-12 col-sm-6">
+                            <div class="col-6 col-sm-12">
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
+                            </div>
+
+                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
@@ -597,11 +765,47 @@
                     <div class="card">
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh khách hàng đứng cùng sản phẩm</center></h4>
                         <div class="card-body">
-                            <div class="col-12 col-sm-6">
+                            <div class="col-6 col-sm-12">
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
                             </div>
+
+                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
@@ -654,13 +858,54 @@
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh tin nhắn mã dự thưởng</center></h4>
                         <div class="card-body">
 
-                            <div class="col-12 col-sm-6">
+                            <div class="col-6 col-sm-12">
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
+                            </div>
+
+                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
@@ -712,7 +957,7 @@
                     <div class="card">
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh thông báo trúng thưởng</center></h4>
                         <div class="card-body">
-                            <div class="col-12 col-sm-6">
+                            <div class="col-6 col-sm-12">
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
@@ -721,6 +966,48 @@
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
                             </div>
+
+                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
@@ -773,13 +1060,54 @@
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh hóa đơn / phiếu bảo hành</center></h4>
                         <div class="card-body">
 
-                            <div class="col-12 col-sm-6">
+                            <div class="col-6 col-sm-12">
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
                                 <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                                 </a>
+                            </div>
+
+                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading1">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 1
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading2">
+                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
+                                            Lần 2
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body pb-2 pt-2">
+                                            <div class="text-muted">
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
+                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
@@ -831,7 +1159,7 @@
                     <div class="card">
                     <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh thông báo trúng thưởng</h4>
                     <div class="card-body">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-6 col-sm-12">
                     <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
                     <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
                     </a>
@@ -895,24 +1223,24 @@
                 <div class="box-body">
                 <div class="form-row-info">
                 <div class="row row-info">
-                <div class="col-12 col-sm-6">
+                <div class="col-6 col-sm-12">
                 <div class="name-info"><label><b>Họ Và Tên:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)</label></div>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-6 col-sm-12">
                 <div class="name-info"><label><b>Số CMTND/CCCD:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_NUMBER)</label></div>
                 </div>
                 </div>
                 </div>
                 <div class="form-row-info">
                 <div class="row row-info">
-                <div class="col-12 col-sm-6">
+                <div class="col-6 col-sm-12">
                 <div class="name-info">
                 <label><b>Ảnh CMTND/CCCD mặt trước:  </b></label><br />
                 <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" width="300" height="200" /></a>
 
                 </div>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-6 col-sm-12">
                 <div class="name-info">
                 <label><b>Ảnh CMTND/CCCD mặt sau:  </b></label><br />
                 <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" width="300" height="200" /></a>
@@ -950,7 +1278,7 @@
                 <div class="box-body">
                 <div class="form-row-info">
                 <div class="row row-info">
-                <div class="col-12 col-sm-6">
+                <div class="col-6 col-sm-12">
                 <div class="name-info"><label><b>Địa chỉ nơi chứa sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS_STORAGE)</label></div>
                 </div>
 
@@ -992,27 +1320,27 @@
 
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Số tài khoản ngân hàng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_NUMBER)</label></div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Tên chủ tài khoản:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_ACCOUNT_NAME)</label></div>
                         </div>
                         </div>
                         </div>
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Tên ngân hàng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_NAME)</label></div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Chi nhánh:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_BRANCH)</label></div>
                         </div>
                         </div>
                         </div>
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Tỉnh, thành phố của chi nhánh:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PROVINCE_BRANCH)</label></div>
                         </div>
                         </div>
@@ -1048,30 +1376,30 @@
                         <div class="box-body">
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Số CMTND/CCCD người được ủy quyền:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_AUTHORIZATION)</label></div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Họ và tên người được ủy quyền:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_ACCOUNT_NAME)</label></div>
                         </div>
                         </div>
                         </div>
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Tên ngân hàng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_NAME)</label></div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Số tài khoản ngân hàng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_NUMBER)</label></div>
                         </div>
                         </div>
                         </div>
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Chi nhánh:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.BANK_BRANCH)</label></div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info">
                         <label><b>Ảnh giấy ủy quyền:  </b></label><br />
                         @*<a href="~/DocumentsSubmit/@Html.DisplayFor(item => infoCustomerWinDTO.FILE_AUTHORIZATION_LETTER)" target="_blank">Ảnh1</a>*@
@@ -1089,14 +1417,14 @@
                         </div>
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Tỉnh, thành phố của chi nhánh:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PROVINCE_BRANCH)</label></div>
                         </div>
                         </div>
                         </div>
                         <div class="form-row-info">
                         <div class="row row-info">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info">
                         <label><b>Ảnh CMTND/CCCD mặt trước người được ủy quyền:  </b></label><br />
                         <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_AUTHORIZATION" target="_blank">
@@ -1105,7 +1433,7 @@
 
                         </div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-6 col-sm-12">
                         <div class="name-info"><label><b>Ảnh CMTND/CCCD mặt sau người được ủy quyền:  </b></label><br /><a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_AUTHORIZATION" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_AUTHORIZATION" width="200" height="100" /></a></div>
                         </div>
                         </div>
@@ -1139,7 +1467,7 @@
 
                     <div class="box-body">
                     <div class="form-row-info">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-6 col-sm-12">
                     <div class="name-info">
                     <label><b>Ảnh hóa đơn:  </b></label> <br />
                     @if (!string.IsNullOrEmpty(infoCustomerWinDTO.FILE_INVOICE_PATH))
@@ -1163,7 +1491,7 @@
                     <div class="box-body">
                     <div class="form-row-info">
                     <div class="row row-info">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-6 col-sm-12">
                     <div class="name-info"><label><b>Ghi chú của khách hàng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.NOTE_OF_CUSTOMER)</label></div>
                     </div>
                     </div>
@@ -1182,7 +1510,7 @@
                     <div class="form-row-info">
                     <div class="row row-info">
 
-                    <div class="col-12 col-sm-6">
+                    <div class="col-6 col-sm-12">
                     <div class="name-info">
                     <label><b>Ảnh ASC cập nhật:  </b></label>
                     @{
@@ -1203,7 +1531,7 @@
 
                     <div class="form-row-info">
                     <div class="row row-info">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-6 col-sm-12">
                     <div class="name-info">
                     <label><b>Ảnh agency cập nhật:  </b></label>
                     @{
@@ -1219,7 +1547,7 @@
                     }
                     </div>
                     </div>
-                    <div class="col-12 col-sm-6">
+                    <div class="col-6 col-sm-12">
                     <div class="name-info">
                     <label><b>Ảnh call center cập nhật:  </b></label>
                     @{
@@ -1246,16 +1574,16 @@
                         <div class="card-body">
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">Call center xử lý</h4>
-                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">Gọi lần 1</h4>
+                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Gọi lần 1</h4>
 
-                             <div class="row">
-                             <div class="col-sm-3">
-                                 Trạng thái
-                             </div>
-                             <div class="col-sm-9">
-                                 Không gọi được
-                             </div>
-                              </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    Trạng thái
+                                </div>
+                                <div class="col-sm-9">
+                                    Không gọi được
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label asp-for="NOTE_OF_CALL_CENTER">

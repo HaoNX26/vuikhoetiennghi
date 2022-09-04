@@ -47,7 +47,7 @@
     @*@await Html.PartialAsync("~/Views/Shared/_vendor_scripts.cshtml")*@
 
     @RenderSection("scripts", required: false)
-    
+    <script src="/js/site.js"></script>
     <!-- owl.carousel js -->
     <script src="~/assets/libs/owl.carousel/owl.carousel.min.js"></script>
     <!-- auth-2-carousel init -->
@@ -82,6 +82,13 @@
 
 <!-- Init js -->
 <script src="~/assets/js/pages/table-responsive.init.js"></script>
+
+<!-- Sweet Alerts js -->
+<script src="~/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- Sweet alert init js-->
+<script src="~/assets/js/pages/sweet-alerts.init.js"></script>
+
 
     <!-- Datatable init js -->
     <script src="~/assets/js/pages/datatables.init.js"></script>

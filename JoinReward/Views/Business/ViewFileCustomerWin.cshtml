@@ -177,12 +177,15 @@ table.dataTable {
             <div class="card-body">
                 <h4 class="card-title">Danh sách hồ sơ</h4>
                 <div class="table-responsive">
-                        <table class="table align-middle table-nowrap table-hover table-bordered">
+                        <table class="table align-middle table-nowrap table-hover table-bordered table-check">
                     <thead class="table-light">
                         <tr role="row">
-                            <th style="width: 10px; text-align:center;">
-                                <input type="checkbox" id="checkAll" />
-                            </th>
+                           <th style="width: 20px;" class="align-middle">
+                                    <div class="form-check font-size-16">
+                                        <input class="form-check-input" type="checkbox" id="checkAll">
+                                        <label class="form-check-label" for="checkAll"></label>
+                                    </div>
+                                </th>
                             <th style="text-align:center;">
                                 STT
                             </th>
@@ -235,8 +238,11 @@ table.dataTable {
                         {
                             <tr role="row" class="odd">
                                 <td>
-                                    <input type="checkbox" id="@Html.DisplayFor(modelItem => item.Id)" />
-                                </td>
+                                     <div class="form-check font-size-16">
+                                        <input class="form-check-input" type="checkbox" id="@Html.DisplayFor(modelItem => item.Id)">
+                                        <label class="form-check-label" for="orderidcheck01"></label>
+                                    </div>
+                                 </td>
                                 <td>
                                     @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
                                 </td>

@@ -3,45 +3,45 @@
 // Write your JavaScript code.
 
 $(document).ready(function () {
-    $('[data-mask]').inputmask()
-    //
-    $('.date-picker').each(function () {
-        if (/^\d{4}[\/,-]\d{1,2}[\/,-]\d{1,2}/.test($(this).val())) {               
-            var dateParts = $(this).val().split(/[\/,-]/)
-            if (dateParts.length === 3) {                
-                $(this).val(dateParts[2] + '/' + dateParts[1] + '/' + dateParts[0])
-            }
-        }
-    })
-    $('.date-picker').datetimepicker({
-        locale: 'en', keepOpen: false, showClose: true,
+    //$('[data-mask]').inputmask()
+    ////
+    //$('.date-picker').each(function () {
+    //    if (/^\d{4}[\/,-]\d{1,2}[\/,-]\d{1,2}/.test($(this).val())) {               
+    //        var dateParts = $(this).val().split(/[\/,-]/)
+    //        if (dateParts.length === 3) {                
+    //            $(this).val(dateParts[2] + '/' + dateParts[1] + '/' + dateParts[0])
+    //        }
+    //    }
+    //})
+    //$('.date-picker').datetimepicker({
+    //    locale: 'en', keepOpen: false, showClose: true,
 
-        format: 'DD/MM/YYYY'
-    });
-    //
-    $('.time-picker').datetimepicker({
-        locale: 'en', keepOpen: false, showClose: true,
+    //    format: 'DD/MM/YYYY'
+    //});
+    ////
+    //$('.time-picker').datetimepicker({
+    //    locale: 'en', keepOpen: false, showClose: true,
 
-        format: 'HH:mm'
-    });
-    //
-    $('.datetime-picker').each(function () {
-        if (/^\d{4}[\/,-]\d{1,2}[\/,-]\d{1,2}/.test($(this).val())) {
-            var datetimeParts = $(this).val().split(' ')            
-            var dateParts = datetimeParts[0].split(/[\/,-]/)
-            if (dateParts.length === 3) {
-                $(this).val(dateParts[2] + '/' + dateParts[1] + '/' + dateParts[0] + (datetimeParts.length > 1 ? ' ' + datetimeParts[1] : ''))
-            }
-        }
-    })
-    $('.datetime-picker').datetimepicker({
-        locale: 'en', keepOpen: false, showClose: true,
+    //    format: 'HH:mm'
+    //});
+    ////
+    //$('.datetime-picker').each(function () {
+    //    if (/^\d{4}[\/,-]\d{1,2}[\/,-]\d{1,2}/.test($(this).val())) {
+    //        var datetimeParts = $(this).val().split(' ')            
+    //        var dateParts = datetimeParts[0].split(/[\/,-]/)
+    //        if (dateParts.length === 3) {
+    //            $(this).val(dateParts[2] + '/' + dateParts[1] + '/' + dateParts[0] + (datetimeParts.length > 1 ? ' ' + datetimeParts[1] : ''))
+    //        }
+    //    }
+    //})
+    //$('.datetime-picker').datetimepicker({
+    //    locale: 'en', keepOpen: false, showClose: true,
 
-        format: 'DD/MM/YYYY HH:mm'
-    });
-    $('.select2').select2({
-        width: "100%"
-    });
+    //    format: 'DD/MM/YYYY HH:mm'
+    //});
+    //$('.select2').select2({
+    //    width: "100%"
+    //});
     //
     if (typeof InitForm === "function") {
         InitForm()
