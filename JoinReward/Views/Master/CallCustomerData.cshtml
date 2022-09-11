@@ -1,0 +1,296 @@
+﻿@using JoinReward.Models;
+@model JoinReward.Models.DTO.MCallCustomerDataDTO;
+@{
+    ViewData["Title"] = "Dữ liệu cuộc gọi";
+    JoinReward.Models.Pagination pagination = (JoinReward.Models.Pagination)@ViewData["pagination"];
+    int v_count = 1;
+}
+@Html.AntiForgeryToken()
+<form asp-action="ASCMaster" asp-controller="CallCustmerData" method="post">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <div id="example1_filter" class="dataTables_filter">
+                                    <label>Tìm kiếm: <input name="KEYWORD" type="search" class="form-control input-sm" placeholder="" asp-for="KEYWORD"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary waves-effect waves-light" onclick="ImportDialog()">
+                Import dữ liệu
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách</h4>
+                    <div class="table-responsive">
+                        <table class="table align-middle table-nowrap table-hover table-bordered">
+                            <thead class="table-light">
+                                <tr role="row">
+                                    <th style="width: 20px;">
+                                        STT
+                                    </th>
+
+                                    <th>
+                                        Lucky Code
+                                    </th>
+                                    <th>
+                                        Họ và tên
+                                    </th>
+                                    <th>
+                                        KQ Lần 1
+                                    </th>
+                                    <th>
+                                        Ghi chú lần 1
+                                    </th>
+                                     <th>
+                                        KQ Lần 2
+                                    </th>
+                                    <th>
+                                        Ghi chú lần 2
+                                    </th>
+                                     <th>
+                                        KQ Lần 3
+                                    </th>
+                                    <th>
+                                        Ghi chú lần 3
+                                    </th>
+                                     <th>
+                                        KQ Lần 4
+                                    </th>
+                                    <th>
+                                        Ghi chú lần 4
+                                    </th>
+                                     <th>
+                                        KQ Lần 5
+                                    </th>
+                                    <th>
+                                        Ghi chú lần 5
+                                    </th>
+                                    <th style="width: 100px;">
+                                        #
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (JoinReward.Models.DTO.MCallCustomerDataDTO item in (List<JoinReward.Models.DTO.MCallCustomerDataDTO>)ViewData["grid_data"])
+                                {
+                                    <tr role="row" class="odd">
+                                        <td>
+                                            @((pagination.CUR_PAGE - 1) * pagination.PAGE_SIZE + v_count)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LUCKY_CODE)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CUSTOMER_NAME)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CALL_RESULT_1ST)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NOTE_1ST)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CALL_RESULT_2ND)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NOTE_2ND)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CALL_RESULT_3RD)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NOTE_3RD)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CALL_RESULT_4TH)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NOTE_4TH)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CALL_RESULT_5TH)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NOTE_5TH)
+                                        </td>
+
+                                        <td class="text-center">
+                                            @*<a class="btn btn-default" onclick="AddEditDialog(@item.ID)">Sửa</a>*@
+                                            <a class="btn btn-danger btn-sm waves-effect waves-light" onclick="DeleteItem(@item.ID)">Xóa</a>
+                                        </td>
+                                    </tr>
+                                    v_count = v_count + 1;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <partial name="/Views/Shared/_Pagination.cshtml" />
+    </div>
+
+</form>
+
+<div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="import-body-content" class="modal-body">
+                <!-- .modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<script type="text/javascript">
+ 
+        //delete
+        function DeleteItem(itemId) {
+
+            Swal.fire({
+              title: 'Bạn muốn xóa?',
+              text: "",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#34c38f',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Có',
+              cancelButtonText: 'Không'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var url = "/Master/DeleteASC?id=" + itemId;
+                _ajax(url, '', function (response) {
+                    if (response.success === 'Y') {
+                        location.reload()
+                    }
+                    else {
+                        alert(response.message)
+                    }
+                })
+              }
+            });
+            //if (confirm("Xác nhận xóa bản ghi?")) {
+            //    var url = "/Master/DeleteASC?id=" + itemId;
+            //    _ajax(url, '', function (response) {
+            //        if (response.success === 'Y') {
+            //            location.reload()
+            //        }
+            //        else {
+            //            alert(response.message)
+            //        }
+            //    })
+            //}
+        }
+
+        //save
+        function SaveData(formId) {
+            var url = "/Master/SaveASC";
+
+            var obj = _getFormObject(formId)
+            _ajax(url, obj, function (response) {
+                if (response.success === 'Y') {
+                    location.reload()
+                }
+                else {
+                    alert(response.message)
+                }
+            });
+        }
+    //import
+    var IsLoad = false
+    function ImportDialog() {
+        var url = "/Master/ShowImportCallCustmerData";
+        //
+        showLoading()
+        $("#import-body-content").load(url, function (e, responseText) {
+            if (responseText === "error") { location.reload() }
+            IsLoad = false
+             $('#modal-import').modal('show');
+            hideLoading()
+        })
+    }
+
+    function SelectedFileChanged() {
+        IsLoad = false
+    }
+
+       function Load(formId) {
+        $("#data-body").html("")
+        var url = "/Master/LoadImportCallCustmerData";
+        var obj = _getFormData(formId)
+        if (!obj.get("fIMPORT")) {
+            alert("Chọn file import")
+            return
+        }
+        _ajaxFormData(url, obj, function (response) {
+            if (response.success === 'Y') {
+                $("#data-body").html(response.data)
+                IsLoad = true
+            }
+            else {
+                alert(response.message)
+            }
+        })
+    }
+
+      function Import() {
+        if (!IsLoad) {
+            alert("Chưa load dữ liệu từ file import!")
+            return
+        }
+        var url = "/Master/ImportCallCustomerData";
+        _ajax(url, "", function (response) {
+            if (response.success === 'Y') {
+                _ajax("/Master/ImportImportCallCustomerDataResult", "", function (result) {
+                    if (result.success === 'Y') {
+                        $("#modal-import").modal("hide")
+                        location.reload()
+                    }
+                    else {
+                        $("#data-body").html(result.data)
+                        alert(result.message)
+                    }
+                })
+            }
+            else {
+                alert(response.message)
+            }
+        }, function () { })
+    }
+
+</script>

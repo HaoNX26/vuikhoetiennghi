@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MimeKit;
 using MimeKit.Text;
+using PAN.Warranty.Models;
 using SysFrameworks;
 using System;
 using System.Collections.Generic;
@@ -364,6 +365,157 @@ namespace JoinReward.Controllers
                 _masterContext.SaveChanges();
             }
            
+            return Json(response);
+        }
+
+        public IActionResult CallCustmerData(MCallCustomerDataDTO mCallCustomerDataDTO)
+        {
+
+
+            if (mCallCustomerDataDTO.PAGE_SIZE <= 0) mCallCustomerDataDTO.PAGE_SIZE = SysFrameworks.Constant.C_DEFAULT_PAGE_SIZE;
+            if (mCallCustomerDataDTO.page <= 0) mCallCustomerDataDTO.page = 1;
+            Models.Pagination pagination = new Models.Pagination()
+            {
+                PAGE_SIZE = mCallCustomerDataDTO.PAGE_SIZE,
+                CUR_PAGE = mCallCustomerDataDTO.page
+            };
+            List<MCallCustomerDataDTO> ASCMasterDTOs = _masterContext.SearchCallCustomerData(mCallCustomerDataDTO.KEYWORD, pagination.CUR_PAGE, pagination.PAGE_SIZE);
+            if (ASCMasterDTOs.Count > 0) pagination.TOTAL_RECORD = ASCMasterDTOs[0].NUM_OF_RECORD;
+            pagination.CONTROLLER = ControllerContext.ActionDescriptor.ControllerName;
+            pagination.ACTION = ControllerContext.ActionDescriptor.ActionName;
+            //L?y thu?c tính truy?n qua query string
+            DataCollections cols = new DataCollections();
+            cols.Add(DataTypes.NVarchar, "keyword", FieldTypes.DefaultValue, mCallCustomerDataDTO.KEYWORD, "");
+            pagination.GET_QUERY_STRING = SysFrameworks.Url.to_Get_Param(cols);
+            ViewData["pagination"] = pagination;
+            ViewData["grid_data"] = ASCMasterDTOs;
+            return View("CallCustomerData");
+        }
+
+        public ActionResult ShowImportCallCustmerData()
+        {
+            return PartialView("CallCustmerDataImport");
+        }
+
+        [HttpPost]
+        public JsonResult LoadImportCallCustmerData(IFormFile fIMPORT)
+        {
+            JsonResponse response = new JsonResponse();
+            try
+            {
+                ExcelLib excelLib = new ExcelLib();
+                List<M_CALL_CUSTOMER_DATA_IMPORT> M_CALL_CUSTOMER_DATA_IMPORTs = excelLib.ReadImportTemplateAsync<M_CALL_CUSTOMER_DATA_IMPORT>(fIMPORT).Result;
+                if (ModelState.IsValid)
+                {
+                    _masterContext.RemoveRange(_masterContext.M_CALL_CUSTOMER_DATA_IMPORT.ToList());
+                    _masterContext.SaveChanges();
+                    string data = "";
+                    int i = 1;
+                    foreach (M_CALL_CUSTOMER_DATA_IMPORT item in M_CALL_CUSTOMER_DATA_IMPORTs)
+                    {
+                        M_CALL_CUSTOMER_DATA_IMPORT obj = new M_CALL_CUSTOMER_DATA_IMPORT();
+                        item.CopyProperties(obj);
+                        _masterContext.M_CALL_CUSTOMER_DATA_IMPORT.Add(obj);
+                        //
+                        string itemData = "<tr role='row' class='odd'>";
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", i++));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.LUCKY_CODE));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CUSTOMER_NAME));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_1ST));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_1ST));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_2ND));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_2ND));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_3RD));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_3RD));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_4TH));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_4TH));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_5TH));
+                        itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_5TH));
+
+                        itemData = string.Concat(itemData, "<td></td></tr>");
+                        data = string.Concat(data, itemData);
+
+                    }
+                    _masterContext.SaveChanges();
+                    response.success = "Y";
+                    response.data = data;
+                }
+                else
+                {
+                    string err_messages = string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage));
+                    response.success = "N";
+                    response.message = err_messages;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.success = "N";
+                response.message = ex.Message;
+            }
+            return Json(response);
+        }
+
+        [HttpPost]
+        public JsonResult ImportCallCustomerData()
+        {
+            JsonResponse response = new JsonResponse();
+            try
+            {
+                _masterContext.ImportCallCustomerData();
+            }
+            catch (Exception ex)
+            {
+                response.success = "N";
+                response.message = ex.Message;
+            }
+            return Json(response);
+        }
+
+        public JsonResult ImportImportCallCustomerDataResult()
+        {
+            JsonResponse response = new JsonResponse();
+            try
+            {
+                List<M_CALL_CUSTOMER_DATA_IMPORT> M_CALL_CUSTOMER_DATA_IMPORTs = _masterContext.M_CALL_CUSTOMER_DATA_IMPORT
+                    .OrderByDescending(o => o.REMARK).OrderBy(o => o.ID).ToList();
+                string data = "";
+                int i = 1;
+                foreach (M_CALL_CUSTOMER_DATA_IMPORT item in M_CALL_CUSTOMER_DATA_IMPORTs)
+                {
+                    string itemData = "<tr role='row' class='odd'>";
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", i++));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.LUCKY_CODE));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CUSTOMER_NAME));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_1ST));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_1ST));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_2ND));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_2ND));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_3RD));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_3RD));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_4TH));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_4TH));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.CALL_RESULT_5TH));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td>", item.NOTE_5TH));
+                    itemData = string.Concat(itemData, string.Format("<td>{0}</td></tr>", item.REMARK));
+                    data = string.Concat(data, itemData);
+                    if (!string.IsNullOrEmpty(item.REMARK))
+                    {
+                        response.success = "N";
+                    }
+                }
+                if (response.success.Equals("N"))
+                {
+                    response.message = string.Format("Kiểm tra lại dữ liệu không hợp lệ!");
+                }
+                response.data = data;
+            }
+            catch (Exception ex)
+            {
+                response.success = "N";
+                response.message = ex.Message;
+            }
             return Json(response);
         }
     }

@@ -1,0 +1,15 @@
+﻿.btn-toolbar {
+    display: none !important;
+}
+
+.bg-header {
+    background-color: #d4dbf9;
+}
+
+.accordion-button {
+    padding: 0.5rem 1.25rem !important;
+}
+
+.btn-toolbar {
+    display: none !important;
+}

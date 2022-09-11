@@ -1034,5 +1034,66 @@ namespace JoinReward.Controllers
             }
             return Json(responseJson);
         }
+
+        public IActionResult ViewListAsc()
+        {
+            List<SelectListItem> ASCList = _masterContext.aSCMasters.Where(p => p.ASC_TYPE.Equals(SysFrameworks.Constant.C_ROLE_ASC))
+            .Select(a => new SelectListItem()
+            {
+                Value = a.ID.ToString(),
+                Text = a.ASC_CODE
+            }).ToList();
+            ASCList.Insert(0, new SelectListItem("", ""));
+            ViewBag.ListASC = ASCList;
+            return PartialView("AssignToASC");
+        }
+
+        public JsonResult AssignToASC(string listId, long idAsc)
+        {
+ 
+            JsonResponse response = new JsonResponse();
+            SubmitInfoCustomerWin submitInfoCustomerWin = new SubmitInfoCustomerWin();
+
+            try
+            {
+                if (listId != null)
+                {
+                    string[] listIdDoc = listId.Split(",");
+                    if (listIdDoc.Length > 0)
+                    {
+                        foreach (string id in listIdDoc)
+                        {
+                            submitInfoCustomerWin = _businessContext.submitInfoCustomerWins.Find(id.Equals("") ? 0 : long.Parse(id));
+                            if (submitInfoCustomerWin != null)
+                            {
+                                submitInfoCustomerWin.AscId = idAsc;
+                                submitInfoCustomerWin.ModifyDate = DateTime.Now;
+                                submitInfoCustomerWin.ModifiedBy = (int)HttpContext.Session.GetInt32("s_user_id").Value;
+                                _businessContext.submitInfoCustomerWins.Update(submitInfoCustomerWin);
+                            }
+                        }
+                        _businessContext.SaveChanges();
+
+                    }
+                    else
+                    {
+                        response.success = "N";
+                        response.message = "Hãy chọn dòng để thay đổi trạng thái!";
+                    }
+                }
+                else
+                {
+                    response.success = "N";
+                    response.message = "Hãy chọn dòng để thay đổi trạng thái!";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.success = "N";
+                response.message = ex.Message;
+            }
+
+            return Json(response);
+        }
     }
 }

@@ -55,7 +55,7 @@ table.dataTable {
                         <div class="col-sm-6">
                             <div class="input-group mb-1">
                                 <span class="input-group-text">Đợt quay thưởng</span>
-                                <select asp-for="ROUND_ID" asp-items="@ViewBag.lsRound" class="form-control select2"></select>
+                                <select asp-for="ROUND_ID" asp-items="@ViewBag.lsRound" class="form-control"></select>
                             </div>
                         </div>
                     </div>
@@ -74,14 +74,14 @@ table.dataTable {
                         <div class="col-sm-6">
                             <div class="input-group mb-1">
                                 <span class="input-group-text">TT khách hàng</span>
-                                <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control select2"></select>
+                                <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control"></select>
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="input-group mb-1">
                                 <span class="input-group-text">Giải thưởng</span>
-                                <select asp-for="PRIZE_WIN" asp-items="@ViewBag.lsPrizeWin" class="form-control select2"></select>
+                                <select asp-for="PRIZE_WIN" asp-items="@ViewBag.lsPrizeWin" class="form-control"></select>
                             </div>
                         </div>
 
@@ -158,6 +158,8 @@ table.dataTable {
                                 <button type="button" class="btn btn-success waves-effect waves-light" onclick="updateStatus()">
                                     <i class="bx bx-check-double font-size-16 align-middle me-2"></i>Trả thưởng</button>
                                     
+                                     <button type="button" class="btn btn-success waves-effect waves-light" onclick="AddDialogAssignASC()">
+                                    <i class="bx bx-check-double font-size-16 align-middle me-2"></i>Giao cho ASC</button>
 
                             <button type="submit" class="btn btn-primary waves-effect waves-light" formaction="ExportExcel" onclick="return confirm('Bạn có muốn xuất dữ liệu?');">
                                 <i class="bx bx-export font-size-16 align-middle me-2"></i>Export</button>
@@ -176,8 +178,8 @@ table.dataTable {
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Danh sách hồ sơ</h4>
-                <div class="table-responsive">
-                        <table class="table align-middle table-nowrap table-hover table-bordered table-check">
+                
+                        <table class="table table-bordered" id="list-data">
                     <thead class="table-light">
                         <tr role="row">
                            <th style="width: 20px;" class="align-middle">
@@ -288,38 +290,35 @@ table.dataTable {
                                 </td>*@
                                 <td class="text-center">
                                     <a class="btn btn-primary btn-sm waves-effect waves-light" asp-action="EditOrViewFileCustomerWin" asp-controller="Business"
-                                   asp-route-ID="@item.Id"><i class="bx bx-edit-alt font-size-16 align-middle me-2"></i>Chỉnh sửa</a>
+                                   asp-route-ID="@item.Id"><i class="bx bx-edit-alt font-size-16 align-middle me-2"></i></a>
                                    
-                                    <a class="btn btn-primary btn-sm waves-effect waves-light" href="@Url.Action("DownloadFileCustomerWin", new { id = item.Id, type = 1 })"><i class="bx bx-download font-size-16 align-middle me-2"></i>Tải ảnh về</a>
+                                    <a class="btn btn-primary btn-sm waves-effect waves-light" href="@Url.Action("DownloadFileCustomerWin", new { id = item.Id, type = 1 })"><i class="bx bx-download font-size-16 align-middle me-2"></i></a>
                                 </td>
                             </tr>
                             v_count = v_count + 1;
                         }
                     </tbody>
                 </table>
-            </div>
+  
             <partial name="/Views/Shared/_Pagination.cshtml" />
             </div>
         </div>
     </div>
 </div>
 
-
-<div class="modal fade" id="asc-modal-default">
+<div class="modal fade" id="asc-modal-default" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="title"></h4>
+                <h5 class="modal-title" id="title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="asc-body-content" class="modal-body">
                 <!-- .modal-body -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="Assign('asc-body-content')">Gán</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="AssignToAsc('asc-body-content')">Gán</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Đóng</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -384,38 +383,39 @@ table.dataTable {
     //    });
     //    $('.datepicker').datepicker();
 
-    //    function AddEditDialog(itemId) {
-    //        var url = "/Business/ShowASC?id=" + itemId;
-    //        $('#title').html("Gán tài liệu cho ASC");
-    //        showLoading();
-    //        $("#asc-body-content").load(url, function (e, responseText) {
-    //            if (responseText === "error") { location.reload() }
-    //            $("#asc-modal-default").modal({ backdrop: 'static', keyboard: false })
-    //            //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
-    //            hideLoading();
-    //        });
-    //    }
+        function AddDialogAssignASC() {
+            var url = "/Business/ViewListAsc";
+            $('#title').html("Gán hồ sơ cho ASC");
+            showLoading();
+            $("#asc-body-content").load(url, function (e, responseText) {
+                if (responseText === "error") { location.reload() }
+                $("#asc-modal-default").modal('show');
+                //$(this).find("input:not(:submit,:reset,:button,:hidden),select,textarea")[0].focus()
+                hideLoading();
+            });
+        }
 
-    //    function updateStatus() {
-    //         if (confirm("Xác nhận thay đổi trạng thái?")) {
-    //            var listId = '';
-    //            $('#list-data input:checked').each(function() {
-    //                listId = listId + $(this).attr('id') + ",";
-    //            });
+        function AssignToAsc() {
+             if (confirm("Xác nhận gán hồ sơ cho ASC?")) {
+                var listId = '';
+                $('#list-data input:checked').each(function() {
+                    listId = listId + $(this).attr('id') + ",";
+                });
+                var idAsc = $('#AssignAscId').val();
 
-    //            var url = "/Business/updateStatusFileCustomerWin?listId=" + listId;
-    //            _ajax(url, '', function (response) {
-    //            if (response.success === 'Y') {
-    //                location.reload()
-    //            }
-    //            else {
-    //                alert(response.message);
-    //                hideLoading();
-    //            }
-    //            console.log(listId);
-    //            });
-    //     }
-        //}
+                var url = "/Business/AssignToASC?listId=" + listId + "&idAsc=" + idAsc;
+                _ajax(url, '', function (response) {
+                if (response.success === 'Y') {
+                    location.reload()
+                }
+                else {
+                    alert(response.message);
+                    hideLoading();
+                }
+                console.log(listId);
+                });
+         }
+        }
 
 
 </script>

@@ -1,0 +1,135 @@
+﻿@Html.AntiForgeryToken()
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="fIMPORT" style="margin-right: 10px">Chọn file</label>
+                    <input type="file" name="fIMPORT" style="display: inline-block; width: 50%;" onchange="SelectedFileChanged()" />
+                    <button type="button" class="btn btn-default" style="float: right" onclick="location.href = '/LuckyDraw/ExportCustomerWinDrawTemplate'">Tải mẫu import</button>
+                    <button id="btnImport" type="button" class="btn btn-primary" style="float: right; margin-right: 5px" onclick="Import()">Import</button>
+                    <button type="button" class="btn btn-default" style="float: right; margin-right: 5px" onclick="Load('import-body-content')">Load dữ liệu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div id="import-data">
+    <h5 id="import-message"></h5>
+    <h5>Danh sách dữ liệu</h5>
+    <div class="box" style="max-height: 500px; overflow-x: visible; overflow-y: auto;">
+    <!-- /.box-header -->
+    <div class="box-body">
+    <div class="dataTables_wrapper form-inline dt-bootstrap modal-table">
+    <div class="row">
+    <div class="col-sm-12">
+    <table class="table table-bordered table-striped dataTable" style="width: 200%">
+    <thead>
+    <tr role="row">
+    <th style="width: 20px;">
+    STT
+    </th>
+
+    <th>
+    Tên Khách Hàng
+    </th>
+    <th>
+    Số điện thoại
+    </th>
+    <th>
+    Địa chỉ
+    </th>
+    <th>
+    Mã trúng thưởng
+    </th>
+    <th>
+    Kiểu máy
+    </th>
+    <th>
+    Số máy
+    </th>
+    <th>
+    Giải thưởng
+    </th>
+    <th style="width: 100px;">
+    #
+    </th>
+
+    </tr>
+    </thead>
+    <tbody id="data-body"></tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- /.box-body -->
+    </div>
+    </div>*@
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Danh sách</h4>
+                <div class="table-responsive">
+                    <table class="table align-middle table-nowrap table-hover table-bordered">
+                        <thead class="table-light">
+                            <tr role="row">
+                                <th style="width: 20px;">
+                                    STT
+                                </th>
+
+                                <th>
+                                    Lucky Code
+                                </th>
+                                <th>
+                                    Họ và tên
+                                </th>
+                                <th>
+                                    KQ Lần 1
+                                </th>
+                                <th>
+                                    Ghi chú lần 1
+                                </th>
+                                <th>
+                                    KQ Lần 2
+                                </th>
+                                <th>
+                                    Ghi chú lần 2
+                                </th>
+                                <th>
+                                    KQ Lần 3
+                                </th>
+                                <th>
+                                    Ghi chú lần 3
+                                </th>
+                                <th>
+                                    KQ Lần 4
+                                </th>
+                                <th>
+                                    Ghi chú lần 4
+                                </th>
+                                <th>
+                                    KQ Lần 5
+                                </th>
+                                <th>
+                                    Ghi chú lần 5
+                                </th>
+                                <th style="width: 100px;">
+                                    #
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    if ('@ViewBag.Message') alert('@ViewBag.Message')
+</script>

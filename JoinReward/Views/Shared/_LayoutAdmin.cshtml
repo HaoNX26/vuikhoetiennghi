@@ -1,15 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-        @await Html.PartialAsync("~/Views/Shared/_title_meta.cshtml")
-        @RenderSection("styles", false)
-        @await Html.PartialAsync("~/Views/Shared/_head_css.cshtml")
-                <!-- JAVASCRIPT -->
-        <script src="~/assets/libs/jquery/jquery.min.js"></script>
-        <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="~/assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="~/assets/libs/node-waves/waves.min.js"></script>
+    @await Html.PartialAsync("~/Views/Shared/_title_meta.cshtml")
+    @RenderSection("styles", false)
+    @await Html.PartialAsync("~/Views/Shared/_head_css.cshtml")
+    <!-- JAVASCRIPT -->
+    <script src="~/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/assets/libs/node-waves/waves.min.js"></script>
 </head>
 
 <body data-sidebar="dark">
@@ -32,7 +32,6 @@
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-
             @await Html.PartialAsync("~/Views/Shared/_footer.cshtml")
         </div>
         <!-- end main content-->
@@ -78,25 +77,22 @@
     <script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
     <!-- Responsive Table js -->
-<script src="~/assets/libs/admin-resources/rwd-table/rwd-table.min.js"></script>
+    <script src="~/assets/libs/admin-resources/rwd-table/rwd-table.min.js"></script>
 
-<!-- Init js -->
-<script src="~/assets/js/pages/table-responsive.init.js"></script>
+    <!-- Init js -->
+    <script src="~/assets/js/pages/table-responsive.init.js"></script>
 
-<!-- Sweet Alerts js -->
-<script src="~/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Sweet Alerts js -->
+    <script src="~/assets/libs/sweetalert2/sweetalert2.min.js"></script>
 
-<!-- Sweet alert init js-->
-<script src="~/assets/js/pages/sweet-alerts.init.js"></script>
-
+    <!-- Sweet alert init js-->
+    <script src="~/assets/js/pages/sweet-alerts.init.js"></script>
+    <script src="~/assets/libs/select2/js/select2.min.js"></script>
 
     <!-- Datatable init js -->
     <script src="~/assets/js/pages/datatables.init.js"></script>
-
     <script src="~/assets/js/app.js"></script>
 
     @RenderSection("scripts", required: false)
-    <!-- App js -->
-    <script src="~/assets/js/app.js"></script>
 </body>
 </html>
