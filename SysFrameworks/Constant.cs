@@ -38,5 +38,7 @@ namespace SysFrameworks
         public const int C_STATUS_HO_SO_DU = 3;
         public const int C_STATUS_HO_SO_THIEU = 2;
         public const int ROUND_ID_ACTIVE = 5;
+
+        public const int C_STATUS_AGENCY_FAIL = 2;
     }
 }

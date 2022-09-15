@@ -13,3 +13,11 @@
 .btn-toolbar {
     display: none !important;
 }
+
+.navbar-header {
+    height: 45px !important;
+}
+
+.vertical-menu {
+    top: 45px !important;
+}

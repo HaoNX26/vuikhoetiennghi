@@ -48,7 +48,8 @@ namespace JoinReward.Controllers
             else if (fid.ToString() == SysFrameworks.Constant.C_ROLE_CALL_CENTER)
             {
                 return "Xử lý hồ sơ";
-            } else if (fid.ToString().Equals(SysFrameworks.Constant.C_F_APPROVE))
+            }
+            else if (fid.ToString().Equals(SysFrameworks.Constant.C_F_APPROVE))
             {
                 return "Duyệt hồ sơ";
             }
@@ -310,14 +311,14 @@ namespace JoinReward.Controllers
                 lsRound.Insert(4, new SelectListItem("Vòng 4", "4"));
                 ViewBag.lsRound = lsRound;
 
-               
+
                 List<SelectListItem> lsPrizeWin = new List<SelectListItem>();
                 lsPrizeWin.Insert(0, new SelectListItem("", ""));
                 lsPrizeWin.Insert(1, new SelectListItem("IPhone", "1"));
                 lsPrizeWin.Insert(2, new SelectListItem("Hoàn tiền", "2"));
                 ViewBag.lsPrizeWin = lsPrizeWin;
 
- 
+
 
                 Models.Pagination pagination = new Models.Pagination()
                 {
@@ -347,24 +348,24 @@ namespace JoinReward.Controllers
             return View("ViewListWinner", fileCustomerWinDTO);
         }
 
-            public JsonResult updateStatusFileCustomerWin(string listId)
+        public JsonResult updateStatusFileCustomerWin(string listId)
         {
             int fid = int.Parse(HttpContext.Session.GetString("fid"));
             JsonResponse response = new JsonResponse();
             SubmitInfoCustomerWin submitInfoCustomerWin = new SubmitInfoCustomerWin();
-            
-                try
+
+            try
+            {
+                if (listId != null)
                 {
-                    if (listId != null)
+                    string[] listIdDelete = listId.Split(",");
+                    if (listIdDelete.Length > 0)
                     {
-                        string[] listIdDelete = listId.Split(",");
-                        if (listIdDelete.Length > 0)
+                        foreach (string id in listIdDelete)
                         {
-                            foreach (string id in listIdDelete)
+                            submitInfoCustomerWin = _businessContext.submitInfoCustomerWins.Find(id.Equals("") ? 0 : long.Parse(id));
+                            if (submitInfoCustomerWin != null)
                             {
-                                submitInfoCustomerWin = _businessContext.submitInfoCustomerWins.Find(id.Equals("") ? 0 : long.Parse(id));
-                                if (submitInfoCustomerWin != null)
-                                {
 
                                 if (fid.ToString().Equals(SysFrameworks.Constant.C_F_APPROVE))
                                 {
@@ -378,19 +379,13 @@ namespace JoinReward.Controllers
                                 {
                                     submitInfoCustomerWin.CustomerStatus = SysFrameworks.Constant.C_STATUS_CUS_TRA_THUONG;
                                 }
-                                    submitInfoCustomerWin.ModifyDate = DateTime.Now;
-                                    submitInfoCustomerWin.ModifiedBy = (int)HttpContext.Session.GetInt32("s_user_id").Value;
-                                    _businessContext.submitInfoCustomerWins.Update(submitInfoCustomerWin);
-                                }
+                                submitInfoCustomerWin.ModifyDate = DateTime.Now;
+                                submitInfoCustomerWin.ModifiedBy = (int)HttpContext.Session.GetInt32("s_user_id").Value;
+                                _businessContext.submitInfoCustomerWins.Update(submitInfoCustomerWin);
                             }
+                        }
                         _businessContext.SaveChanges();
-                        
-                        }
-                        else
-                        {
-                            response.success = "N";
-                            response.message = "Hãy chọn dòng để thay đổi trạng thái!";
-                        }
+
                     }
                     else
                     {
@@ -398,12 +393,18 @@ namespace JoinReward.Controllers
                         response.message = "Hãy chọn dòng để thay đổi trạng thái!";
                     }
                 }
-                catch (Exception ex)
+                else
                 {
                     response.success = "N";
-                    response.message = ex.Message;
+                    response.message = "Hãy chọn dòng để thay đổi trạng thái!";
                 }
-            
+            }
+            catch (Exception ex)
+            {
+                response.success = "N";
+                response.message = ex.Message;
+            }
+
             return Json(response);
         }
 
@@ -413,7 +414,7 @@ namespace JoinReward.Controllers
             v_B_SUBMIT_CUSTOMER_WIN.CopyProperties(editFileCustomerWinDTO);
             editFileCustomerWinDTO.ASC_PROCESS_DEADLINE = v_B_SUBMIT_CUSTOMER_WIN.ASC_PROCESS_DEADLINE == null ? null : DateTime.Parse(v_B_SUBMIT_CUSTOMER_WIN.ASC_PROCESS_DEADLINE.ToString()).ToString("dd/MM/yyyy");
             ViewData["Title"] = GetFunctionName(int.Parse(HttpContext.Session.GetString("fid")));
-            ViewData["infoCustomerWin"] = editFileCustomerWinDTO;
+
             List<SelectListItem> ASCList = _masterContext.aSCMasters.Where(p => p.ASC_TYPE.Equals(SysFrameworks.Constant.C_ROLE_ASC))
                     .Select(a => new SelectListItem()
                     {
@@ -469,41 +470,35 @@ namespace JoinReward.Controllers
 
             List<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs = _businessContext.b_STEP_CUSTOMER_SUBMITs.Where(p => p.CUSTOMER_SUBMIT_ID == editFileCustomerWinDTO.ID).OrderBy(s => s.STEP_ID).ToList<B_STEP_CUSTOMER_SUBMIT>();
 
-            foreach(B_STEP_CUSTOMER_SUBMIT item in b_STEP_CUSTOMER_SUBMITs)
-            {
-                switch (item.STEP_ID)
-                {
-                    case 1:
-                        editFileCustomerWinDTO.NOTE_ERROR1 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR1 = true;
-                        break;
-                    case 2:
-                        editFileCustomerWinDTO.NOTE_ERROR2 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR2 = true;
-                        break;
-                    case 3:
-                        editFileCustomerWinDTO.NOTE_ERROR3 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR3 = true;
-                        break;
-                    case 4:
-                        editFileCustomerWinDTO.NOTE_ERROR4 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR4 = true;
-                        break;
-                    case 5:
-                        editFileCustomerWinDTO.NOTE_ERROR5 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR5 = true;
-                        break;
-                    case 6:
-                        editFileCustomerWinDTO.NOTE_ERROR6 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR6 = true;
-                        break;
-                }
-            }
             List<SubmitInfoCustomerWinHistory> submitInfoCustomerWinHistorys = _businessContext.submitInfoCustomerWinHistories.Where(p => p.PhoneNumber.Equals(editFileCustomerWinDTO.PHONE_NUMBER)).ToList<SubmitInfoCustomerWinHistory>();
             ViewData["list-history"] = submitInfoCustomerWinHistorys;
             editFileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
             ViewBag.funcId = HttpContext.Session.GetString("fid");
-            return View("EditFileCustomerWin", editFileCustomerWinDTO);
+            ViewData["infoCustomerWin"] = editFileCustomerWinDTO;
+
+            List<BProcessingFileDTO> bProcessingFilesDto = new List<BProcessingFileDTO>();
+
+            List<BProcessingFile> bProcessingFiles = _businessContext.BProcessingFiles.Where(p => p.FILE_CUSTOMER_ID == editFileCustomerWinDTO.ID).ToList<BProcessingFile>();
+            if (bProcessingFiles != null && bProcessingFiles.Count <= 0)
+            {
+                for (int i = 0; i < 11; i++)
+                {
+                    bProcessingFilesDto.Add(new BProcessingFileDTO());
+                }
+            } else
+            {
+                foreach(BProcessingFile bProcessingFile in bProcessingFiles)
+                {
+                    BProcessingFileDTO bProcessingFileDTO = new BProcessingFileDTO();
+                    bProcessingFile.CopyProperties(bProcessingFileDTO);
+                    bProcessingFilesDto.Add(bProcessingFileDTO);
+                }
+            }
+            EditFileCustomerDTO editFileCustomerDTO = new EditFileCustomerDTO();
+            editFileCustomerDTO.bProcessingFileDTOs = bProcessingFilesDto;
+            editFileCustomerDTO.fid = HttpContext.Session.GetString("fid");
+            editFileCustomerDTO.FILE_CUSTOMER_ID = editFileCustomerWinDTO.ID;
+            return View("EditFileCustomerWin", editFileCustomerDTO);
         }
 
         public IActionResult ViewFileCustomerHistory(long id)
@@ -512,247 +507,237 @@ namespace JoinReward.Controllers
             V_B_SUBMIT_CUSTOMER_WIN_HISTORY v_B_SUBMIT_CUSTOMER_WIN = _businessContext.v_B_SUBMIT_CUSTOMER_WIN_HISTORies.Find(id);
             v_B_SUBMIT_CUSTOMER_WIN.CopyProperties(editFileCustomerWinDTO);
             ViewData["Title"] = GetFunctionName(int.Parse(HttpContext.Session.GetString("fid")));
-            ViewData["infoCustomerWin"] = editFileCustomerWinDTO;
+
 
             List<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs = _businessContext.b_STEP_CUSTOMER_SUBMITs.Where(p => p.CUSTOMER_SUBMIT_ID == editFileCustomerWinDTO.ID).OrderBy(s => s.STEP_ID).ToList<B_STEP_CUSTOMER_SUBMIT>();
 
-            foreach (B_STEP_CUSTOMER_SUBMIT item in b_STEP_CUSTOMER_SUBMITs)
-            {
-                switch (item.STEP_ID)
-                {
-                    case 1:
-                        editFileCustomerWinDTO.NOTE_ERROR1 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR1 = true;
-                        break;
-                    case 2:
-                        editFileCustomerWinDTO.NOTE_ERROR2 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR2 = true;
-                        break;
-                    case 3:
-                        editFileCustomerWinDTO.NOTE_ERROR3 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR3 = true;
-                        break;
-                    case 4:
-                        editFileCustomerWinDTO.NOTE_ERROR4 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR4 = true;
-                        break;
-                    case 5:
-                        editFileCustomerWinDTO.NOTE_ERROR5 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR5 = true;
-                        break;
-                    case 6:
-                        editFileCustomerWinDTO.NOTE_ERROR6 = item.NOTE_ERROR;
-                        editFileCustomerWinDTO.IS_ERROR6 = true;
-                        break;
-                }
-            }
-            //editFileCustomerWinDTO.NOTE_ERROR1 = 
-
             editFileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
             ViewBag.funcId = HttpContext.Session.GetString("fid");
-            return PartialView("ViewFileCustomerHistory", editFileCustomerWinDTO);
+            ViewData["infoCustomerWin"] = editFileCustomerWinDTO;
+            BProcessingFile bProcessingFile = new BProcessingFile();
+            return PartialView("ViewFileCustomerHistory", bProcessingFile);
         }
 
-        public IActionResult SaveFileCustomerWin(EditFileCustomerWinDTO editFileCustomerWinDTO)
+        public IActionResult SaveFileCustomerWin(EditFileCustomerDTO editFileCustomerDTO)
         {
             try
             {
-                SubmitInfoCustomerWin submitInfoCustomerWin = _masterContext.SubmitInfoCustomerWin.Find(editFileCustomerWinDTO.ID);
-                CultureInfo provider = CultureInfo.InvariantCulture;
-                if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ASSIGN_TO_ASC || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string foldersName = Path.Combine(Path.Combine(wwwRootPath, "DocumentsSubmit"), editFileCustomerDTO.FILE_CUSTOMER_ID.ToString());
+                if (!Directory.Exists(foldersName))
                 {
-                    submitInfoCustomerWin.AscId = editFileCustomerWinDTO.ASC_ID;
-                    submitInfoCustomerWin.Note = editFileCustomerWinDTO.NOTE;
+                    Directory.CreateDirectory(foldersName);
                 }
-
-                if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ASC || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ASSIGN_TO_ASC)
+                SubmitInfoCustomerWin submitInfoCustomerWin = _masterContext.SubmitInfoCustomerWin.Find(editFileCustomerDTO.FILE_CUSTOMER_ID);
+                //CultureInfo provider = CultureInfo.InvariantCulture;
+                //ASC xử lý
+                if (editFileCustomerDTO.fid == SysFrameworks.Constant.C_ROLE_ASC || editFileCustomerDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
                 {
-                    submitInfoCustomerWin.NoteOfAsc = editFileCustomerWinDTO.NOTE_OF_ASC;
-                    if (editFileCustomerWinDTO.ASC_PROCESS_DEADLINE != null)
+                    for (int i = 0; i < editFileCustomerDTO.bProcessingFileDTOs.Count; i++)
                     {
-                        submitInfoCustomerWin.ASC_PROCESS_DEADLINE = DateTime.ParseExact(editFileCustomerWinDTO.ASC_PROCESS_DEADLINE, "dd/MM/yyyy", provider);
-                    }
-
-                    //Kiem tra anh asc up len
-
-                    string wwwRootPath = _hostEnvironment.WebRootPath;
-                    string foldersName = Path.Combine(wwwRootPath, "DocumentsSubmit");
-                    string fileNameFileASCUpdate = "";
-                    var formFileASCUpdate = editFileCustomerWinDTO.FILE_UPLOAD_OF_ASC;
-                    if (formFileASCUpdate != null)
-                    {
-                        foreach (var formFile in formFileASCUpdate)
+                        int ordering = (i + 1);
+                        BProcessingFile bProcessingFile = _businessContext.BProcessingFiles.Where(p => p.FILE_CUSTOMER_ID == editFileCustomerDTO.FILE_CUSTOMER_ID && p.ORDERING == ordering).FirstOrDefault<BProcessingFile>();
+                        string fileNameFileASCUpdate = "";
+                        var formFileASCUpdate = editFileCustomerDTO.bProcessingFileDTOs[i].FILE_OF_ASC;
+                        if (formFileASCUpdate != null)
                         {
-                            if (formFile.Length > 0)
+                            foreach (var formFile in formFileASCUpdate)
                             {
-                                string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName);
-                                string extension = Path.GetExtension(formFile.FileName);
-                                string fileNameServer = Common.CString.RemoveSpecialCharacters(Common.CString.RemoveUnicodeFile(originalFileName) + DateTime.Now.ToString("yymmssfff") + extension);
-
-                                var filePath = Path.Combine(foldersName, fileNameServer);
-                                using (var filestream = new FileStream(filePath, FileMode.Create))
+                                if (formFile.Length > 0)
                                 {
-                                    formFile.CopyTo(filestream);
+                                    string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName);
+                                    string extension = Path.GetExtension(formFile.FileName);
+                                    string fileNameServer = Common.CString.RemoveSpecialCharacters(Common.CString.RemoveUnicodeFile(originalFileName) + DateTime.Now.ToString("yymmssfff") + extension);
+
+                                    var filePath = Path.Combine(foldersName, fileNameServer);
+                                    using (var filestream = new FileStream(filePath, FileMode.Create))
+                                    {
+                                        formFile.CopyTo(filestream);
+                                    }
+                                    fileNameFileASCUpdate += (fileNameFileASCUpdate == "") ? fileNameServer : (";" + fileNameServer);
                                 }
-                                fileNameFileASCUpdate += (fileNameFileASCUpdate == "") ? fileNameServer : (";" + fileNameServer);
                             }
                         }
+                        if (bProcessingFile != null)
+                        {
+                            bProcessingFile.FILE_OF_ASC = String.IsNullOrEmpty(fileNameFileASCUpdate) ? bProcessingFile.FILE_OF_ASC : (String.IsNullOrEmpty(bProcessingFile.FILE_OF_ASC) ? fileNameFileASCUpdate : submitInfoCustomerWin.FileUploadOfAsc + ";" + fileNameFileASCUpdate);
+                            bProcessingFile.STATUS_ASC = editFileCustomerDTO.bProcessingFileDTOs[i].STATUS_ASC;
+                            bProcessingFile.REASON_ASC = editFileCustomerDTO.bProcessingFileDTOs[i].REASON_ASC;
+                            bProcessingFile.MODIFY_DATE = DateTime.Now;
+                            _businessContext.BProcessingFiles.Update(bProcessingFile);
+                        }
+                        else
+                        {
+                            bProcessingFile = new BProcessingFile();
+                            bProcessingFile.FILE_CUSTOMER_ID = editFileCustomerDTO.FILE_CUSTOMER_ID;
+                            bProcessingFile.FILE_OF_ASC = String.IsNullOrEmpty(fileNameFileASCUpdate) ? bProcessingFile.FILE_OF_ASC : (String.IsNullOrEmpty(bProcessingFile.FILE_OF_ASC) ? fileNameFileASCUpdate : submitInfoCustomerWin.FileUploadOfAsc + ";" + fileNameFileASCUpdate);
+                            bProcessingFile.STATUS_ASC = editFileCustomerDTO.bProcessingFileDTOs[i].STATUS_ASC;
+                            bProcessingFile.REASON_ASC = editFileCustomerDTO.bProcessingFileDTOs[i].REASON_ASC;
+                            bProcessingFile.ORDERING = ordering;
+                            bProcessingFile.CREATE_DATE = DateTime.Now;
+                            _businessContext.BProcessingFiles.Add(bProcessingFile);
+                        }
+
                     }
-                    submitInfoCustomerWin.FileUploadOfAsc = String.IsNullOrEmpty(fileNameFileASCUpdate) ? submitInfoCustomerWin.FileUploadOfAsc : (String.IsNullOrEmpty(submitInfoCustomerWin.FileUploadOfAsc) ? fileNameFileASCUpdate : submitInfoCustomerWin.FileUploadOfAsc + ";" + fileNameFileASCUpdate);
-                    submitInfoCustomerWin.ASC_STATUS = editFileCustomerWinDTO.ASC_STATUS;
+                    _businessContext.SaveChanges();
                 }
 
-                if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_AGENCY || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
+                if (editFileCustomerDTO.fid == SysFrameworks.Constant.C_ROLE_AGENCY || editFileCustomerDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
                 {
-                    List<B_STEP_CUSTOMER_SUBMIT> b_STEP_CUSTOMER_SUBMITs = _businessContext.b_STEP_CUSTOMER_SUBMITs.Where(p => p.CUSTOMER_SUBMIT_ID == editFileCustomerWinDTO.ID).ToList<B_STEP_CUSTOMER_SUBMIT>();
-                    if (b_STEP_CUSTOMER_SUBMITs != null && b_STEP_CUSTOMER_SUBMITs.Count > 0)
-                    _businessContext.b_STEP_CUSTOMER_SUBMITs.RemoveRange(b_STEP_CUSTOMER_SUBMITs);
-                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR1))
+                    for (int i = 0; i < editFileCustomerDTO.bProcessingFileDTOs.Count; i++)
                     {
-                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
-                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
-                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 1;
-                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR1;
-                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
-                    }
-
-                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR2))
-                    {
-                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
-                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
-                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 2;
-                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR2;
-                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
-                    }
-
-                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR3))
-                    {
-                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
-                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
-                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 3;
-                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR3;
-                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
-                    }
-
-                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR4))
-                    {
-                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
-                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
-                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 4;
-                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR4;
-                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
-                    }
-
-                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR5))
-                    {
-                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
-                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
-                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 5;
-                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR5;
-                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
-                    }
-
-                    if (!string.IsNullOrEmpty(editFileCustomerWinDTO.NOTE_ERROR6))
-                    {
-                        B_STEP_CUSTOMER_SUBMIT b_STEP_CUSTOMER_SUBMIT = new B_STEP_CUSTOMER_SUBMIT();
-                        b_STEP_CUSTOMER_SUBMIT.CUSTOMER_SUBMIT_ID = editFileCustomerWinDTO.ID;
-                        b_STEP_CUSTOMER_SUBMIT.STEP_ID = 6;
-                        b_STEP_CUSTOMER_SUBMIT.NOTE_ERROR = editFileCustomerWinDTO.NOTE_ERROR6;
-                        _businessContext.b_STEP_CUSTOMER_SUBMITs.Add(b_STEP_CUSTOMER_SUBMIT);
-                    }
-                    
-                    //Agency
-                    submitInfoCustomerWin.NOTE_OF_AGENCY = editFileCustomerWinDTO.NOTE_OF_AGENCY;
-                    submitInfoCustomerWin.PanStatus = editFileCustomerWinDTO.PAN_STATUS;
-
-                    string wwwRootPath = _hostEnvironment.WebRootPath;
-                    string foldersName = Path.Combine(wwwRootPath, "DocumentsSubmit");
-                    string fileNameileOfAgency = "";
-                    var formFileOfAgency = editFileCustomerWinDTO.FILE_OF_AGENCY;
-                    if (formFileOfAgency != null)
-                    {
-                        foreach (var formFile in formFileOfAgency)
+                        int ordering = (i + 1);
+                        BProcessingFile bProcessingFile = _businessContext.BProcessingFiles.Where(p => p.FILE_CUSTOMER_ID == editFileCustomerDTO.FILE_CUSTOMER_ID && p.ORDERING == ordering).FirstOrDefault<BProcessingFile>();
+                        string fileNameFileAgencyUpdate = "";
+                        var formFileAgencyUpdate = editFileCustomerDTO.bProcessingFileDTOs[i].FILE_OF_AGENCY;
+                        if (formFileAgencyUpdate != null)
                         {
-                            if (formFile.Length > 0)
+                            foreach (var formFile in formFileAgencyUpdate)
                             {
-                                string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName);
-                                string extension = Path.GetExtension(formFile.FileName);
-                                string fileNameServer = Common.CString.RemoveSpecialCharacters(Common.CString.RemoveUnicodeFile(originalFileName) + DateTime.Now.ToString("yymmssfff") + extension);
-
-                                var filePath = Path.Combine(foldersName, fileNameServer);
-                                using (var filestream = new FileStream(filePath, FileMode.Create))
+                                if (formFile.Length > 0)
                                 {
-                                    formFile.CopyTo(filestream);
+                                    string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName);
+                                    string extension = Path.GetExtension(formFile.FileName);
+                                    string fileNameServer = Common.CString.RemoveSpecialCharacters(Common.CString.RemoveUnicodeFile(originalFileName) + DateTime.Now.ToString("yymmssfff") + extension);
+
+                                    var filePath = Path.Combine(foldersName, fileNameServer);
+                                    using (var filestream = new FileStream(filePath, FileMode.Create))
+                                    {
+                                        formFile.CopyTo(filestream);
+                                    }
+                                    fileNameFileAgencyUpdate += (fileNameFileAgencyUpdate == "") ? fileNameServer : (";" + fileNameServer);
                                 }
-                                fileNameileOfAgency += (fileNameileOfAgency == "") ? fileNameServer : (";" + fileNameServer);
                             }
                         }
-                    }
-                    submitInfoCustomerWin.FILE_OF_AGENCY = String.IsNullOrEmpty(fileNameileOfAgency) ? submitInfoCustomerWin.FILE_OF_AGENCY : fileNameileOfAgency;
-                }
-                if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_CALL_CENTER || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
-                {
-                    //CALL_CENTER
-                    submitInfoCustomerWin.NOTE_OF_CALL_CENTER = editFileCustomerWinDTO.NOTE_OF_CALL_CENTER;
-
-                    string wwwRootPath = _hostEnvironment.WebRootPath;
-                    string foldersName = Path.Combine(wwwRootPath, "DocumentsSubmit");
-                    string fileNameileOfCallCenter = "";
-                    var formFileOfCallCenter = editFileCustomerWinDTO.FILE_OF_CALL_CENTER;
-                    if (formFileOfCallCenter != null)
-                    {
-                        foreach (var formFile in formFileOfCallCenter)
+                        if (bProcessingFile != null)
                         {
-                            if (formFile.Length > 0)
-                            {
-                                string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName);
-                                string extension = Path.GetExtension(formFile.FileName);
-                                string fileNameServer = Common.CString.RemoveSpecialCharacters(Common.CString.RemoveUnicodeFile(originalFileName) + DateTime.Now.ToString("yymmssfff") + extension);
+                            bProcessingFile.FILE_OF_AGENCY = String.IsNullOrEmpty(fileNameFileAgencyUpdate) ? bProcessingFile.FILE_OF_AGENCY : (String.IsNullOrEmpty(bProcessingFile.FILE_OF_AGENCY) ? fileNameFileAgencyUpdate : submitInfoCustomerWin.FileUploadOfAsc + ";" + fileNameFileAgencyUpdate);
+                            bProcessingFile.STATUS_AGENCY = editFileCustomerDTO.bProcessingFileDTOs[i].STATUS_ASC;
+                            bProcessingFile.REASON_AGENCY = editFileCustomerDTO.bProcessingFileDTOs[i].REASON_ASC;
+                            bProcessingFile.MODIFY_DATE = DateTime.Now;
+                            _businessContext.BProcessingFiles.Update(bProcessingFile);
+                        }
+                        else
+                        {
+                            bProcessingFile = new BProcessingFile();
+                            bProcessingFile.FILE_CUSTOMER_ID = editFileCustomerDTO.FILE_CUSTOMER_ID;
+                            bProcessingFile.FILE_OF_AGENCY = String.IsNullOrEmpty(fileNameFileAgencyUpdate) ? bProcessingFile.FILE_OF_AGENCY : (String.IsNullOrEmpty(bProcessingFile.FILE_OF_AGENCY) ? fileNameFileAgencyUpdate : submitInfoCustomerWin.FileUploadOfAsc + ";" + fileNameFileAgencyUpdate);
+                            bProcessingFile.STATUS_AGENCY = editFileCustomerDTO.bProcessingFileDTOs[i].STATUS_ASC;
+                            bProcessingFile.REASON_AGENCY = editFileCustomerDTO.bProcessingFileDTOs[i].REASON_ASC;
+                            bProcessingFile.ORDERING = ordering;
+                            bProcessingFile.CREATE_DATE = DateTime.Now;
+                            _businessContext.BProcessingFiles.Add(bProcessingFile);
+                        }
 
-                                var filePath = Path.Combine(foldersName, fileNameServer);
-                                using (var filestream = new FileStream(filePath, FileMode.Create))
-                                {
-                                    formFile.CopyTo(filestream);
-                                }
-                                fileNameileOfCallCenter += (fileNameileOfCallCenter == "") ? fileNameServer : (";" + fileNameServer);
-                            }
+                        if (editFileCustomerDTO.bProcessingFileDTOs[i].STATUS_AGENCY == SysFrameworks.Constant.C_STATUS_AGENCY_FAIL)
+                        {
+                            submitInfoCustomerWin.PanStatus = SysFrameworks.Constant.C_STATUS_HO_SO_THIEU;
+                            _businessContext.submitInfoCustomerWins.Update(submitInfoCustomerWin);
                         }
                     }
-                    submitInfoCustomerWin.FILE_OF_CALL_CENTER = String.IsNullOrEmpty(fileNameileOfCallCenter) ? submitInfoCustomerWin.FILE_OF_CALL_CENTER : fileNameileOfCallCenter;
-
-                }
-                if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
-                {
-                    //admin
-                    const long C_CUSTOMER_STATUS_REJECT = 11;
-                    submitInfoCustomerWin.CustomerStatus = editFileCustomerWinDTO.CUSTOMER_STATUS;
-
-                    submitInfoCustomerWin.NOTE_CUS_REJECT_ID = editFileCustomerWinDTO.NOTE_CUS_REJECT_ID;
-                    submitInfoCustomerWin.NOTE_OF_ADMIN = editFileCustomerWinDTO.NOTE_OF_ADMIN;
-                    if (editFileCustomerWinDTO.NOTE_CUS_REJECT != null && editFileCustomerWinDTO.CUSTOMER_STATUS == C_CUSTOMER_STATUS_REJECT)
-                    {
-
-                        submitInfoCustomerWin.NOTE_CUS_REJECT = editFileCustomerWinDTO.NOTE_CUS_REJECT;
-                        submitInfoCustomerWin.REJECT_DATE = DateTime.Now;
-                    }
-                    else
-                    {
-                        submitInfoCustomerWin.NOTE_CUS_REJECT = "";
-                    }
+                    _businessContext.SaveChanges();
                 }
 
-                _masterContext.SubmitInfoCustomerWin.Update(submitInfoCustomerWin);
+                //if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ASC || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ASSIGN_TO_ASC)
+                //{
+                //    submitInfoCustomerWin.NoteOfAsc = editFileCustomerWinDTO.NOTE_OF_ASC;
+                //    if (editFileCustomerWinDTO.ASC_PROCESS_DEADLINE != null)
+                //    {
+                //        submitInfoCustomerWin.ASC_PROCESS_DEADLINE = DateTime.ParseExact(editFileCustomerWinDTO.ASC_PROCESS_DEADLINE, "dd/MM/yyyy", provider);
+                //    }
+
+                //    //Kiem tra anh asc up len
+
+                //    string wwwRootPath = _hostEnvironment.WebRootPath;
+                //    string foldersName = Path.Combine(wwwRootPath, "DocumentsSubmit");
+                //    string fileNameFileASCUpdate = "";
+                //    var formFileASCUpdate = editFileCustomerWinDTO.FILE_UPLOAD_OF_ASC;
+                //    if (formFileASCUpdate != null)
+                //    {
+                //        foreach (var formFile in formFileASCUpdate)
+                //        {
+                //            if (formFile.Length > 0)
+                //            {
+                //                string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName);
+                //                string extension = Path.GetExtension(formFile.FileName);
+                //                string fileNameServer = Common.CString.RemoveSpecialCharacters(Common.CString.RemoveUnicodeFile(originalFileName) + DateTime.Now.ToString("yymmssfff") + extension);
+
+                //                var filePath = Path.Combine(foldersName, fileNameServer);
+                //                using (var filestream = new FileStream(filePath, FileMode.Create))
+                //                {
+                //                    formFile.CopyTo(filestream);
+                //                }
+                //                fileNameFileASCUpdate += (fileNameFileASCUpdate == "") ? fileNameServer : (";" + fileNameServer);
+                //            }
+                //        }
+                //    }
+                //    submitInfoCustomerWin.FileUploadOfAsc = String.IsNullOrEmpty(fileNameFileASCUpdate) ? submitInfoCustomerWin.FileUploadOfAsc : (String.IsNullOrEmpty(submitInfoCustomerWin.FileUploadOfAsc) ? fileNameFileASCUpdate : submitInfoCustomerWin.FileUploadOfAsc + ";" + fileNameFileASCUpdate);
+                //    submitInfoCustomerWin.ASC_STATUS = editFileCustomerWinDTO.ASC_STATUS;
+                //}
+
+                //if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_CALL_CENTER || editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
+                //{
+                //    //CALL_CENTER
+                //    submitInfoCustomerWin.NOTE_OF_CALL_CENTER = editFileCustomerWinDTO.NOTE_OF_CALL_CENTER;
+
+                //    string wwwRootPath = _hostEnvironment.WebRootPath;
+                //    string foldersName = Path.Combine(wwwRootPath, "DocumentsSubmit");
+                //    string fileNameileOfCallCenter = "";
+                //    var formFileOfCallCenter = editFileCustomerWinDTO.FILE_OF_CALL_CENTER;
+                //    if (formFileOfCallCenter != null)
+                //    {
+                //        foreach (var formFile in formFileOfCallCenter)
+                //        {
+                //            if (formFile.Length > 0)
+                //            {
+                //                string originalFileName = Path.GetFileNameWithoutExtension(formFile.FileName);
+                //                string extension = Path.GetExtension(formFile.FileName);
+                //                string fileNameServer = Common.CString.RemoveSpecialCharacters(Common.CString.RemoveUnicodeFile(originalFileName) + DateTime.Now.ToString("yymmssfff") + extension);
+
+                //                var filePath = Path.Combine(foldersName, fileNameServer);
+                //                using (var filestream = new FileStream(filePath, FileMode.Create))
+                //                {
+                //                    formFile.CopyTo(filestream);
+                //                }
+                //                fileNameileOfCallCenter += (fileNameileOfCallCenter == "") ? fileNameServer : (";" + fileNameServer);
+                //            }
+                //        }
+                //    }
+                //    submitInfoCustomerWin.FILE_OF_CALL_CENTER = String.IsNullOrEmpty(fileNameileOfCallCenter) ? submitInfoCustomerWin.FILE_OF_CALL_CENTER : fileNameileOfCallCenter;
+
+                //}
+                //if (editFileCustomerWinDTO.fid == SysFrameworks.Constant.C_ROLE_ADMIN)
+                //{
+                //    //admin
+                //    const long C_CUSTOMER_STATUS_REJECT = 11;
+                //    submitInfoCustomerWin.CustomerStatus = editFileCustomerWinDTO.CUSTOMER_STATUS;
+
+                //    submitInfoCustomerWin.NOTE_CUS_REJECT_ID = editFileCustomerWinDTO.NOTE_CUS_REJECT_ID;
+                //    submitInfoCustomerWin.NOTE_OF_ADMIN = editFileCustomerWinDTO.NOTE_OF_ADMIN;
+                //    if (editFileCustomerWinDTO.NOTE_CUS_REJECT != null && editFileCustomerWinDTO.CUSTOMER_STATUS == C_CUSTOMER_STATUS_REJECT)
+                //    {
+
+                //        submitInfoCustomerWin.NOTE_CUS_REJECT = editFileCustomerWinDTO.NOTE_CUS_REJECT;
+                //        submitInfoCustomerWin.REJECT_DATE = DateTime.Now;
+                //    }
+                //    else
+                //    {
+                //        submitInfoCustomerWin.NOTE_CUS_REJECT = "";
+                //    }
+                //}
+
+                //_masterContext.SubmitInfoCustomerWin.Update(submitInfoCustomerWin);
 
 
-                _masterContext.SaveChanges();
+                //_masterContext.SaveChanges();
                 _businessContext.SaveChanges();
                 FileCustomerWinDTO fileCustomerWinDTO = new FileCustomerWinDTO();
                 fileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
-                return RedirectToAction("ViewListWinner", "Business", fileCustomerWinDTO);
+                return RedirectToAction("ViewFileCustomerWin", "Business", fileCustomerWinDTO);
             }
             catch (Exception ex)
             {
-                return View("EditFileCustomerWin", editFileCustomerWinDTO);
+                return View("EditFileCustomerWin");
             }
 
         }
@@ -895,21 +880,21 @@ namespace JoinReward.Controllers
 
                 List<SubmitInfoCustomerWin> submitInfoCustomerWins = _businessContext.submitInfoCustomerWins.Where(p => p.CustomerStatus == Constant.C_STATUS_CUS_DUYET).ToList();
 
-                    string fileName = DateTime.Now.Ticks.ToString() + ".zip";
-                    string wwwRootPath = _hostEnvironment.WebRootPath;
-                    tempOutput = Path.Combine(Constant.LUCKY_DRAW_FILE_PATH, fileName);
-                    using (ZipOutputStream zipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
-                    {
-                        zipOutputStream.SetLevel(3);
-                        byte[] buffer = new byte[4096];
-                        var imageList = new List<string>();
+                string fileName = DateTime.Now.Ticks.ToString() + ".zip";
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                tempOutput = Path.Combine(Constant.LUCKY_DRAW_FILE_PATH, fileName);
+                using (ZipOutputStream zipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
+                {
+                    zipOutputStream.SetLevel(3);
+                    byte[] buffer = new byte[4096];
+                    var imageList = new List<string>();
                     foreach (SubmitInfoCustomerWin submitInfoCustomerWin in submitInfoCustomerWins)
                     {
                         if (!String.IsNullOrEmpty(submitInfoCustomerWin.FileProduct))
                         {
                             BCustomerWin customerWin = _businessContext.bCustomerWins.Where(p => p.PhoneNumber.Equals(submitInfoCustomerWin.PhoneNumber)).FirstOrDefault();
                             M_PROVINCE m_PROVINCE = _appRegisterContext.M_PROVINCE.Find(submitInfoCustomerWin.ProvinceId);
-                            
+
                             string fileSrc = Path.Combine(wwwRootPath, Path.Combine("DocumentsSubmit", submitInfoCustomerWin.FileProduct));
                             string extension = Path.GetExtension(fileSrc);
                             string foldersName = Path.Combine(wwwRootPath, Constant.PATH_DOCUMENTS_EXPORT);
@@ -941,10 +926,10 @@ namespace JoinReward.Controllers
                         }
                     }
 
-                        zipOutputStream.Finish();
-                        zipOutputStream.Flush();
-                        zipOutputStream.Close();
-                    
+                    zipOutputStream.Finish();
+                    zipOutputStream.Flush();
+                    zipOutputStream.Close();
+
                 }
 
                 byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
@@ -1014,7 +999,8 @@ namespace JoinReward.Controllers
                     {
                         responseJson.success = "N";
                         responseJson.message = "Số điện thoại không hợp lệ!";
-                    } else
+                    }
+                    else
                     {
                         HttpContext.Session.SetString("PhoneNumber", SysFrameworks.Extensions.ToNormalPhoneNumber(PhoneNumber.Trim()));
                         responseJson.success = "Y";
@@ -1050,7 +1036,7 @@ namespace JoinReward.Controllers
 
         public JsonResult AssignToASC(string listId, long idAsc)
         {
- 
+
             JsonResponse response = new JsonResponse();
             SubmitInfoCustomerWin submitInfoCustomerWin = new SubmitInfoCustomerWin();
 

@@ -1,5 +1,5 @@
 ﻿@using JoinReward.Models.SubmitCustomerWin
-@model JoinReward.Models.DTO.EditFileCustomerWinDTO
+@model JoinReward.Models.DTO.EditFileCustomerDTO
 @Html.AntiForgeryToken()
 @{
     ViewData["Title"] = @ViewData["Title"];
@@ -10,8 +10,9 @@
 
         <form action="" method="post" enctype="multipart/form-data">
 
-            <input type="hidden" asp-for="ID" />
-            <input type="hidden" asp-for="fid" />
+            @*<input type="hidden" asp-for="ID" />*@
+            <input type="hidden" asp-for="@Model.FILE_CUSTOMER_ID" />
+            <input type="hidden" asp-for="@Model.fid" />
 
             <div class="row">
                 <div class="col-lg-12">
@@ -57,84 +58,12 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                @*                    <div class="col-lg-4 d-none d-lg-block">
-                                    <div class="clearfix mt-4 mt-lg-0">
-                                    <div class="dropdown float-end">
-                                    <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="bx bxs-cog align-middle me-1"></i> Setting
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else</a>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>*@
                             </div>
                             <!-- end row -->
                         </div>
                     </div>
                 </div>
             </div>
-
-            @*            <div class="card">
-                <div class="card-body">
-
-                <center><h3><b>Thông tin khách hàng đã đăng ký bảo hành</b></h3></center>
-                <div class="form-row-info">
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Họ Và Tên:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.CUSTOMER_NAME)</label></div>
-                </div>
-
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Số điện thoại:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PHONE_NUMBER)</label></div>
-                </div>
-                </div>
-                </div>
-                <div class="form-row-info">
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Địa chỉ:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS)</label></div>
-                </div>
-
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Mã số trúng thưởng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.LUCKY_CODE)</label></div>
-                </div>
-                </div>
-                </div>
-                <div class="form-row-info">
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Tên model sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.MODEL_NAME)</label></div>
-                </div>
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Giải thưởng đã trúng:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.PRIZE_WIN_TEXT)</label></div>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="form-row-info">
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Số serial sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ENGINE_NO)</label></div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>*@
-            @*            <center><h3><b>Thông tin khách hàng đăng ký nhận thưởng</b></h3></center>*@
-            @*            <div class="name-info">
-                <label><b>Lịch sử nộp hồ sơ:  </b></label>
-                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
-                {
-                <button type="button" class="btn btn-primary" onclick="AddEditDialog(@Html.DisplayFor(i => item.Id))">Lần @Html.DisplayFor(i => item.CountSubmit)</button>
-
-                }
-                </div>*@
 
             <div class="row">
                 <div class="col-lg-6">
@@ -177,48 +106,52 @@
                                 </div>
                             </div>
 
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[0].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[0].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[0].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[0].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
+                            }
                         </div>
                     </div>
                 </div>
@@ -263,47 +196,52 @@
                                 </div>
                             </div>
 
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[1].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[1].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[1].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[1].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -355,61 +293,65 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].STATUS_ASC">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].REASON_ASC">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">File ASC</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[2].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                    </div>
+                                </div>
 
-                             <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">File ASC</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="file" id="formFile" multiple>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="mt-3 row">
+                                    <label class="col-md-3 col-form-label">File Agency</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[2].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
-                             <div class="mt-3 row">
-                                <label class="col-md-3 col-form-label">File Agency</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" type="file" id="formFile" multiple>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -460,48 +402,65 @@
                                     </div>
                                 </div>
                             </div>
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[3].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[3].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">File ASC</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[3].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                    </div>
+                                </div>
 
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[3].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[3].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                <div class="mt-3 row">
+                                    <label class="col-md-3 col-form-label">File Agency</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[3].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -549,48 +508,52 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].STATUS_ASC">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].REASON_ASC">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].STATUS_AGENCY">
+                                            <option>Đạt</option>
+                                            <option>Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].REASON_AGENCY">
+                                            <option>Ảnh mờ</option>
+                                            <option>Không đúng</option>
+                                            <option>Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -635,48 +598,52 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].STATUS_ASC">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].REASON_ASC">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].STATUS_AGENCY">
+                                            <option>Đạt</option>
+                                            <option>Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].REASON_AGENCY">
+                                            <option>Ảnh mờ</option>
+                                            <option>Không đúng</option>
+                                            <option>Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -728,48 +695,64 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[6].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[6].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
+                                </div>
                             <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <label class="col-md-3 col-form-label">File ASC</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[6].FILE_OF_ASC" type="file" id="formFile" multiple>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[6].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[6].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                                <div class="mt-3 row">
+                                    <label class="col-md-3 col-form-label">File Agency</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[6].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -818,48 +801,65 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].STATUS_ASC">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].REASON_ASC">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
                             <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <label class="col-md-3 col-form-label">File ASC</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[7].FILE_OF_ASC" type="file" id="formFile" multiple>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-3 row">
+                                    <label class="col-md-3 col-form-label">File Agency</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[7].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -920,48 +920,65 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].STATUS_ASC">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].REASON_ASC">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
                             <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <label class="col-md-3 col-form-label">File ASC</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[8]." asp-for="@Model.bProcessingFileDTOs[8].FILE_OF_ASC" type="file" id="formFile" multiple>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-3 row">
+                                    <label class="col-md-3 col-form-label">File Agency</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[8].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -1020,48 +1037,65 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].STATUS_ASC">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].REASON_ASC">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
 
+                            <div class="mb-3 row">
+                                <label class="col-md-3 col-form-label">File ASC</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[9].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                </div>
+                            </div>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].STATUS_AGENCY">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].REASON_AGENCY">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
+                            <div class="mt-3 row">
+                                <label class="col-md-3 col-form-label">File Agency</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[9].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                </div>
+                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -1122,200 +1156,69 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
+                            {
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Trạng thái</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].STATUS_ASC">
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Không đạt</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-md-3 col-form-label">Lý do</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
+                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].REASON_ASC">
+                                        <option value="1">Ảnh mờ</option>
+                                        <option value="2">Không đúng</option>
+                                        <option value="3">Sai</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
                             <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
+                                <label class="col-md-3 col-form-label">File ASC</label>
                                 <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Đạt</option>
-                                        <option>Không đạt</option>
-                                    </select>
+                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[10].FILE_OF_ASC" type="file" id="formFile" multiple>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select">
-                                        <option>Ảnh mờ</option>
-                                        <option>Không đúng</option>
-                                        <option>Sai</option>
-                                    </select>
+                            }
+                            @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
+                            {
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-3 row">
+                                    <label class="col-md-3 col-form-label">File Agency</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[10].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
-
-                @*              <div class="col-lg-6">
-                    <div class="card">
-                    <h4 class="card-header bg-transparent border-bottom text-uppercase">Ảnh thông báo trúng thưởng</h4>
-                    <div class="card-body">
-                    <div class="col-6 col-sm-12">
-                    <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                    </a>
-
-                    <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                    </a>
-                    </div>
-                    <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                    <div class="mb-3 row">
-                    <label class="col-md-3 col-form-label">Trạng thái</label>
-                    <div class="col-md-9">
-                    <select class="form-select">
-                    <option>Đạt</option>
-                    <option>Không đạt</option>
-                    </select>
-                    </div>
-                    </div>
-                    <div class="mb-3 row">
-                    <label class="col-md-3 col-form-label">Lý do</label>
-                    <div class="col-md-9">
-                    <select class="form-select">
-                    <option>Ảnh mờ</option>
-                    <option>Không đúng</option>
-                    <option>Sai</option>
-                    </select>
-                    </div>
-                    </div>
-
-                    <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                    <div class="mb-3 row">
-                    <label class="col-md-3 col-form-label">Trạng thái</label>
-                    <div class="col-md-9">
-                    <select class="form-select">
-                    <option>Đạt</option>
-                    <option>Không đạt</option>
-                    </select>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <label class="col-md-3 col-form-label">Lý do</label>
-                    <div class="col-md-9">
-                    <select class="form-select">
-                    <option>Ảnh mờ</option>
-                    <option>Không đúng</option>
-                    <option>Sai</option>
-                    </select>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>*@
             </div>
-
-            @*            <div class="box">
-
-                <div class="box-header">
-                <h3>Thông tin khách hàng</h3>
-                </div>
-
-                <div class="box-body">
-                <div class="form-row-info">
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Họ Và Tên:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)</label></div>
-                </div>
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Số CMTND/CCCD:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_NUMBER)</label></div>
-                </div>
-                </div>
-                </div>
-                <div class="form-row-info">
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info">
-                <label><b>Ảnh CMTND/CCCD mặt trước:  </b></label><br />
-                <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" width="300" height="200" /></a>
-
-                </div>
-                </div>
-                <div class="col-6 col-sm-12">
-                <div class="name-info">
-                <label><b>Ảnh CMTND/CCCD mặt sau:  </b></label><br />
-                <a style="margin-right: 10px;" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" target="_blank"><img src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" width="300" height="200" /></a>
-
-                </div>
-                </div>
-                </div>
-                </div>
-                <div class="form-row-info" style="margin-top: 20px;">
-                <div class="row row-info">
-                <div class="col-12 col-sm-12">
-                <input type="checkbox" id="1" asp-for="IS_ERROR1">
-                <label for="IS_ERROR1"> Thiếu thông tin</label>
-                </div>
-                </div>
-                <div class="row row-info">
-                <div class="col-12 col-sm-12">
-                <label asp-for="NOTE_ERROR1">
-                Ghi chú
-                </label>
-                <textarea asp-for="NOTE_ERROR1" rows="3" class="form-control"></textarea>
-                </div>
-                </div>
-
-                </div>
-                </div>
-                </div>*@
-
-            @*            <div class="box">
-
-                <div class="box-header">
-                <h3>Địa chỉ nơi chứa sản phẩm</h3>
-                </div>
-
-                <div class="box-body">
-                <div class="form-row-info">
-                <div class="row row-info">
-                <div class="col-6 col-sm-12">
-                <div class="name-info"><label><b>Địa chỉ nơi chứa sản phẩm:  </b>@Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS_STORAGE)</label></div>
-                </div>
-
-                </div>
-                </div>
-                <div class="form-row-info" style="margin-top: 20px;">
-                <div class="row row-info">
-                <div class="col-12 col-sm-12">
-                <input type="checkbox" id="2" asp-for="IS_ERROR2">
-                <label for="IS_ERROR2"> Thiếu thông tin</label>
-                </div>
-                </div>
-                <div class="row row-info">
-                <div class="col-12 col-sm-12">
-                <label asp-for="NOTE_ERROR2">
-                Ghi chú
-                </label>
-                <textarea asp-for="NOTE_ERROR2" rows="3" class="form-control"></textarea>
-                </div>
-                </div>
-
-                </div>
-                </div>
-                </div>*@
 
             <div class="box">
 
@@ -1599,14 +1502,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label asp-for="NOTE_OF_CALL_CENTER">
+                                <label>
                                     Ghi chú của call center
                                 </label>
-                                <textarea asp-for="NOTE_OF_CALL_CENTER" rows="3" class="form-control"></textarea>
+                                <textarea rows="3" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Ảnh đính kèm</label>
-                                <input type="file" class="form-control" asp-for="FILE_OF_CALL_CENTER" accept=".jpg, .jpeg, .png" multiple />
+                                <input type="file" class="form-control" accept=".jpg, .jpeg, .png" multiple />
                                 <div id="fileList">
                                     <ul class="list-group" id="listFiles"></ul>
                                 </div>
@@ -1622,14 +1525,14 @@
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">Call center xử lý</h4>
 
                             <div class="form-group">
-                                <label asp-for="NOTE_OF_CALL_CENTER">
+                                <label>
                                     Ghi chú của call center
                                 </label>
-                                <textarea asp-for="NOTE_OF_CALL_CENTER" rows="3" class="form-control"></textarea>
+                                <textarea rows="3" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Ảnh đính kèm</label>
-                                <input type="file" class="form-control" asp-for="FILE_OF_CALL_CENTER" accept=".jpg, .jpeg, .png" multiple />
+                                <input type="file" class="form-control" accept=".jpg, .jpeg, .png" multiple />
                                 <div id="fileList">
                                     <ul class="list-group" id="listFiles"></ul>
                                 </div>
@@ -1644,23 +1547,23 @@
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">Trạng thái khách hàng</h4>
                             <div class="form-group">
-                                <label asp-for="CUSTOMER_STATUS">
+                                <label>
                                     Trạng thái hồ sơ (Khách hàng)
                                 </label>
-                                <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control select2" onchange="checkNoteReject()"></select>
+                                <select asp-items="@ViewBag.lsCUS_STATUS" class="form-control select2" onchange="checkNoteReject()"></select>
                             </div>
                             <div class="form-group">
-                                <label asp-for="NOTE_CUS_REJECT">
+                                <label>
                                     Lý do từ chối (Nhập khi cập nhật trạng thái từ chối)
                                 </label>
-                                <textarea asp-for="NOTE_CUS_REJECT" rows="3" disabled class="form-control"></textarea>
+                                <textarea rows="3" disabled class="form-control"></textarea>
                             </div>
                             <button type="button" onclick="coppyReason()" class="btn btn-primary">Sao chép lý do</button>
                             <div class="form-group">
-                                <label asp-for="NOTE_OF_ADMIN">
+                                <label>
                                     Ghi chú của admin
                                 </label>
-                                <textarea asp-for="NOTE_OF_ADMIN" rows="3" class="form-control"></textarea>
+                                <textarea rows="3" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -1673,23 +1576,23 @@
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">Trạng thái khách hàng</h4>
                             <div class="form-group">
-                                <label asp-for="CUSTOMER_STATUS">
+                                <label>
                                     Trạng thái hồ sơ (Khách hàng)
                                 </label>
-                                <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control select2" onchange="checkNoteReject()"></select>
+                                <select asp-items="@ViewBag.lsCUS_STATUS" class="form-control select2" onchange="checkNoteReject()"></select>
                             </div>
                             <div class="form-group">
-                                <label asp-for="NOTE_CUS_REJECT">
+                                <label>
                                     Lý do từ chối (Nhập khi cập nhật trạng thái từ chối)
                                 </label>
-                                <textarea asp-for="NOTE_CUS_REJECT" rows="3" disabled class="form-control"></textarea>
+                                <textarea rows="3" disabled class="form-control"></textarea>
                             </div>
                             <button type="button" onclick="coppyReason()" class="btn btn-primary">Sao chép lý do</button>
                             <div class="form-group">
-                                <label asp-for="NOTE_OF_ADMIN">
+                                <label>
                                     Ghi chú của admin
                                 </label>
-                                <textarea asp-for="NOTE_OF_ADMIN" rows="3" class="form-control"></textarea>
+                                <textarea rows="3" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
