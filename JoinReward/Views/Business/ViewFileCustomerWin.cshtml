@@ -55,7 +55,7 @@ table.dataTable {
                         <div class="col-sm-6">
                             <div class="input-group mb-1">
                                 <span class="input-group-text">Đợt quay thưởng</span>
-                                <select asp-for="ROUND_ID" asp-items="@ViewBag.lsRound" class="form-control"></select>
+                                <select asp-for="ROUND_ID" asp-items="@ViewBag.lsRound" class="form-control form-select"></select>
                             </div>
                         </div>
                     </div>
@@ -74,14 +74,14 @@ table.dataTable {
                         <div class="col-sm-6">
                             <div class="input-group mb-1">
                                 <span class="input-group-text">TT khách hàng</span>
-                                <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control"></select>
+                                <select asp-for="CUSTOMER_STATUS" asp-items="@ViewBag.lsCUS_STATUS" class="form-control form-select"></select>
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="input-group mb-1">
                                 <span class="input-group-text">Giải thưởng</span>
-                                <select asp-for="PRIZE_WIN" asp-items="@ViewBag.lsPrizeWin" class="form-control"></select>
+                                <select asp-for="PRIZE_WIN" asp-items="@ViewBag.lsPrizeWin" class="form-control form-select"></select>
                             </div>
                         </div>
 
@@ -147,15 +147,15 @@ table.dataTable {
                                  <i class="bx bx-search-alt-2 font-size-16 align-middle me-2"></i> Tìm kiếm
                             </button>
 
-                                <button type="button" class="btn btn-success waves-effect waves-light" onclick="updateStatus()">
+                                <button type="button" class="btn btn-success waves-effect waves-light" onclick="updateStatus(1)">
                                     <i class="bx bx-check-double font-size-16 align-middle me-2"></i> Duyệt hồ sơ</button>
 
 
-                                <button type="button" class="btn btn-danger waves-effect waves-light" onclick="updateStatus()">
+                                <button type="button" class="btn btn-danger waves-effect waves-light" onclick="updateStatus(2)">
                                      <i class="bx bx-user-x font-size-16 align-middle me-2"></i>Từ chối hồ sơ</button>
 
 
-                                <button type="button" class="btn btn-success waves-effect waves-light" onclick="updateStatus()">
+                                <button type="button" class="btn btn-success waves-effect waves-light" onclick="updateStatus(3)">
                                     <i class="bx bx-check-double font-size-16 align-middle me-2"></i>Trả thưởng</button>
                                     
                                      <button type="button" class="btn btn-success waves-effect waves-light" onclick="AddDialogAssignASC()">
@@ -383,6 +383,54 @@ table.dataTable {
     //    });
     //    $('.datepicker').datepicker();
 
+     function updateStatus(status) {
+
+          Swal.fire({
+              title: 'Bạn muốn thay đổi trạng thái?',
+              text: "",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#34c38f',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Có',
+              cancelButtonText: 'Không'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                var listId = '';
+                $('#list-data input:checked').each(function() {
+                    listId = listId + $(this).attr('id') + ",";
+                });
+                var url = "/Business/updateStatusFileCustomerWin?listId=" + listId + "&status=" + status;
+                _ajax(url, '', function (response) {
+                    if (response.success === 'Y') {
+                        location.reload()
+                    }
+                    else {
+                        alert(response.message)
+                    }
+                })
+              }
+            });
+
+         //    if (confirm("Xác nhận thay đổi trạng thái?")) {
+         //       var listId = '';
+         //       $('#list-data input:checked').each(function() {
+         //           listId = listId + $(this).attr('id') + ",";
+         //       });
+
+         //       var url = "/Business/updateStatusFileCustomerWin?listId=" + listId + "&status=" + status;
+         //       _ajax(url, '', function (response) {
+         //       if (response.success === 'Y') {
+         //           location.reload()
+         //       }
+         //       else {
+         //           alert(response.message);
+         //           hideLoading();
+         //       }
+         //       });
+         //}
+        }
+
         function AddDialogAssignASC() {
             var url = "/Business/ViewListAsc";
             $('#title').html("Gán hồ sơ cho ASC");
@@ -412,34 +460,9 @@ table.dataTable {
                     alert(response.message);
                     hideLoading();
                 }
-                console.log(listId);
                 });
          }
         }
 
 
 </script>
-
-
-
-<!-- Required datatable js -->
-<script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="~/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<!-- Buttons examples -->
-<script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="~/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-<script src="~/assets/libs/jszip/jszip.min.js"></script>
-<script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
-<script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
-<script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="~/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-
-<!-- Responsive examples -->
-<script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="~/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-
-<!-- Datatable init js -->
-<script src="~/assets/js/pages/datatables.init.js"></script>
-
-<script src="~/assets/js/app.js"></script>

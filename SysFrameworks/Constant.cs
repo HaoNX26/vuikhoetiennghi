@@ -26,9 +26,9 @@ namespace SysFrameworks
         public const string C_ROLE_ASSIGN_TO_ASC = "4";
         public const string C_ROLE_AGENCY = "5";
         public const string C_ROLE_CALL_CENTER = "6";
-        public const string C_F_APPROVE = "7";
-        public const string C_F_REJECT = "8";
-        public const string C_F_REWARD = "9";
+        public const string C_F_APPROVE = "1";
+        public const string C_F_REJECT = "2";
+        public const string C_F_REWARD = "3";
 
 
         public const int C_STATUS_CUS_DA_NOP = 1;

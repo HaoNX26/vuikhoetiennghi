@@ -1,6 +1,9 @@
-﻿namespace JoinReward.Models.Master
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace JoinReward.Models.Master
 {
-    public class M_CALL_CUSTOMER_DATA
+    [Table("M_CALL_CUSTOMER_DATA")]
+    public class MCallCustomerData
     {
         public long ID { get; set; }
         public string LUCKY_CODE { get; set; }

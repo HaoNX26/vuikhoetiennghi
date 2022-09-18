@@ -1,4 +1,5 @@
-﻿@using JoinReward.Models.SubmitCustomerWin
+﻿@using JoinReward.Models.Master
+@using JoinReward.Models.SubmitCustomerWin
 @model JoinReward.Models.DTO.EditFileCustomerDTO
 @Html.AntiForgeryToken()
 @{
@@ -76,34 +77,23 @@
                             </div>
 
                             <div class="accordion mb-1 h-25" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @Html.DisplayFor(modelItem => item.FullName)
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.FULL_NAME)
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
 
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
@@ -166,34 +156,23 @@
                             </div>
 
                             <div class="accordion mb-1 h-25" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_NUMBER)
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @Html.DisplayFor(modelItem => item.IdentificationNumber)
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.IDENTIFICATION_NUMBER)
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
 
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
@@ -254,67 +233,57 @@
                         <div class="card-body">
 
                             <div class="col-6 col-sm-12">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                <a class="image-popup-no-margins" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH">
+                                    <img class="img-fluid" alt="" src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_FRONT_PATH" width="200">
+
                                 </a>
                             </div>
 
-                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    <a class="image-popup-no-margins" href="~/DocumentsSubmit/@item.FileIDFront">
+                                                        <img class="img-fluid" alt="" src="~/DocumentsSubmit/@item.FileIDFront" width="200">
+
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].STATUS_ASC">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].REASON_ASC">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[2].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
@@ -362,46 +331,34 @@
                         <div class="card-body">
 
                             <div class="col-6 col-sm-12">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
+                                <a class="image-popup-no-margins" href="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH">
+                                    <img class="img-fluid" alt="" src="~/DocumentsSubmit/@infoCustomerWinDTO.FILE_ID_BACKSIDE_PATH" width="200">
                                 </a>
                             </div>
 
 
-                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    <a class="image-popup-no-margins" href="~/DocumentsSubmit/@item.FileIDBackside">
+                                                        <img class="img-fluid" alt="" src="~/DocumentsSubmit/@item.FileIDBackside" width="200">
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
                                 <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
@@ -479,57 +436,47 @@
 
 
                             <div class="accordion mb-1 h-25" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS_STORAGE)
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @Html.DisplayFor(modelItem => item.Address)
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.ADDRESS_STORAGE)
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].STATUS_ASC">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].REASON_ASC">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[4].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
@@ -569,57 +516,47 @@
                             </div>
 
                             <div class="accordion mb-1 h-25" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.NOTE_OF_CUSTOMER)
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @Html.DisplayFor(modelItem => item.NOTE_OF_CUSTOMER)
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                @Html.DisplayFor(item => infoCustomerWinDTO.NOTE_OF_CUSTOMER)
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].STATUS_ASC">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].REASON_ASC">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[5].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
@@ -656,45 +593,55 @@
                         <div class="card-body">
 
                             <div class="col-6 col-sm-12">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
+                                @{
+                                    if (!string.IsNullOrEmpty(infoCustomerWinDTO.FILE_SERIAL_NUMBER))
+                                    {
+                                        string[] arrImgSerial = infoCustomerWinDTO.FILE_SERIAL_NUMBER.Split(';');
+
+                                        for (int i = 0; i < arrImgSerial.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
                             </div>
 
-                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @{
+                                    if (!string.IsNullOrEmpty(item.FileSerialNumber))
+                                    {
+                                        string[] arrImgSerial = item.FileSerialNumber.Split(';');
+
+                                        for (int i = 0; i < arrImgSerial.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSerial[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
                                 <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
@@ -717,12 +664,12 @@
                                         </select>
                                     </div>
                                 </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">File ASC</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[6].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">File ASC</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[6].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
@@ -762,74 +709,85 @@
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh khách hàng đứng cùng sản phẩm</center></h4>
                         <div class="card-body">
                             <div class="col-6 col-sm-12">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
+      
+                                @{
+                                    if (!string.IsNullOrEmpty(infoCustomerWinDTO.FILE_PRODUCT_PATH))
+                                    {
+                                        string[] arrImgProduct = infoCustomerWinDTO.FILE_PRODUCT_PATH.Split(';');
+
+                                        for (int i = 0; i < arrImgProduct.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgProduct[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgProduct[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
                             </div>
 
-                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @{
+                                    if (!string.IsNullOrEmpty(item.FileProduct))
+                                    {
+                                        string[] arrImgProduct = item.FileProduct.Split(';');
+
+                                        for (int i = 0; i < arrImgProduct.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgProduct[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgProduct[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].STATUS_ASC">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].REASON_ASC">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[7].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">File ASC</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[7].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">File ASC</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[7].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
@@ -872,83 +830,84 @@
                         <div class="card-body">
 
                             <div class="col-6 col-sm-12">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
+                                  @{
+                                    if (!string.IsNullOrEmpty(infoCustomerWinDTO.FILE_SMS_CODE))
+                                    {
+                                        string[] arrImgSmsCode = infoCustomerWinDTO.FILE_SMS_CODE.Split(';');
+
+                                        for (int i = 0; i < arrImgSmsCode.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
                             </div>
 
-                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                                                      @{
+                                    if (!string.IsNullOrEmpty(item.FileSMSCode))
+                                    {
+                                        string[] arrImgSmsCode = item.FileSMSCode.Split(';');
+
+                                        for (int i = 0; i < arrImgSmsCode.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsCode[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].STATUS_ASC">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].REASON_ASC">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[8].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">File ASC</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[8]." asp-for="@Model.bProcessingFileDTOs[8].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">File ASC</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[8]." asp-for="@Model.bProcessingFileDTOs[8].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
@@ -988,113 +947,113 @@
                         <h4 class="card-header bg-header border-bottom"><center>Ảnh thông báo trúng thưởng</center></h4>
                         <div class="card-body">
                             <div class="col-6 col-sm-12">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
+                                @{
+                                    if (!string.IsNullOrEmpty(infoCustomerWinDTO.FILE_SMS_WIN))
+                                    {
+                                        string[] arrImgSmsWin = infoCustomerWinDTO.FILE_SMS_WIN.Split(';');
 
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
+                                        for (int i = 0; i < arrImgSmsWin.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
                             </div>
 
-                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @{
+                                    if (!string.IsNullOrEmpty(item.FileSMSWin))
+                                    {
+                                        string[] arrImgSmsWin = item.FileSMSWin.Split(';');
+
+                                        for (int i = 0; i < arrImgSmsWin.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgSmsWin[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].STATUS_ASC">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].REASON_ASC">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">File ASC</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[9].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">File ASC</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[9].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].STATUS_AGENCY">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">Agency xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].STATUS_AGENCY">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].REASON_AGENCY">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[9].REASON_AGENCY">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mt-3 row">
-                                <label class="col-md-3 col-form-label">File Agency</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[9].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                <div class="mt-3 row">
+                                    <label class="col-md-3 col-form-label">File Agency</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[9].FILE_OF_AGENCY" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
                             }
                         </div>
                     </div>
@@ -1108,83 +1067,84 @@
                         <div class="card-body">
 
                             <div class="col-6 col-sm-12">
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
-                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                </a>
+                                @{
+                                    if (!string.IsNullOrEmpty(infoCustomerWinDTO.FILE_INVOICE_PATH))
+                                    {
+                                        string[] arrImgInvoice = infoCustomerWinDTO.FILE_INVOICE_PATH.Split(';');
+
+                                        for (int i = 0; i < arrImgInvoice.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgInvoice[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgInvoice[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
                             </div>
 
-                            <div class="accordion mb-1 h-25 mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading1">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 1
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
+                            <div class="accordion mb-1 h-25" id="accordionExample">
+                                @foreach (SubmitInfoCustomerWinHistory item in (List<SubmitInfoCustomerWinHistory>)ViewData["list-history"])
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading_@item.CountSubmit">
+                                            <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.CountSubmit" aria-expanded="false" aria-controls="collapseOne">
+                                                Lần @item.CountSubmit
+                                            </button>
+                                        </h2>
+                                        <div id="collapse_@item.CountSubmit" class="accordion-collapse collapse" aria-labelledby="heading_@item.CountSubmit" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body pb-2 pt-2">
+                                                <div class="text-muted">
+                                                    @{
+                                    if (!string.IsNullOrEmpty(item.FileInvoice))
+                                    {
+                                        string[] arrImgInvoice = item.FileInvoice.Split(';');
+
+                                        for (int i = 0; i < arrImgInvoice.Length; i++)
+                                        {
+                                            <a class="image-popup-no-margins" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgInvoice[i])">
+                                                <img class="img-fluid" alt="" src="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgInvoice[i])" width="200">
+                                            </a>
+                                            //<a style="margin-right: 10px;" href="~/DocumentsSubmit/@Html.DisplayFor(item => arrImgAgency[i])" target="_blank">Ảnh@(i + 1)</a>
+                                        }
+                                    }
+                                }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading2">
-                                        <button class="accordion-button fw-medium pb-2 pt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapseOne">
-                                            Lần 2
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body pb-2 pt-2">
-                                            <div class="text-muted">
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                                <a class="image-popup-no-margins" href="~/assets/images/small/img-3.jpg">
-                                                    <img class="img-fluid" alt="" src="~/assets/images/small/img-3.jpg" width="200">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
                             </div>
+
                             @if (ViewBag.funcId == "2" || ViewBag.funcId == "3")
                             {
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].STATUS_ASC">
-                                        <option value="1">Đạt</option>
-                                        <option value="2">Không đạt</option>
-                                    </select>
+                                <h4 class="card-header bg-transparent border-bottom border-top mb-2">ASC xử lý</h4>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].STATUS_ASC">
+                                            <option value="1">Đạt</option>
+                                            <option value="2">Không đạt</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">Lý do</label>
-                                <div class="col-md-9">
-                                    <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].REASON_ASC">
-                                        <option value="1">Ảnh mờ</option>
-                                        <option value="2">Không đúng</option>
-                                        <option value="3">Sai</option>
-                                    </select>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">Lý do</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" asp-for="@Model.bProcessingFileDTOs[10].REASON_ASC">
+                                            <option value="1">Ảnh mờ</option>
+                                            <option value="2">Không đúng</option>
+                                            <option value="3">Sai</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-3 row">
-                                <label class="col-md-3 col-form-label">File ASC</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" asp-for="@Model.bProcessingFileDTOs[10].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                <div class="mb-3 row">
+                                    <label class="col-md-3 col-form-label">File ASC</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" asp-for="@Model.bProcessingFileDTOs[10].FILE_OF_ASC" type="file" id="formFile" multiple>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             @if (ViewBag.funcId == "5" || ViewBag.funcId == "3")
                             {
@@ -1490,17 +1450,23 @@
                         <div class="card-body">
 
                             <h4 class="card-header bg-transparent border-bottom border-top mb-2">Call center xử lý</h4>
-                            <h4 class="card-header bg-transparent border-bottom border-top mb-2">Gọi lần 1</h4>
 
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    Trạng thái
-                                </div>
-                                <div class="col-sm-9">
-                                    Không gọi được
-                                </div>
-                            </div>
-
+                            @foreach (VCallCustomerData item in (List<VCallCustomerData>)ViewData["CallCustomerData"])
+                            {
+                                <h4 class="card-title mb-2 mt-2">Gọi lần @item.SEQ</h4>
+                                <table class="table table-nowrap mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" style="width: 100px;">Trạng thái :</th>
+                                            <td>@Html.DisplayFor(modelItem => item.STATUS)</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Ghi chú :</th>
+                                            <td>@Html.DisplayFor(modelItem => item.NOTE)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
                             <div class="form-group">
                                 <label>
                                     Ghi chú của call center

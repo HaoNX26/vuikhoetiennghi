@@ -32,8 +32,9 @@ namespace JoinReward.Models.DB
         public DbSet<MBank> mBanks { get; set; }
 
         public DbSet<S_USER> S_USER { get; set; }
-        public DbSet<M_CALL_CUSTOMER_DATA> M_CALL_CUSTOMER_DATA { get; set; }
-        public DbSet<M_CALL_CUSTOMER_DATA_IMPORT> M_CALL_CUSTOMER_DATA_IMPORT { get; set; }
+        public DbSet<MCallCustomerData> MCallCustomerData { get; set; }
+        public DbSet<MCallCustomerDataImport> MCallCustomerDataImport { get; set; }
+        public DbSet<VCallCustomerData> VCallCustomerData { get; set; }
         public DbSet<MStatus> mStatuses { get; set; }
         public DbSet<MWard> mWards { get; set; }
         public DbSet<M_OTP_DTO> M_OTP_DTO { get; set; }

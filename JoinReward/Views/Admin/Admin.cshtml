@@ -1,61 +1,238 @@
-﻿<section ="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                    <span class="info-box-icon  ">
-                        <img src="images\icons\register.png" />
-                    </span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Đăng ký hôm nay</span>
-                        <span class="info-box-number">
-                            100
-                        </span>
+﻿<div class="row">
+    <div class="col-md-3">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="text-muted fw-medium">Nộp hồ sơ</p>
+                        <h4 class="mb-0">1,235</h4>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                    <span class="info-box-icon  ">
-                        <img src="images\icons\approve.png" />
-                    </span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Duyệt hôm nay</span>
-                        <span class="info-box-number">
-                            100
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                    <span class="info-box-icon  ">
-                        <img src="images\icons\reject.jpg" />
-                    </span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Từ chối hôm nay</span>
-                        <span class="info-box-number">
-                            100
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                    <span class="info-box-icon  ">
-                        <img src="images\icons\reward.jpg" />
-                    </span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Trả thưởng hôm nay</span>
-                        <span class="info-box-number">
-                            100
-                        </span>
+
+                    <div class="flex-shrink-0 align-self-center">
+                        <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                            <span class="avatar-title">
+                                <i class="bx bx-copy-alt font-size-24"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    <div class="col-md-3">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="text-muted fw-medium">Duyệt hồ sơ</p>
+                        <h4 class="mb-0">$35, 723</h4>
+                    </div>
+
+                    <div class="flex-shrink-0 align-self-center ">
+                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                            <span class="avatar-title rounded-circle bg-primary">
+                                <i class="bx bx-archive-in font-size-24"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="text-muted fw-medium">Từ chối hồ sơ</p>
+                        <h4 class="mb-0">$16.2</h4>
+                    </div>
+
+                    <div class="flex-shrink-0 align-self-center">
+                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                            <span class="avatar-title rounded-circle bg-primary">
+                                <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="text-muted fw-medium">Trả thưởng</p>
+                        <h4 class="mb-0">$16.2</h4>
+                    </div>
+
+                    <div class="flex-shrink-0 align-self-center">
+                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                            <span class="avatar-title rounded-circle bg-primary">
+                                <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Khách hàng nộp / chưa nộp</h4>
+
+                <div>
+                    <div id="donut-chart-1" class="apex-charts"></div>
+                </div>
+
+                <div class="text-center text-muted">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i> Đã nộp</p>
+                                <h5>56</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i> Chưa nộp</p>
+                                <h5>38</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Khách đã xác minh / chưa xác minh</h4>
+
+                <div>
+                    <div id="donut-chart-2" class="apex-charts"></div>
+                </div>
+
+                <div class="text-center text-muted">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i> Đã xác minh</p>
+                                <h5>56</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i> Chưa xác minh</p>
+                                <h5>38</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Xác minh thành công / xác minh thất bại</h4>
+
+                <div>
+                    <div id="donut-chart-3" class="apex-charts"></div>
+                </div>
+
+                <div class="text-center text-muted">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i> Thành công</p>
+                                <h5>56</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i> Thất bại</p>
+                                <h5>38</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Khách được gửi SMS</h4>
+
+                <div>
+                    <div id="donut-chart-4" class="apex-charts"></div>
+                </div>
+
+                <div class="text-center text-muted">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i> Thành công</p>
+                                <h5>56</h5>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i> Thất bại</p>
+                                <h5>38</h5>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i> Chưa nhận</p>
+                                <h5>38</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Đã trả thưởng / chưa trả thưởng</h4>
+
+                <div>
+                    <div id="donut-chart-5" class="apex-charts"></div>
+                </div>
+
+                <div class="text-center text-muted">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i> Đã trả thưởng</p>
+                                <h5>56</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mt-4">
+                                <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i> Chưa trả thưởng</p>
+                                <h5>38</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section ="content">
     <div class="container-fluid">
         <div class="row">
@@ -77,7 +254,7 @@
                                     <th>
                                         Đã xác minh/ chưa xác minh
                                     </th>
-                                    
+
                                     <th>
                                         Xác minh thành công/thất bại
                                     </th>
@@ -95,7 +272,7 @@
                                 <tr>
                                     <td>1.</td>
                                     <td>Đợt 1 (15/01/2022 - 20/01/2022 )</td>
-                                    
+
                                     <td>5/10</td>
                                     <td>5/10</td>
                                     <td>5/10</td>
@@ -111,7 +288,7 @@
                                 <tr>
                                     <td>2.</td>
                                     <td>Đợt 2 (x - y )</td>
-                                    
+
                                     <td>5/10</td>
                                     <td>5/10</td>
                                     <td>5/10</td>
@@ -127,7 +304,7 @@
                                 <tr>
                                     <td>3.</td>
                                     <td>Đợt 3 (x - y )</td>
-                                     
+
                                     <td>5/10</td>
                                     <td>5/10</td>
                                     <td>5/10</td>
@@ -143,7 +320,7 @@
                                 <tr>
                                     <td>4.</td>
                                     <td>Đợt 4 (x - y )</td>
-                                     
+
                                     <td>5/10</td>
                                     <td>5/10</td>
                                     <td>5/10</td>
@@ -171,8 +348,60 @@
                     </div>
                 </div>
 
-            
+
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    var options1={
+        series:[56,38],
+        chart:{type:"donut",height:300},
+        labels:["Đã nộp","Chưa nộp"],
+        colors:["#556ee6","#34c38f"],
+        legend:{show:!1},
+        plotOptions:{pie:{donut:{size:"70%"}}}
+    };
+        (chart=new ApexCharts(document.querySelector("#donut-chart-1"),options1)).render();
+
+     var options2={
+        series:[33,55],
+        chart:{type:"donut",height:300},
+        labels:["Đã xác minh","Chưa xác minh"],
+        colors:["#556ee6","#34c38f"],
+        legend:{show:!1},
+        plotOptions:{pie:{donut:{size:"70%"}}}
+    };
+        (chart=new ApexCharts(document.querySelector("#donut-chart-2"),options2)).render();
+
+        var options3={
+        series:[33,77],
+        chart:{type:"donut",height:300},
+        labels:["Thành công","Thất bại"],
+        colors:["#556ee6","#34c38f"],
+        legend:{show:!1},
+        plotOptions:{pie:{donut:{size:"70%"}}}
+    };
+        (chart=new ApexCharts(document.querySelector("#donut-chart-3"),options3)).render();
+
+         var options4={
+        series:[33,77,88],
+        chart:{type:"donut",height:300},
+        labels:["Thành công","Thất bại","Chưa nhận"],
+        colors:["#556ee6","#34c38f"],
+        legend:{show:!1},
+        plotOptions:{pie:{donut:{size:"70%"}}}
+    };
+        (chart=new ApexCharts(document.querySelector("#donut-chart-4"),options4)).render();
+
+        var options5={
+        series:[33,99],
+        chart:{type:"donut",height:300},
+        labels:["Thành công","Thất bại"],
+        colors:["#556ee6","#34c38f"],
+        legend:{show:!1},
+        plotOptions:{pie:{donut:{size:"70%"}}}
+    };
+        (chart=new ApexCharts(document.querySelector("#donut-chart-5"),options5)).render();
+</script>

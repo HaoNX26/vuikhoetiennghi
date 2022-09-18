@@ -1,8 +1,10 @@
 ﻿using PAN.Warranty.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JoinReward.Models.Master
 {
-    public class M_CALL_CUSTOMER_DATA_IMPORT
+    [Table("M_CALL_CUSTOMER_DATA_IMPORT")]
+    public class MCallCustomerDataImport
     {
         public long ID { get; set; }
         [Import(DisplayName = "Lucky Code")]

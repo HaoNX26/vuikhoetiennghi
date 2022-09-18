@@ -73,21 +73,6 @@ namespace JoinReward.Controllers
                 S_USER s_USER = _masterContext.S_USER.Find((long)HttpContext.Session.GetInt32("s_user_id").Value);
                 ASCMaster aSCMaster = _masterContext.aSCMasters.Where(p => p.ID == s_USER.ASC_ID).FirstOrDefault<ASCMaster>();
 
-                //chức năng duyệt, từ chối, trả thưởng
-                if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_APPROVE))
-                {
-                    fileCustomerWinDTO.PAN_STATUS = SysFrameworks.Constant.C_STATUS_HO_SO_DU;
-                }
-                else if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_REJECT))
-                {
-                    fileCustomerWinDTO.PAN_STATUS = SysFrameworks.Constant.C_STATUS_HO_SO_THIEU;
-                }
-                else if (fileCustomerWinDTO.fid.ToString().Equals(SysFrameworks.Constant.C_F_REWARD))
-                {
-                    fileCustomerWinDTO.CUSTOMER_STATUS = SysFrameworks.Constant.C_STATUS_CUS_DUYET;
-                }
-
-
                 if (aSCMaster.ASC_TYPE.Equals(SysFrameworks.Constant.C_ROLE_ASC)) // acc login là ASC
                 {
                     fileCustomerWinDTO.AscId = aSCMaster.ID; //Fix cứng đk search
@@ -348,7 +333,7 @@ namespace JoinReward.Controllers
             return View("ViewListWinner", fileCustomerWinDTO);
         }
 
-        public JsonResult updateStatusFileCustomerWin(string listId)
+        public JsonResult updateStatusFileCustomerWin(string listId, string status)
         {
             int fid = int.Parse(HttpContext.Session.GetString("fid"));
             JsonResponse response = new JsonResponse();
@@ -367,15 +352,15 @@ namespace JoinReward.Controllers
                             if (submitInfoCustomerWin != null)
                             {
 
-                                if (fid.ToString().Equals(SysFrameworks.Constant.C_F_APPROVE))
+                                if (status.Equals(SysFrameworks.Constant.C_F_APPROVE))
                                 {
                                     submitInfoCustomerWin.CustomerStatus = SysFrameworks.Constant.C_STATUS_CUS_DUYET;
                                 }
-                                else if (fid.ToString().Equals(SysFrameworks.Constant.C_F_REJECT))
+                                else if (status.Equals(SysFrameworks.Constant.C_F_REJECT))
                                 {
                                     submitInfoCustomerWin.CustomerStatus = SysFrameworks.Constant.C_STATUS_CUS_TU_CHOI;
                                 }
-                                else if (fid.ToString().Equals(SysFrameworks.Constant.C_F_REWARD))
+                                else if (status.Equals(SysFrameworks.Constant.C_F_REWARD))
                                 {
                                     submitInfoCustomerWin.CustomerStatus = SysFrameworks.Constant.C_STATUS_CUS_TRA_THUONG;
                                 }
@@ -475,6 +460,11 @@ namespace JoinReward.Controllers
             editFileCustomerWinDTO.fid = HttpContext.Session.GetString("fid");
             ViewBag.funcId = HttpContext.Session.GetString("fid");
             ViewData["infoCustomerWin"] = editFileCustomerWinDTO;
+
+            MCallCustomerData mCallCustomerData = _masterContext.MCallCustomerData.Where(p => p.LUCKY_CODE.Equals(editFileCustomerWinDTO.LUCKY_CODE)).FirstOrDefault<MCallCustomerData>();
+            List<VCallCustomerData> vCallCustomerDatas = _masterContext.VCallCustomerData.Where(p => p.LUCKY_CODE.Equals(editFileCustomerWinDTO.LUCKY_CODE)).ToList();
+
+            ViewData["CallCustomerData"] = vCallCustomerDatas;
 
             List<BProcessingFileDTO> bProcessingFilesDto = new List<BProcessingFileDTO>();
 
@@ -1064,13 +1054,13 @@ namespace JoinReward.Controllers
                     else
                     {
                         response.success = "N";
-                        response.message = "Hãy chọn dòng để thay đổi trạng thái!";
+                        response.message = "Hãy chọn dòng để giao việc cho ASC!";
                     }
                 }
                 else
                 {
                     response.success = "N";
-                    response.message = "Hãy chọn dòng để thay đổi trạng thái!";
+                    response.message = "Hãy chọn dòng để giao việc cho ASC!";
                 }
             }
             catch (Exception ex)

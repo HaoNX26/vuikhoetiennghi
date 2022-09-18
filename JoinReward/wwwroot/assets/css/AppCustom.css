@@ -21,3 +21,7 @@
 .vertical-menu {
     top: 45px !important;
 }
+
+.table .table-light {
+    border-color: #c8d8f3 !important;
+}

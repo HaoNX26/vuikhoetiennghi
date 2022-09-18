@@ -404,18 +404,18 @@ namespace JoinReward.Controllers
             try
             {
                 ExcelLib excelLib = new ExcelLib();
-                List<M_CALL_CUSTOMER_DATA_IMPORT> M_CALL_CUSTOMER_DATA_IMPORTs = excelLib.ReadImportTemplateAsync<M_CALL_CUSTOMER_DATA_IMPORT>(fIMPORT).Result;
+                List<MCallCustomerDataImport> M_CALL_CUSTOMER_DATA_IMPORTs = excelLib.ReadImportTemplateAsync<MCallCustomerDataImport>(fIMPORT).Result;
                 if (ModelState.IsValid)
                 {
-                    _masterContext.RemoveRange(_masterContext.M_CALL_CUSTOMER_DATA_IMPORT.ToList());
+                    _masterContext.RemoveRange(_masterContext.MCallCustomerDataImport.ToList());
                     _masterContext.SaveChanges();
                     string data = "";
                     int i = 1;
-                    foreach (M_CALL_CUSTOMER_DATA_IMPORT item in M_CALL_CUSTOMER_DATA_IMPORTs)
+                    foreach (MCallCustomerDataImport item in M_CALL_CUSTOMER_DATA_IMPORTs)
                     {
-                        M_CALL_CUSTOMER_DATA_IMPORT obj = new M_CALL_CUSTOMER_DATA_IMPORT();
+                        MCallCustomerDataImport obj = new MCallCustomerDataImport();
                         item.CopyProperties(obj);
-                        _masterContext.M_CALL_CUSTOMER_DATA_IMPORT.Add(obj);
+                        _masterContext.MCallCustomerDataImport.Add(obj);
                         //
                         string itemData = "<tr role='row' class='odd'>";
                         itemData = string.Concat(itemData, string.Format("<td>{0}</td>", i++));
@@ -478,11 +478,11 @@ namespace JoinReward.Controllers
             JsonResponse response = new JsonResponse();
             try
             {
-                List<M_CALL_CUSTOMER_DATA_IMPORT> M_CALL_CUSTOMER_DATA_IMPORTs = _masterContext.M_CALL_CUSTOMER_DATA_IMPORT
+                List<MCallCustomerDataImport> M_CALL_CUSTOMER_DATA_IMPORTs = _masterContext.MCallCustomerDataImport
                     .OrderByDescending(o => o.REMARK).OrderBy(o => o.ID).ToList();
                 string data = "";
                 int i = 1;
-                foreach (M_CALL_CUSTOMER_DATA_IMPORT item in M_CALL_CUSTOMER_DATA_IMPORTs)
+                foreach (MCallCustomerDataImport item in M_CALL_CUSTOMER_DATA_IMPORTs)
                 {
                     string itemData = "<tr role='row' class='odd'>";
                     itemData = string.Concat(itemData, string.Format("<td>{0}</td>", i++));
